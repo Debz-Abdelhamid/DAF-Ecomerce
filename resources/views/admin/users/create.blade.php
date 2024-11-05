@@ -52,7 +52,6 @@
                                     <select name="role" class="form-control form-control-lg">
                                     
                                         <option value="" selected disabled>Select</option>
-                                        <option value="user">User</option>
                                         <option value="vendor">Admin</option>
                                     </select>
                                 </div>

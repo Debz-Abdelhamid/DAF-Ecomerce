@@ -5,27 +5,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Frontend\HomeController;
-use App\Http\Controllers\Frontend\UserDashboardController;
-use App\Http\Controllers\Frontend\UserProfileController;
 use App\Http\Controllers\Frontend\FlashSaleController;
 use App\Http\Controllers\Frontend\FrontendProductController;
-use App\Http\Controllers\Frontend\UserAddressController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
-use App\Http\Controllers\Frontend\UserOrderController;
 use App\Http\Controllers\Frontend\ProductTrackController;
 
 
 
 Route::get('/',[HomeController::class, 'index'])->name('home');
-
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
 
 
 
@@ -64,30 +52,16 @@ require __DIR__.'/auth.php';
 
 
 /** Users Routes */
-Route::middleware(['auth', 'verified', 'role:user'])->prefix('user')->name('user.')->group(function () {
+Route::prefix('user')->name('user.')->group(function () {
 
-        /** Dashboard Route */
-    Route::get('/dashboard',[UserDashboardController::class, 'index'])->name('dashboard');
+    
 
-        /** Profile Routes */
-    Route::get('/profile', [UserProfileController::class, 'index'])->name('profile');
-    Route::patch('/profile',[UserProfileController::class, 'UpdateProfile'])->name('profile.update');
-    Route::patch('/profile/Avatar',[UserProfileController::class, 'UpdateImage'])->name('profile.updateAvatar');
-    Route::put('profile/updatePassword',[UserProfileController::class, 'UpdatePassword'])->name('profile.Password');
-
-    /** User Adress Route */
-    Route::resource('address', UserAddressController::class);
-
+    
 
     /** Checkout Routes */
 
     Route::get('checkout',[CheckoutController::class, 'index'])->name('checkout');
-    Route::post('checkout/address-create',[CheckoutController::class, 'createAddress'])->name('checkout.address-create');
     Route::post('checkout/form-submit',[CheckoutController::class, 'checkoutFormSubmit'])->name('checkout.form-submit');
 
-    /** Orders Routes  */
-
-    Route::get('orders', [UserOrderController::class, 'index'])->name('orders.index');
-    Route::get('orders/show/{id}', [UserOrderController::class, 'show'])->name('orders.show');
-
+    
 });

@@ -26,49 +26,12 @@ class CheckoutController extends Controller
             notyf()->warning('Cart Is Empty!');
             return redirect()->route('home');
         }
-        $user = auth()->user();
-        $addresses = $user->addresses;
-        return view('frontend.pages.checkout', compact('addresses'));
+       
+        return view('frontend.pages.checkout');
     }
 
 
-    public function createAddress(Request $request)
-    {
-        $request->validate([
-            'name' => ['required','max:200','string'],
-            'email' => ['required','email','max:200'],
-            'phone' => ['required','max:50','regex:/^0[5-6-7][0-9]{8}$/'],
-            'country' => ['required','max:200', Rule::in(config('settings.country_list'))],
-            'state' => ['required','max:200','string'],
-            'city' => ['required','max:200','string'],
-            'zip' => ['required','max:200', 'string'],
-            'address' => ['required','max:500','string'],
-        ]);
-
-        $user = $request->user();
-
-        $adress = $user->addresses()->count();
-
-        if($adress >= 2)
-        {
-            notyf()->error("You can't add more than 2 Addresses!");
-            return redirect()->back();
-        }
-
-        $user->addresses()->create([
-            'name' => $request->name ,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'country' => $request->country,
-            'state' => $request->state,
-            'city' => $request->city,
-            'zip' => $request->zip,
-            'address' => $request->address,
-        ]);
-
-        notyf()->success('Created Successfully!');
-        return redirect()->back();
-    }
+   
 
 
     public function storeOrder($myaddress,$slider,$facility,$total_duree)
@@ -76,7 +39,6 @@ class CheckoutController extends Controller
         $setting = GeneralSettings::first();
         $order = new Order();
         $order->inovice_id = rand(1,999999);
-        $order->user_id = auth()->user()->id;
         $order->subtotal = cartTotal();
         $order->amount = cartTotal();
         $order->total_variants = variantTotal();
@@ -138,7 +100,7 @@ class CheckoutController extends Controller
     
     public function facility($duree)
     {
-        $cartFaciliter =cartFaciliter();
+        $cartFaciliter = cartFaciliter();
         foreach($cartFaciliter as $key => $cart)
         {
             if($key == $duree)
@@ -158,7 +120,14 @@ class CheckoutController extends Controller
         
         $request->validate([
             
-            'shipping_address_id' => ['required', 'integer'],
+            'name' => ['required','max:200','string'],
+            'email' => ['required','email','max:200'],
+            'phone' => ['required','max:50','regex:/^0[5-6-7][0-9]{8}$/'],
+            'country' => ['required','max:200', Rule::in(config('settings.country_list'))],
+            'state' => ['required','max:200','string'],
+            'city' => ['required','max:200','string'],
+            'zip' => ['required','max:200', 'string'],
+            'address' => ['required','max:500','string'],
             'duree' => ['required', Rule::in('price_12','price_24','price_36','price_48','price_60')],
             'slider' => ['required', 'integer', 'between:25000,200000'],
 
@@ -169,11 +138,20 @@ class CheckoutController extends Controller
         $slider = $request->slider;
         
         
-        $address = Adress::findOrFail($request->shipping_address_id);
-        $myaddress = $address->toArray();
+        $myaddress = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'country' => $request->country,
+            'state' => $request->state,
+            'city' => $request->city,
+            'zip' => $request->zip,
+            'address' => $request->address,
+
+        ];
+       
         $facility = $this->facility($duree);
         
-        Gate::authorize('update', $address);
 
         $total_duree = $this->getDuree($duree);
         
@@ -182,12 +160,8 @@ class CheckoutController extends Controller
         $this->clearCart();
 
         
-
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Order has been sent successfully!',
-            'redirect_url' => route('home'),
-        ]);
+        notyf()->success('Order has been send Successfully!');
+        return redirect()->route('home');
 
     
     }

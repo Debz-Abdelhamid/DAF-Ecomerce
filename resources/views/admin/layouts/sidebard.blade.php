@@ -109,13 +109,13 @@
 
         <li class="dropdown {{ setActive([
             'admin.users.*',
-            'admin.vendors.*',
+            
 
         ]) }}">
-          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>All Users</span></a>
+          <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>All Admins</span></a>
           <ul class="dropdown-menu">
-            <li class="{{setActive(['admin.users.*'])}}"><a class="nav-link" href="{{ route('admin.users.index') }}">Users</a></li>
-            <li class="{{setActive(['admin.vendors.*'])}}"><a class="nav-link" href="{{ route('admin.vendors.index') }}">Admins</a></li>
+            <li class="{{setActive(['admin.users.*'])}}"><a class="nav-link" href="{{ route('admin.users.index') }}">Admins</a></li>
+           
 
           </ul>
         </li>

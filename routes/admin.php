@@ -134,6 +134,5 @@ Route::put('users/update/{id}',[UsersController::class, 'update'])->name('users.
 Route::delete('users/{id}',[UsersController::class, 'destroy'])->name('users.destroy');
 
 
-/** Gérer Admins Routes */
-Route::get('vendors',[UsersController::class, 'getVendors'])->name('vendors.index');
+
 

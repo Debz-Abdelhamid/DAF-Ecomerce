@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
     {
         
         Gate::policy(Product::class, ProductPolicy::class);
-        Gate::policy(Adress::class, AddressPolicy::class);
+        
         
         Paginator::useBootstrapFive();
 

@@ -29,6 +29,7 @@
                                         <th>#</th>
                                         <th>Inovice id</th>
                                         <th>Customer Name</th>
+                                        <th>Customer Telephone</th>
                                         <th>Customer Amount</th>           
                                         <th>Total Variants</th>
                                         <th>Total Amount</th>
@@ -43,12 +44,19 @@
                                         $i = 1;
                                     @endphp
                                     @forelse($orders as $order)
+
+                                    @php
+
+                                        $address = json_decode($order->order_address);
+
+                                    @endphp
                                         <tr>
                                             <td>{{ $i }}</td>
                                             
                                             <td>{{ $order->inovice_id }}</td>
 
-                                            <td>{{ $order->user->name }}</td>
+                                            <td>{{ $address->name }}</td>
+                                            <td>{{ $address->phone }}</td>
                                             
                                             <td>{{ $order->user_amount }} {{ $settings->currency_icon }}</td>
 

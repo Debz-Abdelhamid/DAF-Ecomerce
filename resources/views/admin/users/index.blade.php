@@ -10,7 +10,7 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>Users</h1>
+            <h1>Admins</h1>
 
         </div>
 
@@ -19,7 +19,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>All Users</h4>
+                            <h4>All Admins</h4>
                             <div class="card-header-action">
                                 <a href="{{ route('admin.users.create') }}" class="btn btn-primary"><i
                                         class="fas fa-plus"></i>&nbsp;&nbsp;Create New</a>
@@ -72,9 +72,9 @@
                                         @endphp
                                     @empty
                                         <tr>
-                                            <td colspan="7" class="text-center">No Users available. <a
+                                            <td colspan="7" class="text-center">No Admins available. <a
                                                     href="{{ route('admin.users.create') }}"
-                                                    class="ml-2 btn btn-primary">Create User</a></td>
+                                                    class="ml-2 btn btn-primary">Create Admin</a></td>
                                         </tr>
                                     @endforelse
                                 </table>

@@ -15,7 +15,7 @@ class VendorOrderController extends Controller
 {
     public function index(): View
     {
-        $orders = Order::with('user')->OrderBy('id','DESC')->paginate(10);
+        $orders = Order::OrderBy('id','DESC')->paginate(10);
 
         return view('vendor.order.index', compact('orders'));
     }

@@ -17,7 +17,7 @@ class OrderController extends Controller
      */
     public function index(): View
     {
-        $orders = Order::with('user')->whereNot('order_status', 'deliverd')->OrderBy('id','DESC')->paginate(10);
+        $orders = Order::whereNot('order_status', 'deliverd')->OrderBy('id','DESC')->paginate(10);
         return view('admin.order.index', compact('orders'));
     }
 
@@ -109,7 +109,7 @@ class OrderController extends Controller
 
     public function pendingOrders(): View
     {
-        $pendingOrders = Order::with('user')->where('order_status', 'pending')->OrderBy('id','DESC')->paginate(10);
+        $pendingOrders = Order::where('order_status', 'pending')->OrderBy('id','DESC')->paginate(10);
         return view('admin.order.pending-order', compact('pendingOrders'));
     }
 

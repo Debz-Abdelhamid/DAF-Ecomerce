@@ -16,7 +16,7 @@ class UsersController extends Controller
 {
     public function index(): View
     {
-        $users = User::where('role','user')->paginate(20);
+        $users = User::where('role','vendor')->paginate(20);
         return view('admin.users.index', compact('users'));
     }
 
@@ -31,7 +31,7 @@ class UsersController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'role' => ['required', Rule::in('vendor','user')],
+            'role' => ['required', Rule::in('vendor')],
             'status' => ['required', Rule::in('active','inactive')],
             'password' => ['required', Rules\Password::defaults()],
         ]);
@@ -61,7 +61,7 @@ class UsersController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($user->id)],
-            'role' => ['required', Rule::in('vendor','user')],
+            'role' => ['required', Rule::in('vendor')],
             'status' => ['required', Rule::in('active','inactive')], 
         ]);
 
@@ -104,11 +104,5 @@ class UsersController extends Controller
     }
 
 
-    public function getVendors(): View
-    {
-        $users = User::where('role','vendor')->paginate(10);
-
-        return view('admin.admins.index', compact('users'));
-
-    }
+    
 } 

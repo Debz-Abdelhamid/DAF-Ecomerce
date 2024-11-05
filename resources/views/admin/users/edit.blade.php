@@ -50,7 +50,6 @@
                                     <select name="role" class="form-control form-control-lg">
                                     
                                         <option value="" selected disabled>Select</option>
-                                        <option {{ $user->role == 'user' ? 'selected' : '' }} value="user">User</option>
                                         <option {{ $user->role == 'vendor' ? 'selected' : '' }} value="vendor">Admin</option>
                                     </select>
                                 </div>
