@@ -10,7 +10,7 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>Slider</h1>
+            <h1>@lang('admin.Slider')</h1>
 
         </div>
 
@@ -19,10 +19,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>All Sliders</h4>
+                            <h4>@lang('admin.AllSliders')</h4>
                             <div class="card-header-action">
-                                <a href="{{ route('admin.slider.create') }}" class="btn btn-primary"><i
-                                        class="fas fa-plus"></i>&nbsp;&nbsp;Create New</a>
+                                <a href="{{ route('admin.slider.create') }}" class="btn btn-success"><i
+                                        class="fas fa-plus"></i>&nbsp;&nbsp;@lang('admin.CreateNew')</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -30,12 +30,12 @@
                                 <table class="table table-bordered table-md">
                                     <tr>
                                         <th>#</th>
-                                        <th>Banner</th>
-                                        <th>Type</th>
-                                        <th>Title</th>
-                                        <th>serial</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th>@lang('admin.Banner')</th>
+                                        <th>@lang('admin.Type')</th>
+                                        <th>@lang('admin.Title')</th>
+                                        <th>@lang('admin.serial')</th>
+                                        <th>@lang('admin.Status')</th>
+                                        <th>@lang('admin.Action')</th>
                                     </tr>
                                     @php
                                         $i = 1;
@@ -57,7 +57,7 @@
                                             <td>
                                                 <div class="d-flex">
                                                     <a href="{{ route('admin.slider.edit', $slider->id) }}"
-                                                        class="btn btn-primary"><i class="far fa-edit"></i></a>
+                                                        class="btn btn-success"><i class="far fa-edit"></i></a>
 
 
 
@@ -76,9 +76,9 @@
                                         @endphp
                                     @empty
                                         <tr>
-                                            <td colspan="7" class="text-center">No sliders available. <a
+                                            <td colspan="7" class="text-center">@lang('admin.Noslidersavailable') <a
                                                     href="{{ route('admin.slider.create') }}"
-                                                    class="ml-2 btn btn-primary">Create Slider</a></td>
+                                                    class="ml-2 btn btn-seccess">@lang('admin.CreateSlider')</a></td>
                                         </tr>
                                     @endforelse
                                 </table>

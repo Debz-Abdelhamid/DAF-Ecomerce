@@ -118,10 +118,10 @@
             minutes: 0,
             seconds: 0,
             words: {
-                days: { singular: 'day', plural: 'days' },
-                hours: { singular: 'hour', plural: 'hours' },
-                minutes: { singular: 'minute', plural: 'minutes' },
-                seconds: { singular: 'second', plural: 'seconds' }
+                days: { singular: 'يوم', plural: 'days' },
+                hours: { singular: 'ساعة', plural: 'hours' },
+                minutes: { singular: 'دقيقة', plural: 'minutes' },
+                seconds: { singular: 'ثانية', plural: 'seconds' }
             },
             plural: true,
             inline: false,

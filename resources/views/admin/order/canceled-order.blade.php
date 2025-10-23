@@ -9,7 +9,7 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>Orders</h1>
+            <h1>@lang('admin.Orders')</h1>
 
         </div>
 
@@ -19,7 +19,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>All Orders</h4>
+                            <h4>@lang('admin.AllOrders') </h4>
                             
                         </div>
                         <div class="card-body">
@@ -27,18 +27,19 @@
                                 <table class="table table-bordered table-md">
                                     <tr>
                                         <th>#</th>
-                                        <th>Inovice id</th>
-                                        <th>Customer Name</th>
-                                        <th>Customer Telephone</th>
-                                        <th>Customer Amount</th>           
-                                        <th>Total Variants</th>
-                                        <th>Total Amount</th>
-                                        <th>Cart Facility</th>
-                                        <th>Durée</th>
-                                        <th>Product Qty</th>
-                                        <th>Date</th>
-                                        <th>Order Status</th>
-                                        <th>Action</th>
+                                        <th>@lang('admin.Inoviceid') </th>
+                                        <th>@lang('admin.CustomerName') </th>
+                                        <th>@lang('admin.CustomerTelephone') </th>
+                                        <th>@lang('admin.CustomerAmount') </th> 
+                                        <th>@lang('admin.dossier') </th>                 
+                                        <th>@lang('admin.TotalVariants') </th>
+                                        <th>@lang('admin.TotalAmount') </th>
+                                        <th>@lang('admin.CartFacility') </th>
+                                        <th>@lang('admin.Durée')</th>
+                                        <th>@lang('admin.ProductQty') </th>
+                                        <th>@lang('admin.Date')</th>
+                                        <th>@lang('admin.OrderStatus')</th>
+                                        <th>@lang('admin.Action')</th>
                                     </tr>
                                     @php
                                         $i = 1;
@@ -60,6 +61,9 @@
                                             
                                             <td>{{ $order->user_amount }} {{ $settings->currency_icon }}</td>
 
+                                            <td>{{ $order->dossier }}</td>
+
+
                                             <td>{{ $order->total_variants }} {{ $settings->currency_icon }}</td>
                                             
 
@@ -75,7 +79,7 @@
                                             <td>{{ date('Y-m-d', strtotime($order->created_at)) }}</td>
 
                                             @if($order->order_status == 'canceled')
-                                                <td><span class="badge badge-danger">Canceled</span></td>
+                                                <td><span class="badge badge-danger">@lang('admin.Canceled')</span></td>
                                            
                                             @endif
                                             
@@ -83,7 +87,7 @@
                                                 <div class="d-flex">
 
                                                     <a href="{{ route('admin.order.show', $order) }}"
-                                                        class="btn btn-primary"><i class="far fa-eye"></i></a>
+                                                        class="btn btn-success"><i class="far fa-eye"></i></a>
 
                                                     <a href="{{ route('admin.order.destroy', $order->id) }}"
                                                         data-id="{{ $order->id }}"
@@ -101,7 +105,7 @@
                                         @endphp
                                     @empty
                                         <tr>
-                                            <td colspan="12" class="text-center">No Canceled Orders available.</td>
+                                            <td colspan="12" class="text-center">@lang('admin.NoCanceledOrdersavailable')</td>
                                         </tr>
                                     @endforelse
                                 </table>

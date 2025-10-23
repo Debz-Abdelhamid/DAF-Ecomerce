@@ -10,7 +10,7 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>Child Category</h1>
+            <h1>@lang('admin.ChildCategory')</h1>
 
         </div>
 
@@ -19,10 +19,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>All Child Categories</h4>
+                            <h4>@lang('admin.AllChildCategories')</h4>
                             <div class="card-header-action">
-                                <a href="{{ route('admin.child-category.create') }}" class="btn btn-primary"><i
-                                        class="fas fa-plus"></i>&nbsp;&nbsp;Create New</a>
+                                <a href="{{ route('admin.child-category.create') }}" class="btn btn-success"><i
+                                        class="fas fa-plus"></i>&nbsp;&nbsp;@lang('admin.CreateNew')</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -30,11 +30,11 @@
                                 <table class="table table-bordered table-md">
                                     <tr>
                                         <th>#</th>
-                                        <th>Name</th>
-                                        <th>Category</th>
-                                        <th>Sub Category</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th>@lang('admin.Name')</th>
+                                        <th>@lang('admin.Category')</th>
+                                        <th>@lang('admin.SubCategory')</th>
+                                        <th>@lang('admin.Status')</th>
+                                        <th>@lang('admin.Action')</th>
                                     </tr>
                                     @php
                                         $i = 1;
@@ -69,7 +69,7 @@
                                             <td>
                                                 <div class="d-flex">
                                                     <a href="{{ route('admin.child-category.edit', $childcategory->id) }}"
-                                                        class="btn btn-primary"><i class="far fa-edit"></i></a>
+                                                        class="btn btn-success"><i class="far fa-edit"></i></a>
 
 
 
@@ -86,9 +86,9 @@
                                         @endphp
                                     @empty
                                         <tr>
-                                            <td colspan="7" class="text-center">No child categories available. <a
+                                            <td colspan="7" class="text-center">@lang('admin.Nochildcategoriesavailable') <a
                                                     href="{{ route('admin.child-category.create') }}"
-                                                    class="btn btn-primary ml-2">Create child Category</a></td>
+                                                    class="btn btn-success ml-2">@lang('admin.CreatechildCategory')</a></td>
                                         </tr>
 
                                     @endforelse

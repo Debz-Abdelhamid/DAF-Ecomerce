@@ -10,7 +10,7 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>Product</h1>
+            <h1>@lang('admin.Product')</h1>
 
         </div>
 
@@ -19,33 +19,31 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Create Product</h4>
+                            <h4>@lang('admin.CreateProduct')</h4>
                             <div class="card-header-action">
-                                <a href="{{ route('admin.product.index') }}" class="btn btn-primary"><i
-                                        class="fas fa-backspace"></i>&nbsp;Back</a>
+                                <a href="{{ route('admin.product.index') }}" class="btn btn-success"><i
+                                        class="fas fa-backspace"></i>&nbsp;@lang('admin.Back')</a>
                             </div>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('admin.product.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <div class="form-group">
-                                    <label>Image</label>
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                    
                                     <input type="file" name="image" class="form-control">
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <input type="text" name="name" value="{{ old('name') }}" class="form-control">
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                    <input type="text" placeholder="@lang('admin.Name')" name="name" value="{{ old('name') }}" class="form-control">
                                 </div>
 
                         
 
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Category</label>
+                                        <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                                             <select name="category" class="form-control form-control-lg main-category">
-                                                <option value="" selected disabled>Select</option>
+                                                <option value="" selected disabled>@lang('admin.Select') @lang('admin.Category')</option>
 
                                                 @foreach($categories as $id => $name)
 
@@ -59,19 +57,19 @@
 
 
                                     <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Sub Category</label>
+                                        <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                            
                                             <select name="sub_category" class="form-control form-control-lg sub-category">
-                                                <option value="" selected disabled>Select</option>
+                                                <option value="" selected disabled>@lang('admin.Select') @lang('admin.SubCategory')</option>
                                             </select>
                                         </div>
                                     </div>   
                                     
                                     <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Child Category</label>
+                                        <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                            
                                             <select name="child_category" class="form-control form-control-lg child-category">
-                                                <option value="" selected disabled>Select</option>
+                                                <option value="" selected disabled>@lang('admin.Select') @lang('admin.ChildCategory')</option>
                                             </select>
                                         </div>
                                     </div>   
@@ -80,10 +78,10 @@
                                 
                                 
                                 
-                                <div class="form-group">
-                                    <label>Brand</label>
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                    
                                     <select name="brand" class="form-control form-control-lg">
-                                        <option value="" selected disabled>Select</option>
+                                        <option value="" selected disabled>@lang('admin.Select') @lang('admin.Brand')</option>
 
                                             @foreach($brands as $id => $name)
 
@@ -95,84 +93,34 @@
 
                                 
 
-                                <div class="form-group">
-                                    <label>Price</label>
-                                    <input type="text" name="price" value="{{ old('price') }}" class="form-control">
-                                </div>
-
-
-                                <div class="form-group">
-                                    <label>Prix par DA / mois jusqu'à 12 mois </label>
-                                    <input type="text" name="price_12" value="{{ old('price_12') }}" class="form-control">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Prix par DA / mois jusqu'à 24 mois </label>
-                                    <input type="text" name="price_24" value="{{ old('price_24') }}" class="form-control">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Prix par DA / mois jusqu'à 36 mois </label>
-                                    <input type="text" name="price_36" value="{{ old('price_36') }}" class="form-control">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Prix par DA / mois jusqu'à 48 mois </label>
-                                    <input type="text" name="price_48" value="{{ old('price_48') }}" class="form-control">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Prix par DA / mois jusqu'à 60 mois </label>
-                                    <input type="text" name="price_60" value="{{ old('price_60') }}" class="form-control">
-                                </div>
-
-
-                                <div class="form-group">
-                                    <label>Offer Price</label>
-                                    <input type="text" name="offer_price" value="{{ old('offer_price') }}" class="form-control">
-                                </div>
-
-                                
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Offer Start Date</label>
-                                        <input type="text" name="offer_start_date" value="{{ old('offer_start_date') }}" class="form-control datepicker">
-                                    </div>
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                                     
-                                    <div class="col-md-6">
-                                        <label>Offer End Date</label>
-                                        <input type="text" name="offer_end_date" value="{{ old('offer_end_date') }}" class="form-control datepicker">
-                                    </div>
-                                    
+                                    <input type="text" placeholder="@lang('admin.Price')" name="price" value="{{ old('price') }}" class="form-control">
+                                </div>
+                                         
+
+                                <div class="form-group mt-3"  dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                    <input placeholder="@lang('admin.StockQuantity')" type="number" min="0" name="qty" value="{{ old('qty') }}" class="form-control">
                                 </div>
 
-                                <div class="form-group mt-3">
-                                    <label>Stock Quantity</label>
-                                    <input type="number" min="0" name="qty" value="{{ old('qty') }}" class="form-control">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Video Link</label>
-                                    <input type="text"  name="video_link" value="{{ old('video_link') }}" class="form-control">
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                    <input type="text" placeholder="@lang('admin.VideoLink')"  name="video_link" value="{{ old('video_link') }}" class="form-control">
                                 </div>
 
 
-                                <div class="form-group">
-                                    <label>Short Description</label>
-                                    <textarea  name="short_description" class="form-control">{{ old('short_description') }}</textarea>
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                    <textarea  name="short_description" placeholder="@lang('admin.ShortDescription')" class="form-control">{{ old('short_description') }}</textarea>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Long Description</label>
-                                    <textarea  name="long_description" class="form-control summernote">{{ old('long_description') }}</textarea>
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                    <textarea placeholder="@lang('admin.LongDescription')" name="long_description" class="form-control summernote">{{ old('long_description') }}</textarea>
                                 </div>
 
                                 
                                 
-                                <div class="form-group">
-                                    <label>Product Type</label>
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                                     <select name="type" class="form-control form-control-lg">
-                                        <option value="" selected disabled>Select</option>
+                                        <option value="" selected disabled>@lang('admin.Select') @lang('admin.ProductType')</option>
                                         <option value="تقسيط">تقسيط</option>
                                     
                                     </select>
@@ -181,15 +129,16 @@
    
                                     
                                     
-                                <div class="form-group">
-                                    <label>Status</label>
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                   
                                     <select name="status" class="form-control form-control-lg">
-                                        <option value="1">Active</option>
-                                        <option value="0">Inactive</option>
+                                    <option value="" selected disabled>@lang('admin.Select') @lang('admin.Status')</option>    
+                                    <option value="1">@lang('admin.Active')</option>
+                                        <option value="0">@lang('admin.Inactive')</option>
                                     </select>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary">Create</button>
+                                <button type="submit" class="btn btn-success">@lang('admin.Create')</button>
                             </form>
 
                         </div>

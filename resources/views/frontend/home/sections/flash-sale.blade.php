@@ -4,13 +4,15 @@
             <div class="col-xl-12">
                 <div class="offer_time" style="background: url({{asset('frontend/images/flash_sell_bg.jpg')}})">
                     <div class="wsus__flash_coundown">
-                        <span class=" end_text">flash Sale</span>
+                        <span class=" end_text">@lang('navbar.flash_sale')</span>
                         <div class="simply-countdown simply-countdown-one"></div>
-                        <a class="common_btn" href="{{ route('flash-sale') }}">see more <i class="fas fa-caret-right"></i></a>
+                        <a class="common_btn" href="{{ route('flash-sale') }}">@lang('navbar.voire_plus') <i class="fas fa-caret-right"></i></a>
                     </div>
                 </div>
             </div>
         </div>
+
+        
         <div class="row flash_sell_slider">
 
             @foreach($flashsaleitems as $flashsaleitem)
@@ -25,11 +27,11 @@
 
                         @endif
                         <a class="wsus__pro_link" href="{{ route('product-detail', $flashsaleitem->productitem->slug ) }}">
-                            <img src="{{ asset('storage/'.$flashsaleitem->productitem->thumb_image) }}" alt="product" class="img-fluid w-100 img_1" />
+                            <img src="{{ asset('storage/'.$flashsaleitem->productitem->thumb_image) }}" alt="product" class="img-fluid object-fit-cover w-100 img_1" />
                         @if ($flashsaleitem->productitem->galleries->isNotEmpty())
-                            <img src="{{ asset('storage/' . $flashsaleitem->productitem->galleries->first()->image) }}" alt="product" class="img-fluid w-100 img_2" />
+                            <img src="{{ asset('storage/' . $flashsaleitem->productitem->galleries->first()->image) }}" alt="product" class="img-fluid object-fit-cover w-100 img_2" />
                         @else
-                             <img src="{{ asset('storage/' . $flashsaleitem->productitem->thumb_image) }}" alt="product" class="img-fluid w-100 img_2" />
+                             <img src="{{ asset('storage/' . $flashsaleitem->productitem->thumb_image) }}" alt="product" class="img-fluid object-fit-cover w-100 img_2" />
                         @endif
                         </a>
                         <ul class="wsus__single_pro_icon">
@@ -43,18 +45,19 @@
                             <a class="wsus__pro_name" href="{{ route('product-detail', $flashsaleitem->productitem->slug ) }}">{{limitText($flashsaleitem->productitem->name)}}</a>
                             @if(checkDiscount($flashsaleitem->productitem))
 
-                                <p class="wsus__price"> <span> <b>Prix Total : </b></span> &nbsp; {{ $flashsaleitem->productitem->offer_price }} {{ $settings->currency_icon }} <del> {{ $flashsaleitem->productitem->price }} {{ $settings->currency_icon }}</del></p>
+                                
                                 <div class="d-flex justify-center items-center text-center">
-                                    <p class="wsus__price text-center text-danger"><span > <b>Prix : </b> </span> &nbsp; {{ $flashsaleitem->productitem->price_60 }} {{ $settings->currency_icon }}  <span class="text-danger"> <b>/Mois </b> </span></p>
+                                    <p class="wsus__price text-center text-danger">  {{ $flashsaleitem->productitem->price_60 }} {{ $settings->currency_icon }}  <span class="text-danger"> <b>/Mois </b> </span> </p>
                                 </div>
                             @else
-                                <p class="wsus__price"><span> <b>Prix Total : </b></span> &nbsp;  {{ $flashsaleitem->productitem->price }} {{ $settings->currency_icon }}</p>
+                               
                                 <div class="d-flex justify-center items-center text-center">
-                                    <p class="wsus__price text-center text-danger"><span> <b>Prix : </b> </span> &nbsp; {{ $flashsaleitem->productitem->price_60 }} {{ $settings->currency_icon }}  <span class="text-danger"> <b>/Mois </b> </span></p>
+                                    <p class="wsus__price text-center text-danger">{{ $flashsaleitem->productitem->price_60 }} {{ $settings->currency_icon }}  <span class="text-danger"> <b>/Mois </b> </span> </p>
                                 </div>
 
                             @endif
                             <form class="shopping-cart-form">
+                            <button style="border: none;"type="submit"  href="#">
                                 <input type="hidden" name="product" value="{{ $flashsaleitem->productitem->id }}" >
                                 @foreach($flashsaleitem->productitem->variants as $variants)
 
@@ -66,7 +69,7 @@
 
                                 @endforeach
                                     <input class="" type="hidden" name="qty" min="1" max="100" value="1" />
-                                <button type="submit" class="add_cart" href="#">add to cart</button>
+                                </button>
                             </form>
                         </div>
                     </div>

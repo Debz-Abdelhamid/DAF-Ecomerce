@@ -93,7 +93,7 @@ class HomePageSettingController extends Controller
             ],
         );
 
-        notyf()->success('Updated Successfully!');
+        notyf()->success(__('toastr.UpdatedSuccessfully'));
 
         return redirect()->back();
     }

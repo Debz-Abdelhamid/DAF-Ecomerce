@@ -10,13 +10,13 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>Product Variant</h1>
+            <h1>@lang('admin.ProductVariant')</h1>
 
         </div>
 
         <div class="mb-3">
-            <a href="{{ route('admin.product.index') }}" class="btn btn-primary"><i
-                class="fas fa-backspace"></i>&nbsp;Back</a>
+            <a href="{{ route('admin.product.index') }}" class="btn btn-success"><i
+                class="fas fa-backspace"></i>&nbsp;@lang('admin.Back')</a>
         </div>    
         <div class="section-body" style="box-sizing: border-box;">
 
@@ -24,10 +24,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4> Product : <span class="text-primary"> {{ ucfirst($productItem->name)}} </span></h4>
+                            <h4>@lang('admin.Product')  : <span class="text-blak"> {{ ucfirst($productItem->name)}} </span></h4>
                             <div class="card-header-action">
-                                <a href="{{ route('admin.product-variant.create', ['product' => $productItem->id]) }}" class="btn btn-primary"><i
-                                        class="fas fa-plus"></i>&nbsp;&nbsp;Create New</a>
+                                <a href="{{ route('admin.product-variant.create', ['product' => $productItem->id]) }}" class="btn btn-success"><i
+                                        class="fas fa-plus"></i>&nbsp;&nbsp;@lang('admin.CreateNew')</a>
                             </div>
                             <input type="hidden" class="produit-item" data-product="{{ $productItem->id }}" >
                         </div>
@@ -36,9 +36,9 @@
                                 <table class="table table-bordered table-md">
                                     <tr>
                                         <th>#</th>
-                                        <th>Variant Name</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th>@lang('admin.VariantName')</th>
+                                        <th>@lang('admin.Status')</th>
+                                        <th>@lang('admin.Action')</th>
                                     </tr>
                                     @php
                                         $i = 1;
@@ -72,11 +72,11 @@
                                                 <div class="d-flex">
 
                                                     <a href="{{ route('admin.product-variant-item.index', ['product_id' => $productItem->id, 'variant_id' => $variant->id]) }}"
-                                                    class="btn btn-info"><i class="far fa-edit"></i>  Variant Items</a>
+                                                    class="btn btn-info"><i class="far fa-edit"></i> @lang('admin.VariantItems') </a>
 
 
                                                     <a href="{{ route('admin.product-variant.edit', ['product_variant' => $variant->id, 'product' => $productItem->id ]) }}"
-                                                        class="btn btn-primary ml-2"><i class="far fa-edit"></i></a>
+                                                        class="btn btn-success ml-2"><i class="far fa-edit"></i></a>
 
 
 
@@ -97,9 +97,9 @@
                                         @endphp
                                     @empty
                                         <tr>
-                                            <td colspan="7" class="text-center">No variant available. <a
+                                            <td colspan="7" class="text-center">@lang('admin.Novariantavailable')<a
                                                     href="{{ route('admin.product-variant.create', ['product' => $productItem->id]) }}"
-                                                    class="btn btn-primary ml-2">Create Variant</a></td>
+                                                    class="btn btn-success ml-2">@lang('admin.CreateVariant')</a></td>
                                         </tr>
                                     @endforelse
                                 </table>
@@ -138,7 +138,7 @@
 
                     error: function(xhr,status,error)
                     {
-                        notyf.error("Error Can't Update !");                           
+                        notyf.error("@lang('admin.error_cant_update')");                           
                     },
 
                 });

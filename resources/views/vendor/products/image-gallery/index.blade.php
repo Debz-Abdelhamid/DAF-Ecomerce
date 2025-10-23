@@ -14,11 +14,11 @@
       @include('vendor.layouts.sidebard')
       
 
-      <div class="row">
+      <div class="row" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
         <div class="col-xl-9 col-xxl-10 col-lg-9 ms-auto">
-          <a href="{{ route('vendor.product.index') }}" class="btn btn-warning mb-3"><i class="fas fa-arrow-left"></i>&nbsp;Back</a>
+          <a href="{{ route('vendor.product.index') }}" class="btn btn-success mb-3"><i class="fas fa-arrow-left"></i>&nbsp;@lang('admin.Back')</a>
           <div class="mt-2 dashboard_content mt-md-0">
-            <h3><i class="fas fa-images"></i>Product : {{ ucfirst($productItem->name)}}</h3>
+            <h3><i class="fas fa-images"></i>@lang('admin.Product') : {{ ucfirst($productItem->name)}}</h3>
             <div class="wsus__dashboard_profile">
               <div class="wsus__dash_pro_area">
                
@@ -26,13 +26,14 @@
                 <form action="{{ route('vendor.product-image-gallery.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group wsus_input">
-                        <label>Image <code> (Multiple Image Supported!)</code></label>
+                        <label>@lang('admin.Image') </label>
+                        
                         <input type="file" name="image[]" multiple class="form-control">
                     </div>
 
                     <input type="hidden" name="product" value="{{$productItem->id}}" data-id="{{$productItem->id}}" class="produit">
-
-                    <button type="submit" class='btn btn-primary'>Save</button>
+                    <br/>
+                    <button type="submit" class='btn btn-success'>@lang('admin.Save')</button>
                 </form>
                
               </div>
@@ -47,10 +48,10 @@
 
 
 
-      <div class="row mt-5">
+      <div class="row mt-5" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
         <div class="col-xl-9 col-xxl-10 col-lg-9 ms-auto">
           <div class="mt-2 dashboard_content mt-md-0">
-            <h3><i class="fas fa-images"></i>Product Gallery</h3>
+            <h3><i class="fas fa-images"></i>@lang('admin.ProductGallery')</h3>
             <div class="wsus__dashboard_profile">
               <div class="wsus__dash_pro_area">
                
@@ -59,8 +60,8 @@
                     <table class="table table-bordered table-md">
                         <tr>
                             <th>#</th>
-                            <th>Product Image</th>
-                            <th>Action</th>
+                            <th>@lang('admin.ProductImage')</th>
+                            <th>@lang('admin.Action')</th>
                         </tr>
                         @php
                             $i = 1;
@@ -90,7 +91,7 @@
                             @endphp
                         @empty
                             <tr>
-                                <td colspan="7" class="text-center">No Images available. </td>
+                                <td colspan="7" class="text-center">@lang('vendor.NoImagesavailable')</td>
                             </tr>
                         @endforelse
                     </table>

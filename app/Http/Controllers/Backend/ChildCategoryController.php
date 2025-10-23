@@ -65,7 +65,7 @@ class ChildCategoryController extends Controller
 
         if ($subcategory->status!== 1 || $subcategory->category_id !== $category->id) {
 
-            notyf()->error('The selected sub-category is either inactive or does not belong to the selected category. Please check and try again!');
+            notyf()->error(__('toastr.Thesselected'));
             return redirect()->back();
         }
 
@@ -78,7 +78,7 @@ class ChildCategoryController extends Controller
             'status' => $request->status,
         ]);
 
-        notyf()->success('Child Category Created Successfully!');
+        notyf()->success(__('toastr.ChildCategoryCreatedSuccessfully'));
         return redirect()->route('admin.child-category.index');
     }
 
@@ -121,7 +121,7 @@ class ChildCategoryController extends Controller
         
         if ($subcategory->status!== 1 || $subcategory->category_id !== $category->id) {
 
-            notyf()->error('The selected sub-category is either inactive or does not belong to the selected category. Please check and try again!');
+            notyf()->error(__('toastr.Theselectedsubcategory'));
             return redirect()->back();
         }
 
@@ -133,7 +133,7 @@ class ChildCategoryController extends Controller
             'status' => $request->status,
         ]);
 
-        notyf()->success('Child Category Updated Successfully!');
+        notyf()->success(__('toastr.ChildCategoryUpdatedSuccessfully'));
         return redirect()->route('admin.child-category.index');
 
     }
@@ -150,7 +150,7 @@ class ChildCategoryController extends Controller
         return response()->json([
             'status' => 'success',
             'type' => 'childcategory',
-            'message' => 'Child Category deleted successfully!'
+            'message' =>__('toastr.ChildCategorydeletedsuccessfully')
         ]);
     }
 
@@ -168,7 +168,7 @@ class ChildCategoryController extends Controller
         $childcategory->save();
 
         return response()->json([
-            'message' => 'Status has been updated!'
+            'message' =>__('toastr.Statushasbeenupdated')
         ]);
 
     }

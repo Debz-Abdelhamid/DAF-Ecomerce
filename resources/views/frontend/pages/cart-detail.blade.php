@@ -7,28 +7,7 @@
 @section('content')
 
 
-    <!--============================
-        BREADCRUMB START
-    ==============================-->
-    <section id="wsus__breadcrumb">
-        <div class="wsus_breadcrumb_overlay">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <h4>cart View</h4>
-                        <ul>
-                            <li><a href="#">home</a></li>
-                            <li><a href="#">peoduct</a></li>
-                            <li><a href="#">cart view</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--============================
-        BREADCRUMB END
-    ==============================-->
+
 
 
     <!--============================
@@ -44,30 +23,30 @@
                                 <tbody>
                                     <tr class="d-flex">
                                         <th class="wsus__pro_img">
-                                            Product item
+                                        @lang('product.Product_item')
                                         </th>
 
                                         <th class="wsus__pro_name">
-                                            Product details
+                                        @lang('product.Productdetails') 
                                         </th>
 
 
                                         <th class="wsus__pro_tk">
-                                           Unit Price
+                                        @lang('product.UnitPrice') 
                                         </th>
 
                                         <th class="wsus__pro_tk">
-                                           Ttotal Price
+                                        @lang('product.TtotalPrice') 
                                         </th>
 
 
                                         <th class="wsus__pro_select">
-                                            quantity
+                                        @lang('product.quantity') 
                                         </th>
 
 
                                         <th class="wsus__pro_icon">
-                                            <a href="#" class="common_btn clear_cart">clear cart</a>
+                                            <a href="#" class="common_btn clear_cart">@lang('product.clear_cart')</a>
                                         </th>
                                     </tr>
 
@@ -98,9 +77,10 @@
 
                                         <td class="">
                                             <form class="gap-2 product_qty_wrapper">
-                                                <button class="btn btn-danger product-decrement">-</button>
-                                                <input class="product-qty" data-rowid="{{ $cart->rowId }}" type="text" min="1" max="100" value="{{ $cart->qty }}" readonly />
-                                                <button class="btn btn-success product-increment">+</button>
+                                                <button style="background-color: #eee;" class="btn  product-decrement">-</button>
+                                                <input class="product-qty " data-rowid="{{ $cart->rowId }}" style="width: 35px; height: 35px; border-radius: 8px; border: 1px solid; text-align: center; line-height: 35px;"
+                                                type="text" min="1" max="100" value="{{ $cart->qty }}" readonly />
+                                                <button style="background-color: #eee;" class="btn product-increment">+</button>
                                             </form>
                                         </td>
 
@@ -111,7 +91,7 @@
                                     @empty
                                         <tr class="d-flex">
                                             <td class="wsus__pro_icon" style="width:100%;">
-                                                Cart Is Empty !
+                                                @lang('product.CartEmpty')
                                             </td>
                                         </tr>
 
@@ -123,16 +103,7 @@
                             </table>
                         </div>
 
-                        <div class="p-3  justify-content-center items-center text-center" id="sticky_sidebar">
-                            <h4 class="pb-3 text-danger"> <b>Total Cart Faciliter : </b> </h4>
-                            <div class="p-2">
-                                <p id="faciliter_12"> <b>{{ $cartFaciliter['price_12'] }} {{ $settings->currency_icon }} / mois jusqu'à 12 mois</b> </p>
-                                <p id="faciliter_24"> <b>{{ $cartFaciliter['price_24'] }} {{ $settings->currency_icon }} / mois jusqu'à 24 mois</b> </p>
-                                <p id="faciliter_36"> <b>{{ $cartFaciliter['price_36'] }} {{ $settings->currency_icon }} / mois jusqu'à 36 mois</b> </p>
-                                <p id="faciliter_48"> <b>{{ $cartFaciliter['price_48'] }} {{ $settings->currency_icon }} / mois jusqu'à 48 mois</b></p>
-                                <p id="faciliter_60"> <b>{{ $cartFaciliter['price_60'] }} {{ $settings->currency_icon }} / mois jusqu'à 60 mois</b></p>
-                            </div>
-                       </div>
+
 
                     </div>
                 </div>
@@ -142,18 +113,24 @@
                     
 
 
-                    <div class="mt-3 wsus__cart_list_footer_button" id="sticky_sidebar">
-                        <h6>total cart</h6>
-                        <p>variant total: <span id="variant_total"> {{ variantTotal() }} {{ $settings->currency_icon }}</span></p>
-                        <p>subtotal: <span id="sub_total"> {{ cartTotal() }} {{ $settings->currency_icon }}</span></p>
-            
-                        <p class="total"><span>total:</span> <span id="cart-total">{{ cartTotal() }} {{ $settings->currency_icon }}</span></p>
+                <div 
+                    class="mt-3 wsus__cart_list_footer_button" 
+                    id="sticky_sidebar" 
+                    dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}"
+                    >
+                    <h6>@lang('product.totalcart')</h6>
+                    <p>@lang('product.varianttotal') : <span id="variant_total"> {{ variantTotal() }} {{ $settings->currency_icon }}</span></p>
+                    <p>@lang('product.subtotal') : <span id="sub_total"> {{ cartTotal() }} {{ $settings->currency_icon }}</span></p>
 
-                        <a class="mt-4 text-center common_btn w-100" href="{{ route('user.checkout') }}">checkout</a>
-                        <a class="mt-1 text-center common_btn w-100" href="{{ route('home') }}"><i
-                                class="fab fa-shopify"></i> Keep Shopping</a>
-        
+                    <p class="total"><span>@lang('product.total') :</span> <span id="cart-total">{{ cartTotal() }} {{ $settings->currency_icon }}</span></p>
+
+                    <a class="mt-4 text-center common_btn w-100" href="{{ route('user.checkout') }}">@lang('product.checkout')</a>
+                    <a class="mt-1 text-center common_btn w-100" href="{{ route('home') }}">
+                        <i class="fab fa-shopify"></i>@lang('product.Keep_Shopping')
+                    </a>
                     </div>
+
+                                    
                 </div>
 
 
@@ -161,36 +138,23 @@
             </div>
         </div>
     </section>
-    <section id="wsus__single_banner">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-6 col-lg-6">
-                    <div class="wsus__single_banner_content">
-                        <div class="wsus__single_banner_img">
-                            <img src="images/single_banner_2.jpg" alt="banner" class="img-fluid w-100">
-                        </div>
-                        <div class="wsus__single_banner_text">
-                            <h6>sell on <span>35% off</span></h6>
-                            <h3>smart watch</h3>
-                            <a class="shop_btn" href="#">shop now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6">
-                    <div class="wsus__single_banner_content single_banner_2">
-                        <div class="wsus__single_banner_img">
-                            <img src="images/single_banner_3.jpg" alt="banner" class="img-fluid w-100">
-                        </div>
-                        <div class="wsus__single_banner_text">
-                            <h6>New Collection</h6>
-                            <h3>Cosmetics</h3>
-                            <a class="shop_btn" href="#">shop now</a>
-                        </div>
-                    </div>
-                </div>
+
+
+    <section class="container p-2" id="wsus__cart_view">
+        <div class="p-3 row justify-content-center items-center text-center" id="sticky_sidebar">
+            <h4 class="pb-3 text-danger"> <b>@lang('product.Faciliter') </b> </h4>
+            <div class="p-3 col-sm">
+                <p id="faciliter_12"> <b>{{ $cartFaciliter['price_12'] }} {{ $settings->currency_icon }} @lang('product.price12')</b> </p>
+                <p id="faciliter_24"> <b>{{ $cartFaciliter['price_24'] }} {{ $settings->currency_icon }} @lang('product.price24')</b> </p>
+                <p id="faciliter_36"> <b>{{ $cartFaciliter['price_36'] }} {{ $settings->currency_icon }} @lang('product.price36')</b> </p>
+                <p id="faciliter_48"> <b>{{ $cartFaciliter['price_48'] }} {{ $settings->currency_icon }} @lang('product.price48')</b></p>
+                <p id="faciliter_60"> <b>{{ $cartFaciliter['price_60'] }} {{ $settings->currency_icon }} @lang('product.price60')</b></p>
             </div>
         </div>
+        
+
     </section>
+
     <!--============================
           CART VIEW PAGE END
     ==============================-->

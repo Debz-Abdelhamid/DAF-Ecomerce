@@ -52,7 +52,7 @@ class CategoryController extends Controller
             'slug' => Str::slug($request->name),
         ]);
 
-        notyf()->success('Category Created Successfully!');
+        notyf()->success(__('toastr.CategoryCreatedSuccessfully'));
         return redirect()->route('admin.category.index');
     }
 
@@ -92,7 +92,7 @@ class CategoryController extends Controller
             'slug' => Str::slug($request->name),
         ]);
 
-        notyf()->success('Category Updated Successfully!');
+        notyf()->success(__('toastr.CategoryUpdatedSuccessfully'));
         return redirect()->route('admin.category.index');
 
     }
@@ -106,13 +106,13 @@ class CategoryController extends Controller
         if ($category->subcategories()->exists()) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'This category contains subcategories. You have to delete the subcategories first!',
+                'message' =>__('toastr.Thiscategorycontains'),
             ]);
         }else if($category->productscategory()->exists())
         {
             return response()->json([
                 'status' => 'error',
-                'message' => 'This Category contains Products. You have to delete the Products Of this Category first!',
+                'message' =>__('toastr.Thiscategorycontainspro') ,
             ]);
         }
 
@@ -121,7 +121,7 @@ class CategoryController extends Controller
         return response()->json([
             'status' => 'success',
             'type' => 'category',
-            'message' => 'Category deleted successfully!'
+            'message' =>__('toastr.Categorydeletedsuccessfully') 
         ]);
     }
 
@@ -139,7 +139,7 @@ class CategoryController extends Controller
         $category->save();
 
         return response()->json([
-            'message' => 'Status has been updated!'
+            'message' =>__('toastr.Statushasbeenupdated')
         ]);
 
     }

@@ -23,7 +23,7 @@ class VendorProductVariantItemsController extends Controller
 
         if($variant->product_id !== $product->id)
         {
-            notyf()->error('Error!');
+            notyf()->error(__('toastr.Error'));
             return redirect()->back();
         }
 
@@ -41,7 +41,7 @@ class VendorProductVariantItemsController extends Controller
 
         if($variant->product_id !== $product->id)
         {
-            notyf()->error('Error!');
+            notyf()->error(__('toastr.Error'));
             return redirect()->back();
         }
         
@@ -73,7 +73,7 @@ class VendorProductVariantItemsController extends Controller
 
         if($variant->product_id != $request->product_id)
         {
-            notyf()->error('Error!');
+            notyf()->error(__('toastr.Error'));
             return redirect()->back();
         }
 
@@ -84,7 +84,7 @@ class VendorProductVariantItemsController extends Controller
             'status' => $request->status,
         ]);
 
-        notyf()->success('Variant Item Created Successfully!');
+        notyf()->success(__('toastr.VariantCreatedSuccessfully'));
         return redirect()->route('vendor.product-variant-item.index',['product_id' => $variant->product_id, 'variant_id' => $variant->id]);
 
     }
@@ -128,7 +128,7 @@ class VendorProductVariantItemsController extends Controller
             'status' => $request->status,
         ]);
 
-        notyf()->success('Variant Item Updated Successfully!');
+        notyf()->success(__('toastr.VariantCreatedSuccessfullyy'));
         return redirect()->route('vendor.product-variant-item.index',['product_id' => $variantItem->productvariant->product_id, 'variant_id' => $variantItem->product_variant_id]);
 
     }
@@ -162,7 +162,7 @@ class VendorProductVariantItemsController extends Controller
         $variantItem->save();
 
         return response()->json([
-            'message' => 'Status has been updated!'
+            'message' =>__('toastr.Statushasbeenupdated')
         ]);
 
     }

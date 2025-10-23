@@ -9,6 +9,7 @@ use Illuminate\View\View;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Cache;
 
 
 class VendorOrderController extends Controller
@@ -40,7 +41,9 @@ class VendorOrderController extends Controller
 
         $order->update(['order_status' => $request->status]);
 
-        notyf()->success('Order Status Updated Successfully');
+        Cache::forget('dashboard_stats');
+
+        notyf()->success(__('toastr.OrderStatusUpdatedSuccessfully'));
 
         return redirect()->back();
 

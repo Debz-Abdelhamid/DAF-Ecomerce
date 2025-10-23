@@ -17,6 +17,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Cache;
 
 class VendorProductController extends Controller
 {
@@ -89,40 +90,6 @@ class VendorProductController extends Controller
                 
             ],
 
-            'price_12' => [
-                'required',
-                'integer',
-                'min:0',
-                
-            ],
-
-            'price_24' => [
-                'required',
-                'integer',
-                'min:0',
-                
-            ],
-
-            'price_36' => [
-                'required',
-                'integer',
-                'min:0',
-                
-            ],
-
-            'price_48' => [
-                'required',
-                'integer',
-                'min:0',
-                
-            ],
-
-            'price_60' => [
-                'required',
-                'integer',
-                'min:0',
-                
-            ],
 
             'offer_price' => [
                 'nullable',
@@ -136,12 +103,12 @@ class VendorProductController extends Controller
 
                     
                     if ($value && (!$offerStartDate || !$offerEndDate)) {
-                        $fail('If offer price is provided, both offer start date and offer end date must also be provided.');
+                        $fail(__('toastr.offerprp'));
                     }
 
                     
                     if ($value && $price && $value >= $price) {
-                        $fail('The offer price must be less than the regular price.');
+                        $fail(__('toastr.offerprpp'));
                     }
                 },
             ],
@@ -155,16 +122,16 @@ class VendorProductController extends Controller
 
                     
                     if ($value && (!$endDate || !$offerPrice)) {
-                        $fail('If offer start date is provided, offer end date and offer price must also be provided.');
+                        $fail(__('toastr.offerprpp'));
                     }
 
                     if ($value && Carbon::parse($value)->lt(Carbon::today())) {
-                        $fail('The offer start date must be in the future.');
+                        $fail(__('toastr.offerprppp'));
                     }
 
 
                     if ($value && $endDate && Carbon::parse($value)->gt(Carbon::parse($endDate))) {
-                        $fail('The start date must be before the end date.');
+                        $fail(__('toastr.offerprpppp'));
                     }
                 },
             ],
@@ -178,17 +145,17 @@ class VendorProductController extends Controller
 
                     
                     if ($value && (!$startDate || !$offerPrice)) {
-                        $fail('If offer end date is provided, offer start date and offer price must also be provided.');
+                        $fail(__('toastr.offerprppppp'));
                     }
                     
                     if ($value && Carbon::parse($value)->lt(Carbon::today())) {
-                        $fail('The offer end date must be in the future.');
+                        $fail(__('toastr.offerprpppppp'));
                     }
 
                     
 
                     if ($value && $startDate && Carbon::parse($value)->lt(Carbon::parse($startDate))) {
-                        $fail('The offer end date must be after the offer start date.');
+                        $fail(__('toastr.offerprpppppp'));
                     }
                 },
             ],
@@ -210,7 +177,7 @@ class VendorProductController extends Controller
 
 
             if ($subcategory->category_id !== $category->id) {
-                notyf()->error('The selected sub-category does not belong to the selected category. Please check and try again!');
+                notyf()->error(__('toastr.offerprppppppp'));
                 return redirect()->back();
             }
 
@@ -221,16 +188,22 @@ class VendorProductController extends Controller
 
 
                 if ($childcategory->subcategory_id !== $subcategory->id) {
-                    notyf()->error('The selected child-category does not belong to the selected sub-category. Please check and try again!');
+                    notyf()->error(__('toastr.offerprppppppp'));
                     return redirect()->back();
                 }
             }
 
         } else if ($request->filled('child_category')) {
-            notyf()->error('You have to select a sub-category first!');
+            notyf()->error(__('toastr.offerprpppppppp'));
             return redirect()->back();
         }
 
+        $price = $request->price;
+        $price_12 = calculateRemboursement($price, 1);
+        $price_24 = calculateRemboursement($price, 2);
+        $price_36 = calculateRemboursement($price, 3);
+        $price_48 = calculateRemboursement($price, 4);
+        $price_60 = calculateRemboursement($price, 5);
 
         $imagePath = $this->UploadImage($request, 'image', 'products');
 
@@ -243,11 +216,11 @@ class VendorProductController extends Controller
             'brand_id' => $request->brand,
             'user_id' => auth()->user()->id,
             'price' => $request->price,
-            'price_12' => $request->price_12,
-            'price_24' => $request->price_24,
-            'price_36' => $request->price_36,
-            'price_48' => $request->price_48,
-            'price_60' => $request->price_60,
+            'price_12' => $price_12,
+            'price_24' => $price_24,
+            'price_36' => $price_36,
+            'price_48' => $price_48,
+            'price_60' => $price_60,
             'qty' => $request->qty,
             'short_description' => $request->short_description,
             'long_description' => $request->long_description,
@@ -263,7 +236,10 @@ class VendorProductController extends Controller
 
         ]);
 
-        notyf()->success('Product Created Successfully!');
+        Cache::forget('dashboard_stats');
+        Cache::forget('vendor_dashboard_stats');
+
+        notyf()->success(__('toastr.ProductCreatedSuccessfully'));
         return redirect()->route('vendor.product.index');
     }
 
@@ -312,40 +288,6 @@ class VendorProductController extends Controller
                         
                     ],
 
-                    'price_12' => [
-                        'required',
-                        'integer',
-                        'min:0',
-                        
-                    ],
-
-                    'price_24' => [
-                        'required',
-                        'integer',
-                        'min:0',
-                        
-                    ],
-
-                    'price_36' => [
-                        'required',
-                        'integer',
-                        'min:0',
-                        
-                    ],
-
-                    'price_48' => [
-                        'required',
-                        'integer',
-                        'min:0',
-                        
-                    ],
-
-                    'price_60' => [
-                        'required',
-                        'integer',
-                        'min:0',
-                        
-                    ],
                     
                     'offer_price' => [
                         'nullable',
@@ -359,12 +301,12 @@ class VendorProductController extends Controller
                             $offerEndDate = $request->input('offer_end_date');
 
                             if ($value && (!$offerStartDate || !$offerEndDate)) {
-                                $fail('If offer price is provided, both offer start date and offer end date must also be provided.');
+                                $fail(__('toastr.offerprp'));
                             }
         
                             
                             if ($value && $price && $value >= $price) {
-                                $fail('The offer price must be less than the regular price.');
+                                $fail(__('toastr.offerprpp'));
                             }
                         },
                     ],
@@ -377,11 +319,11 @@ class VendorProductController extends Controller
                             $offerPrice = $request->input('offer_price');
                             
                             if ($value && (!$endDate || !$offerPrice)) {
-                                $fail('If offer start date is provided, offer end date and offer price must also be provided.');
+                                $fail(__('toastr.offerprppp'));
                             }
 
                             if ($value && $endDate && Carbon::parse($value)->gt(Carbon::parse($endDate))) {
-                                $fail('The start date must be before the end date.');
+                                $fail(__('toastr.offerprpppp'));
                             }
                         },
                     ],
@@ -393,11 +335,11 @@ class VendorProductController extends Controller
                             $offerPrice = $request->input('offer_price');
                            
                             if ($value && (!$startDate || !$offerPrice)) {
-                                $fail('If offer end date is provided, offer start date and offer price must also be provided.');
+                                $fail(__('toastr.offerprppppp'));
                             }
 
                             if ($value && $startDate && Carbon::parse($value)->lt(Carbon::parse($startDate))) {
-                                $fail('The offer end date must be after the offer start date.');
+                                $fail(__('toastr.offerprpppppp'));
                             }
                         },
                     ],
@@ -420,7 +362,7 @@ class VendorProductController extends Controller
         
         
                     if ($subcategory->category_id !== $category->id) {
-                        notyf()->error('The selected sub-category does not belong to the selected category. Please check and try again!');
+                        notyf()->error(__('toastr.offerprppppppp'));
                         return redirect()->back();
                     }
         
@@ -431,17 +373,23 @@ class VendorProductController extends Controller
         
         
                         if ($childcategory->subcategory_id !== $subcategory->id) {
-                            notyf()->error('The selected child-category does not belong to the selected sub-category. Please check and try again!');
+                            notyf()->error(__('toastr.offerprppppppppp'));
                             return redirect()->back();
                         }
                     }
         
                 } else if ($request->filled('child_category')) {
-                    notyf()->error('You have to select a sub-category first!');
+                    notyf()->error(__('toastr.offerprpppppppp'));
                     return redirect()->back();
                 }
 
-            
+                $price = $request->price;
+                $price_12 = calculateRemboursement($price, 1);
+                $price_24 = calculateRemboursement($price, 2);
+                $price_36 = calculateRemboursement($price, 3);
+                $price_48 = calculateRemboursement($price, 4);
+                $price_60 = calculateRemboursement($price, 5);
+
             $imagePath = $this->UpdateImage($request, 'image', 'products', $product->thumb_image);
 
             
@@ -452,11 +400,11 @@ class VendorProductController extends Controller
                 'category_id' => $request->category,
                 'brand_id' => $request->brand,
                 'price' => $request->price,
-                'price_12' => $request->price_12,
-                'price_24' => $request->price_24,
-                'price_36' => $request->price_36,
-                'price_48' => $request->price_48,
-                'price_60' => $request->price_60,
+                'price_12' => $price_12,
+                'price_24' => $price_24,
+                'price_36' => $price_36,
+                'price_48' => $price_48,
+                'price_60' => $price_60,
                 'qty' => $request->qty,
                 'short_description' => $request->short_description,
                 'long_description' => $request->long_description,
@@ -472,8 +420,9 @@ class VendorProductController extends Controller
                 'type' => $request->type ,
             ]);
 
-        
-            notyf()->success('Product Updated Successfully!');
+            Cache::forget('dashboard_stats');
+            Cache::forget('vendor_dashboard_stats');
+            notyf()->success(__('toastr.ProductUpdatedSuccessfully'));
             return redirect()->route('vendor.product.index');
 
         
@@ -493,9 +442,12 @@ class VendorProductController extends Controller
 
         $product->status = $request->status == 'true' ? 1 : 0 ;
         $product->save();
-        
+
+        Cache::forget('dashboard_stats');
+        Cache::forget('vendor_dashboard_stats');
+
         return response()->json([
-            'message' => 'Status has been updated!'
+            'message' =>__('toastr.Statushasbeenupdated')
         ]);
         
     }
@@ -510,11 +462,9 @@ class VendorProductController extends Controller
         Gate::authorize('delete', $product);
 
         if ($product->orders()->exists()) {
-            
-            return response()->json([
-                'status' => 'error',
-                'message' => 'This Product Have Orders , You Must Delete The Order First!',
-            ]);
+
+            notyf()->error(__('toastr.pk'));
+            return redirect()->back();
 
         }
 
@@ -530,6 +480,10 @@ class VendorProductController extends Controller
         }
 
         $product->delete();
+
+        Cache::forget('dashboard_stats');
+
+        Cache::forget('vendor_dashboard_stats');
 
         return redirect()->back();
 

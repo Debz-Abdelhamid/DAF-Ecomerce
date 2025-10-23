@@ -9,7 +9,7 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>Slider</h1>
+            <h1>@lang('admin.Slider')</h1>
 
         </div>
 
@@ -18,9 +18,9 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Edit Slider</h4>
+                            <h4>@lang('admin.EditSlider')</h4>
                             <div class="card-header-action">
-                                <a href="{{ route('admin.slider.index') }}" class="btn btn-primary">Back</a>
+                                <a href="{{ route('admin.slider.index') }}" class="btn btn-success">@lang('admin.Back')</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -29,59 +29,54 @@
                                 @csrf
                                 @method('PUT')
 
-                                <div class="form-group">
-                                    <div>
-                                        <label>Preview</label>
-                                    </div>
+                                <div class="form-group d-flex justify-content-center " dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+
                                     <img src="{{ asset('storage/' . $slider->banner) }}" class="img-fluid" alt=""
                                         style="max-width: 100%; height: auto; max-height: 200px;">
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Banner</label>
-                                    <input type="file" name="banner" class="form-control">
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                    
+                                    <input placeholder="@lang('admin.Banner')" type="file" name="banner" class="form-control">
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Type</label>
-                                    <input type="text" name="type" value="{{ old('type', $slider->type) }}"
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                    <input placeholder="@lang('admin.Type')" type="text" name="type" value="{{ old('type', $slider->type) }}"
                                         class="form-control">
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Title</label>
-                                    <input type="text" name="title" value="{{ old('title', $slider->title) }}"
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                    <input placeholder="@lang('admin.Title')" type="text" name="title" value="{{ old('title', $slider->title) }}"
                                         class="form-control">
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Starting Price</label>
-                                    <input type="text" name="starting_price"
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                    
+                                    <input placeholder="@lang('admin.StartingPrice')" type="text" name="starting_price"
                                         value="{{ old('starting_price', $slider->starting_price) }}" class="form-control">
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Button URL</label>
-                                    <input type="text" name="btn_url" value="{{ old('btn_url', $slider->btn_url) }}"
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                    <input placeholder="@lang('admin.ButtonURL')" type="text" name="btn_url" value="{{ old('btn_url', $slider->btn_url) }}"
                                         class="form-control">
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Serial</label>
-                                    <input type="text" name="serial" value="{{ old('serial', $slider->serial) }}"
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                    <input placeholder="@lang('admin.Serial')" type="text" name="serial" value="{{ old('serial', $slider->serial) }}"
                                         class="form-control">
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Status</code></label>
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                                     <select name="status" class="form-control form-control-lg">
-                                        <option {{ $slider->status ? 'selected' : '' }} value="1">Active</option>
-                                        <option {{ $slider->status == 0 ? 'selected' : '' }} value="0">Inactive
+                                    <option value=""stream_select disabled>@lang('admin.select') @lang('admin.Status')</option>
+                                        
+                                    <option {{ $slider->status ? 'selected' : '' }} value="1">@lang('admin.Active')</option>
+                                        <option {{ $slider->status == 0 ? 'selected' : '' }} value="0">@lang('admin.Inactive')
                                         </option>
                                     </select>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="submit" class="btn btn-success">@lang('admin.Update')</button>
                             </form>
 
                         </div>

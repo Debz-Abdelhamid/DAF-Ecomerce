@@ -10,7 +10,7 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>Child Category</h1>
+            <h1>@lang('admin.ChildCategory')</h1>
 
         </div>
 
@@ -19,10 +19,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Update Child Category</h4>
+                            <h4>@lang('admin.UpdateChildCategory')</h4>
                             <div class="card-header-action">
-                                <a href="{{ route('admin.child-category.index') }}" class="btn btn-primary"><i
-                                        class="fas fa-backspace"></i>&nbsp;Back</a>
+                                <a href="{{ route('admin.child-category.index') }}" class="btn btn-success"><i
+                                        class="fas fa-backspace"></i>&nbsp;@lang('admin.Back')</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -30,23 +30,21 @@
                                 @csrf
                                 @method('PUT')
 
-                                <div class="form-group">
-                                    <label>Category</label>
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                                     <select name="category" class="form-control form-control-lg main-category">
-                                            <option value="" selected disabled>Select Category</option>
+                                            <option value="" selected disabled>@lang('admin.SelectCategory')</option>
                                         @forelse($categories as $id => $name)
                                             <option {{ $childcategory->category_id == $id ? 'selected' : '' }} value="{{ $id }}">{{ $name }}</option>
                                         @empty
-                                            <option value="No categories available" disabled >No categories available</option>
+                                            <option value="No categories available" disabled >@lang('admin.Nocategoriesavailable')</option>
                                         @endforelse
                                         
                                     </select>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Sub Category</label>
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                                     <select name="sub_category" class="form-control form-control-lg sub-category">
-                                        <option value="" selected disabled>Select</option>
+                                        <option value="" selected disabled>@lang('admin.Select') @lang('admin.SubCategory')</option>
 
                                         @foreach($subcategories as $subcategory)
                                             <option {{ $subcategory->id == $childcategory->subcategory_id ? 'selected' : '' }} value="{{$subcategory->id }}">{{ $subcategory->name }}</option>
@@ -56,21 +54,22 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <input type="text" name="name" value="{{ old('name', $childcategory->name ) }}" class="form-control">
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                   
+                                    <input type="text" name="name" placeholder="@lang('admin.Name')" value="{{ old('name', $childcategory->name ) }}" class="form-control">
                                 </div>
 
 
-                                <div class="form-group">
-                                    <label>Status</label>
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                 
                                     <select name="status" class="form-control form-control-lg">
-                                        <option {{ $childcategory->status ? 'selected' : '' }} value="1">Active</option>
-                                        <option {{ $childcategory->status == 0 ? 'selected' : ''  }} value="0">Inactive</option>
+                                        <option selected disabled>@lang('admin.Status')</option>
+                                        <option {{ $childcategory->status ? 'selected' : '' }} value="1">@lang('admin.Active')</option>
+                                        <option {{ $childcategory->status == 0 ? 'selected' : ''  }} value="0">@lang('admin.Inactive')</option>
                                     </select>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="submit" class="btn btn-success">@lang('admin.Update')</button>
                             </form>    
                         </div>
 

@@ -11,9 +11,9 @@
 
 @endphp
 
-    <nav class="wsus__main_menu d-none d-lg-block">
+    <nav class="wsus__main_menu d-none d-lg-block ">
         <div class="container">
-            <div class="row">
+             <div class="row">
                 <div class="col-xl-12">
                     <div class="relative_contect d-flex">
                         <div class="wsus_menu_category_bar">
@@ -52,28 +52,29 @@
                         
 
                         <ul class="wsus__menu_item">
-                            <li><a class="active" href="{{ route('home') }}">home</a></li>
-                            <li><a href="{{ route('product-tracking.index') }}">track order</a></li>
+                            <li><a class="active" href="{{ route('home') }}">@lang('navbar.home')</a></li>
+                            <li><a class="" href="{{ route('flash-sale') }}">@lang('navbar.flash_sale')</a></li>
+                            <li><a href="{{ route('product-tracking.index') }}">@lang('navbar.track_order')</a></li>
 
                         </ul>
                         <ul class="wsus__menu_item wsus__menu_item_right">
 
-                            <li><a href="contact.html">contact</a></li>
+                            <li><a href="{{ route('about') }}">@lang('navbar.about')</a></li>
 
                             @if(auth()->check())
 
                                 @if(auth()->user()->role == 'vendor')
-                                    <li><a href="{{ route('vendor.dashboard') }}">My Account</a></li>
+                                    <li><a href="{{ route('vendor.dashboard') }}">@lang('navbar.my_account',['Name' => auth()->user()->name])</a></li>
 
                                 @elseif(auth()->user()->role == 'admin')
 
-                                    <li><a href="{{ route('admin.dashboard') }}">My Account</a></li>
+                                    <li><a href="{{ route('admin.dashboard') }}">@lang('navbar.my_account',['Name' => auth()->user()->name])</a></li>
 
                                 @endif
 
                             @else
 
-                                <li><a href="{{ route('login') }}">login</a></li>
+                                <li><a href="{{ route('login') }}">@lang('navbar.login')</a></li>
 
                             @endif
                             
@@ -86,7 +87,7 @@
 
 
     <section id="wsus__mobile_menu">
-        <span class="wsus__mobile_menu_close"><i class="fal fa-times"></i></span>
+        <span class="wsus__mobile_menu_close "><i class="fal fa-times"></i></span>
         <ul class="wsus__mobile_menu_header_icon d-inline-flex">
 
             
@@ -113,7 +114,7 @@
                         <ul class="wsus_mobile_menu_category">
                             
                             @foreach($categories as $categoryItem)
-                            <li><a href="#" class="{{ count($categoryItem->subcategories) > 0 ? 'accordion-button' : '' }} collapsed" data-bs-toggle="collapse"
+                            <li><a href="{{ route('products.index', ['category' =>$categoryItem->slug ]) }}" class="{{ count($categoryItem->subcategories) > 0 ? 'accordion-button' : '' }} collapsed" data-bs-toggle="collapse"
                                     data-bs-target="#flush-collapseThreew-{{$loop->index}}" aria-expanded="false"
                                     aria-controls="flush-collapseThreew-{{$loop->index}}"><i class="{{ $categoryItem->icon }}"></i> {{ $categoryItem->name }}</a>
 
@@ -123,7 +124,7 @@
                                             <div class="accordion-body">
                                                 <ul>
                                                     @foreach($categoryItem->subcategories as $subcategoryItem)
-                                                        <li><a href="#">{{ $subcategoryItem->name }}</a></li>
+                                                        <li><a href="{{ route('products.index', ['subcategory' => $subcategoryItem->slug ]) }}">{{ $subcategoryItem->name }}</a></li>
                                                     @endforeach
 
                                                 </ul>
@@ -142,23 +143,25 @@
                 <div class="wsus__mobile_menu_main_menu">
                     <div class="accordion accordion-flush" id="accordionFlushExample2">
                         <ul>
-                            <li><a href="{{ route('home') }}">Home</a></li>
-                            <li><a href="{{ route('product-tracking.index') }}">track order</a></li>
+                            <li><a href="{{ route('home') }}">@lang('navbar.home')</a></li>
+                            <li><a href="{{ route('flash-sale') }}">@lang('navbar.flash_sale')</a></li>
+                            <li><a href="{{ route('about') }}">@lang('navbar.about')</a></li>
+                            <li><a href="{{ route('product-tracking.index') }}">@lang('navbar.track_order')</a></li>
 
                             @if(auth()->check())
 
                                 @if(auth()->user()->role == 'vendor')
-                                    <li><a href="{{ route('vendor.dashboard') }}">My Account</a></li>
+                                    <li><a href="{{ route('vendor.dashboard') }}">@lang('navbar.my_account',['Name' => auth()->user()->name])</a></li>
 
                                 @elseif(auth()->user()->role == 'admin')
 
-                                    <li><a href="{{ route('admin.dashboard') }}">My Account</a></li>
+                                    <li><a href="{{ route('admin.dashboard') }}">@lang('navbar.my_account',['Name' => auth()->user()->name])</a></li>
 
                                 @endif
 
                             @else
 
-                                <li><a href="{{ route('login') }}">login</a></li>
+                                <li><a href="{{ route('login') }}">@lang('navbar.login')</a></li>
 
                             @endif
 

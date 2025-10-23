@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Slider;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Traits\ImageUploadTrait;
@@ -63,7 +64,10 @@ class SliderController extends Controller
             'status' => $request->status,
         ]);
 
-        notyf()->success('Slider Created Successfully!');
+        Cache::forget('sliders');
+        Cache::forget('dashboard_stats');
+
+        notyf()->success(__('toastr.SliderCreatedSuccessfully'));
         return redirect()->route('admin.slider.index');
 
 
@@ -120,7 +124,11 @@ class SliderController extends Controller
             'status' => $request->status,
         ]);
 
-        notyf()->success('Slider Updated Successfully!');
+        Cache::forget('sliders');
+        Cache::forget('dashboard_stats');
+
+
+        notyf()->success(__('toastr.SliderUpdatedSuccessfully'));
         return redirect()->route('admin.slider.index');
 
     }
@@ -136,10 +144,14 @@ class SliderController extends Controller
 
         $slider->delete();
 
+        Cache::forget('sliders');
+
+        Cache::forget('dashboard_stats');
+
         return response()->json([
             'status' => 'success',
             'type' => 'slider',
-            'message' => 'Slider deleted successfully!'
+            'message' =>__('toastr.Sliderdeletedsuccessfully')
         ]);
 
     }

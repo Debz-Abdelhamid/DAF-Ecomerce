@@ -41,12 +41,12 @@
   <!--=============================
     DASHBOARD MENU START
   ==============================-->
-  <div class="wsus__dashboard_menu">
+  <div class="wsus__dashboard_menu p-3" style="background-color: #b5002b;" >
     <div class="wsusd__dashboard_user">
       @if(auth()->user()->image)
         <img src="{{ asset('storage/' .auth()->user()->image ) }}" alt="img" class="img-fluid">
       @else
-        <img src="{{ asset('storage/' .auth()->user()->image ) }}" alt="img" class="img-fluid">
+        <img src="{{ asset('frontend/images/img_avatar.webp') }}" alt="img" class="img-fluid">
       @endif
       <p>{{ auth()->user()->name }}</p>
     </div>

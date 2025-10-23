@@ -13,7 +13,6 @@ class Order extends Model
 
     protected $fillable = [
         'inovice_id',
-        'user_id',
         'subtotal',
         'amount',
         'currency_name',
@@ -22,6 +21,7 @@ class Order extends Model
         'payment_method',
         'payment_status',
         'order_address',
+        'dossier',
         'shipping_method',
         'coupon',
         'order_status',

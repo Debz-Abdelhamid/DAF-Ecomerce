@@ -11,12 +11,13 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Cache;
 
 class UsersController extends Controller
 {
     public function index(): View
     {
-        $users = User::where('role','vendor')->paginate(20);
+        $users = User::where('role','vendor')->paginate(10);
         return view('admin.users.index', compact('users'));
     }
 
@@ -44,7 +45,9 @@ class UsersController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        notyf()->success('Created Successfully');
+        Cache::forget('dashboard_stats');
+
+        notyf()->success(__('toastr.CreatedSuccessfully'));
         return redirect()->route('admin.users.index');
     }
 
@@ -75,7 +78,7 @@ class UsersController extends Controller
             
         ]);   
 
-        notyf()->success('Updated Successfully');
+        notyf()->success(__('toastr.UpdatedSuccessfully'));
         return redirect()->route('admin.users.index');
     }
 
@@ -88,18 +91,20 @@ class UsersController extends Controller
         {
             return response()->json([
                 'status' => 'error',
-                'message' => 'This Admin Have Products. You have to delete the Products Of this Admin first!',
+                'message' =>__('toastr.ThisAdmin'),
             ]);
         }
 
         $user->delete();
 
-        notyf()->success('Deleted Successfully');
+        Cache::forget('dashboard_stats');
+
+        notyf()->success(__('toastr.DeletedSuccessfully'));
 
         return response()->json([
             'status' => 'success',
             'type' => 'user',
-            'message' => 'User deleted successfully!'
+            'message' =>__('toastr.DeletedSuccessfully')
         ]);
     }
 

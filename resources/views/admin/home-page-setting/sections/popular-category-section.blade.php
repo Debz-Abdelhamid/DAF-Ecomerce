@@ -11,13 +11,13 @@
                 @method('PUT')
                 
                 <!-- Category 1 -->
-                <h5>Category 1</h5>
+                <h5>Catégorie 1</h5>
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Category</label>
+                        <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                            
                             <select name="cat_one" class="form-control main_category">
-                                <option value="">Select</option>    
+                                <option value="">@lang('admin.Select') @lang('admin.Category')</option>    
                                 @foreach($categories as $category)
                                     <option {{ $category->id == ($popularCategory[0]->category ?? '') ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>    
                                 @endforeach
@@ -25,13 +25,12 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="form-group">
+                        <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                             @php
                                 $subCategories1 = isset($popularCategory[0]) ? \App\Models\Subcategory::where('category_id', $popularCategory[0]->category)->get() : collect(); 
                             @endphp
-                            <label>Sub Category</label>
                             <select name="sub_cat_one" class="form-control sub_category">
-                                <option value="">Select</option>
+                                <option value="">@lang('admin.Select') @lang('admin.SubCategory')</option>
                                 @foreach($subCategories1 as $subcategory)
                                     <option {{ $subcategory->id == ($popularCategory[0]->sub_category ?? '') ? 'selected' : '' }} value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
                                 @endforeach
@@ -39,13 +38,13 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="form-group">
+                        <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                             @php
                                 $childCategories1 = isset($popularCategory[0]) ? \App\Models\ChildCategory::where('subcategory_id', $popularCategory[0]->sub_category)->get() : collect();
                             @endphp
-                            <label>Child Category</label>
+                            
                             <select name="child_cat_one" class="form-control child_category">
-                                <option value="">Select</option>
+                                <option value="">@lang('admin.Select') @lang('admin.ChildCategory')</option>
                                 @foreach($childCategories1 as $childcategory)
                                     <option {{ $childcategory->id == ($popularCategory[0]->child_category ?? '') ? 'selected' : '' }} value="{{ $childcategory->id }}">{{ $childcategory->name }}</option>
                                 @endforeach
@@ -55,13 +54,12 @@
                 </div>
 
                 <!-- Category 2 -->
-                <h5>Category 2</h5>
+                <h5>Catégorie 2</h5>
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Category</label>
+                        <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                             <select name="cat_two" class="form-control main_category">
-                                <option value="">Select</option>
+                                <option value="">@lang('admin.Select') @lang('admin.Category')</option>
                                 @foreach($categories as $category)
                                     <option {{ $category->id == ($popularCategory[1]->category ?? '') ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
@@ -69,13 +67,13 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="form-group">
+                        <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                             @php
                                 $subCategories2 = isset($popularCategory[1]) ? \App\Models\Subcategory::where('category_id', $popularCategory[1]->category)->get() : collect();
                             @endphp
-                            <label>Sub Category</label>
+                            
                             <select name="sub_cat_two" class="form-control sub_category">
-                                <option value="">Select</option>
+                                <option value="">@lang('admin.Select') @lang('admin.SubCategory')</option>
                                 @foreach($subCategories2 as $subcategory)
                                     <option {{ $subcategory->id == ($popularCategory[1]->sub_category ?? '') ? 'selected' : '' }} value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
                                 @endforeach
@@ -83,13 +81,12 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="form-group">
+                        <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                             @php
                                 $childCategories2 = isset($popularCategory[1]) ? \App\Models\ChildCategory::where('subcategory_id', $popularCategory[1]->sub_category)->get() : collect();
                             @endphp
-                            <label>Child Category</label>
                             <select name="child_cat_two" class="form-control child_category">
-                                <option value="">Select</option>
+                                <option value="">@lang('admin.Select') @lang('admin.ChildCategory')</option>
                                 @foreach($childCategories2 as $childcategory)
                                     <option {{ $childcategory->id == ($popularCategory[1]->child_category ?? '') ? 'selected' : '' }} value="{{ $childcategory->id }}">{{ $childcategory->name }}</option>
                                 @endforeach
@@ -99,13 +96,12 @@
                 </div>
 
                 <!-- Category 3 -->
-                <h5>Category 3</h5>
+                <h5>Catégorie 3</h5>
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Category</label>
+                    <div class="col-md-4" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                        <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                             <select name="cat_three" class="form-control main_category">
-                                <option value="">Select</option>
+                                <option value="">@lang('admin.Select') @lang('admin.Category')</option>
                                 @foreach($categories as $category)
                                     <option {{ $category->id == ($popularCategory[2]->category ?? '') ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
@@ -113,13 +109,12 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="form-group">
+                        <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                             @php
                                 $subCategories3 = isset($popularCategory[2]) ? \App\Models\Subcategory::where('category_id', $popularCategory[2]->category)->get() : collect();
                             @endphp
-                            <label>Sub Category</label>
                             <select name="sub_cat_three" class="form-control sub_category">
-                                <option value="">Select</option>
+                                <option value="">@lang('admin.Select') @lang('admin.SubCategory')</option>
                                 @foreach($subCategories3 as $subcategory)
                                     <option {{ $subcategory->id == ($popularCategory[2]->sub_category ?? '') ? 'selected' : '' }} value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
                                 @endforeach
@@ -127,13 +122,12 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="form-group">
+                        <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                             @php
                                 $childCategories3 = isset($popularCategory[2]) ? \App\Models\ChildCategory::where('subcategory_id', $popularCategory[2]->sub_category)->get() : collect();
                             @endphp
-                            <label>Child Category</label>
                             <select name="child_cat_three" class="form-control child_category">
-                                <option value="">Select</option>
+                                <option value="">@lang('admin.Select') @lang('admin.ChildCategory')</option>
                                 @foreach($childCategories3 as $childcategory)
                                     <option {{ $childcategory->id == ($popularCategory[2]->child_category ?? '') ? 'selected' : '' }} value="{{ $childcategory->id }}">{{ $childcategory->name }}</option>
                                 @endforeach
@@ -143,13 +137,13 @@
                 </div>
 
                 <!-- Category 4 -->
-                <h5>Category 4</h5>
+                <h5>Catégorie  4</h5>
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Category</label>
+                        <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                            
                             <select name="cat_four" class="form-control main_category">
-                                <option value="">Select</option>
+                                <option value="">@lang('admin.Select') @lang('admin.Category')</option>
                                 @foreach($categories as $category)
                                     <option {{ $category->id == ($popularCategory[3]->category ?? '') ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
@@ -157,13 +151,12 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="form-group">
+                        <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                             @php
                                 $subCategories4 = isset($popularCategory[3]) ? \App\Models\Subcategory::where('category_id', $popularCategory[3]->category)->get() : collect();
                             @endphp
-                            <label>Sub Category</label>
                             <select name="sub_cat_four" class="form-control sub_category">
-                                <option value="">Select</option>
+                                <option value="">@lang('admin.Select') @lang('admin.SubCategory')</option>
                                 @foreach($subCategories4 as $subcategory)
                                     <option {{ $subcategory->id == ($popularCategory[3]->sub_category ?? '') ? 'selected' : '' }} value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
                                 @endforeach
@@ -171,13 +164,12 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="form-group">
+                        <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                             @php
                                 $childCategories4 = isset($popularCategory[3]) ? \App\Models\ChildCategory::where('subcategory_id', $popularCategory[3]->sub_category)->get() : collect();
                             @endphp
-                            <label>Child Category</label>
                             <select name="child_cat_four" class="form-control child_category">
-                                <option value="">Select</option>
+                                <option value="">@lang('admin.Select') @lang('admin.ChildCategory')</option>
                                 @foreach($childCategories4 as $childcategory)
                                     <option {{ $childcategory->id == ($popularCategory[3]->child_category ?? '') ? 'selected' : '' }} value="{{ $childcategory->id }}">{{ $childcategory->name }}</option>
                                 @endforeach
@@ -190,13 +182,12 @@
 
 
                 <!-- Category 5 -->
-                <h5>Category 5</h5>
+                <h5>Catégorie 5</h5>
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Category</label>
+                        <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                             <select name="cat_five" class="form-control main_category">
-                                <option value="">Select</option>
+                                <option value="">@lang('admin.Select') @lang('admin.Category')</option>
                                 @foreach($categories as $category)
                                     <option {{ $category->id == ($popularCategory[4]->category ?? '') ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
@@ -204,13 +195,12 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="form-group">
+                        <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                             @php
                                 $subCategories5 = isset($popularCategory[4]) ? \App\Models\Subcategory::where('category_id', $popularCategory[4]->category)->get() : collect();
                             @endphp
-                            <label>Sub Category</label>
                             <select name="sub_cat_five" class="form-control sub_category">
-                                <option value="">Select</option>
+                                <option value="">@lang('admin.Select') @lang('admin.SubCategory')</option>
                                 @foreach($subCategories5 as $subcategory)
                                     <option {{ $subcategory->id == ($popularCategory[4]->sub_category ?? '') ? 'selected' : '' }} value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
                                 @endforeach
@@ -218,13 +208,12 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="form-group">
+                        <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                             @php
                                 $childCategories5 = isset($popularCategory[4]) ? \App\Models\ChildCategory::where('subcategory_id', $popularCategory[4]->sub_category)->get() : collect();
                             @endphp
-                            <label>Child Category</label>
                             <select name="child_cat_five" class="form-control child_category">
-                                <option value="">Select</option>
+                                <option value="">@lang('admin.Select') @lang('admin.ChildCategory')</option>
                                 @foreach($childCategories5 as $childcategory)
                                     <option {{ $childcategory->id == ($popularCategory[4]->child_category ?? '') ? 'selected' : '' }} value="{{ $childcategory->id }}">{{ $childcategory->name }}</option>
                                 @endforeach
@@ -232,7 +221,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-success">@lang('admin.Save')</button>
             </form>
         </div>
     </div>

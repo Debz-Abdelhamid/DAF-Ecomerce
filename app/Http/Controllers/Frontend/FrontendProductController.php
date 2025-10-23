@@ -26,7 +26,7 @@ class FrontendProductController extends Controller
         ->where('slug', $slug)
         ->where('status', 1)
         ->where('is_approved', 1)
-        ->first();
+        ->firstOrFail();
         return view('frontend.pages.product-detail', compact('product'));
     }
 

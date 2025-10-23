@@ -35,7 +35,7 @@ class ProfileController extends Controller
         $request->user()->save();
         
         
-        notyf()->success('Profile Updated successfully!');
+        notyf()->success(__('toastr.ProfileUpdatedsuccessfully'));
         return Redirect::route('admin.profile');
 
     }
@@ -64,7 +64,7 @@ class ProfileController extends Controller
         }
 
         
-        notyf()->success('Avatar Updated successfully!');
+        notyf()->success(__('toastr.AvatarUpdatedsuccessfully'));
         return Redirect::route('admin.profile');
 
     }
@@ -84,7 +84,7 @@ class ProfileController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        notyf()->success('Password Updated successfully!');
+        notyf()->success(__('toastr.PasswordUpdatedsuccessfully'));
         return redirect()->back();
     }
 

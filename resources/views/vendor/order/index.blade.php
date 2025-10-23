@@ -19,7 +19,7 @@
       <div class="row">
         <div class="col-xl-9 col-xxl-10 col-lg-9 ms-auto">
           <div class="mt-2 dashboard_content mt-md-0">
-            <h3><i class="far fa-user"></i>Orders</h3>
+            <h3><i class="far fa-user"></i>@lang('vendor.Orders')</h3>
             <div class="wsus__dashboard_profile">
               <div class="wsus__dash_pro_area">
                
@@ -27,27 +27,29 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>All Orders</h4>
+                                <h4>@lang('vendor.AllOrders')</h4>
                               
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-md">
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Inovice id</th>
-                                            <th>Customer Name</th>
-                                            <th>Customer Telephone</th>
-                                            <th>Customer Amount</th>           
-                                            <th>Total Variants</th>
-                                            <th>Total Amount</th>
-                                            <th>Cart Facility</th>
-                                            <th>Durée</th>
-                                            <th>Product Qty</th>
-                                            <th>Date</th>
-                                            <th>Order Status</th>
-                                            <th>Action</th>
-                                        </tr>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>@lang('admin.Inoviceid') </th>
+                                        <th>@lang('admin.CustomerName') </th>
+                                        <th>@lang('admin.CustomerTelephone') </th>
+                                        <th>@lang('admin.CustomerAmount') </th>           
+                                        <th>@lang('admin.dossier') </th>           
+                                        <th>@lang('admin.TotalVariants') </th>
+                                        <th>@lang('admin.TotalAmount') </th>
+                                        <th>@lang('admin.CartFacility') </th>
+                                        <th>@lang('admin.Durée')</th>
+                                        <th>@lang('admin.ProductQty') </th>
+                                        <th>@lang('admin.Date')</th>
+                                        <th>@lang('admin.OrderStatus')</th>
+                                        <th>@lang('admin.Action')</th>
+                                </tr>
+                                        
                                         @php
                                             $i = 1;
                                         @endphp
@@ -68,6 +70,8 @@
                                             <td>{{ $address->phone }}</td>
                                             
                                             <td>{{ $order->user_amount }} {{ $settings->currency_icon }}</td>
+                                            
+                                            <td>{{ $order->dossier }}</td>
 
                                             <td>{{ $order->total_variants }} {{ $settings->currency_icon }}</td>
                                             
@@ -84,16 +88,16 @@
                                             <td>{{ date('Y-m-d', strtotime($order->created_at)) }}</td>
 
                                             @if($order->order_status == 'pending')
-                                                <td><span class="badge bg-warning">Pending</span></td>
+                                                <td><span class="badge bg-warning">@lang('admin.Pending')</span></td>
                                            
                                             @elseif($order->order_status == 'destribution')
-                                                <td><span class="badge bg-info">Destribution</span></td>
+                                                <td><span class="badge bg-info">@lang('admin.Destribution')</span></td>
 
                                             @elseif($order->order_status == 'deliverd')
-                                                <td><span class="badge bg-success">Delivered</span></td>    
+                                                <td><span class="badge bg-success">@lang('admin.Delivered')</span></td>    
 
                                             @elseif($order->order_status == 'canceled')    
-                                                <td><span class="badge bg-danger">Canceled</span></td>
+                                                <td><span class="badge bg-danger">@lang('admin.Canceled')</span></td>
                                             @endif
                                             
                                             <td>
@@ -113,7 +117,7 @@
                                             @endphp
                                         @empty
                                             <tr>
-                                                <td colspan="12" class="text-center">No orders available.</td>
+                                                <td colspan="12" class="text-center">@lang('admin.NoOrdersavailable')</td>
                                             </tr>
                                         @endforelse
                                     </table>

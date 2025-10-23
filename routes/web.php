@@ -4,12 +4,14 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\FlashSaleController;
 use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\ProductTrackController;
+use App\Http\Controllers\Frontend\AboutController;
 
 
 
@@ -19,6 +21,10 @@ Route::get('/',[HomeController::class, 'index'])->name('home');
 
 require __DIR__.'/auth.php';
 
+
+    /** A propos de Nous */
+
+    Route::get('/about',[AboutController::class, 'index'])->name('about');
 
 
     /** Flash Sales */
@@ -65,3 +71,9 @@ Route::prefix('user')->name('user.')->group(function () {
 
     
 });
+
+
+
+/** Translation Routes */
+
+Route::get('locale/{lang}',[LocaleController::class, 'setLocale'])->name('locale');

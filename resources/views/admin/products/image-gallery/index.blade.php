@@ -9,11 +9,11 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>Product Image Gallery</h1>
+            <h1>@lang('admin.ProductImageGallery')</h1>
 
         </div>
         <div class="mb-3">
-            <a href="{{ route('admin.product.index') }}" class="btn btn-primary"><i class="fas fa-arrow-left"></i>&nbsp;Back</a>
+            <a href="{{ route('admin.product.index') }}" class="btn btn-success"><i class="fas fa-arrow-left"></i>&nbsp;@lang('admin.Back')</a>
         </div>
         <div class="section-body" style="box-sizing: border-box;">
 
@@ -22,21 +22,21 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
-                            <h4> Product : <span class="text-primary"> {{ ucfirst($productItem->name)}} </span></h4>
+                        <div class="card-header" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                            <h4>@lang('admin.Product')  : <span class="text-primary"> {{ ucfirst($productItem->name)}} </span></h4>
 
                         </div>
                         <div class="card-body">
                             <form action="{{ route('admin.product-image-gallery.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <div class="form-group">
-                                    <label>Image <code> (Multiple Image Supported!)</code></label>
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                                     <input type="file" name="image[]" multiple class="form-control">
+                                    <label dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}"><code>( @lang('admin.MultipleImageSupported') )</code></label>
                                 </div>
 
                                 <input type="hidden" name="product" value="{{$productItem->id}}" data-id="{{$productItem->id}}" class="produit">
 
-                                <button type="submit" class='btn btn-primary'>Save</button>
+                                <button type="submit" class='btn btn-success'>@lang('admin.Save')</button>
                             </form>
                         </div>
 

@@ -71,7 +71,7 @@ class VendorProductVariantController extends Controller
             'status'=> $request->status
         ]);
 
-        notyf()->success('Variant Created Successfully!');
+        notyf()->success(__('toastr.VariantCreatedSuccessfully'));
         return redirect()->route('vendor.product-variant.index',['product' => $product->id]);
     }
 
@@ -121,7 +121,7 @@ class VendorProductVariantController extends Controller
             'status' => $request->status,
         ]);
 
-        notyf()->success('Variant Updated Successfully!');
+        notyf()->success(__('toastr.VariantCreatedSuccessfullyy'));
         return redirect()->route('vendor.product-variant.index',['product' => $variant->product_id]);
     }
 
@@ -141,7 +141,7 @@ class VendorProductVariantController extends Controller
         $variant->save();
 
         return response()->json([
-            'message' => 'Status has been updated!'
+            'message' =>__('toastr.Statushasbeenupdated')
         ]);
 
     }
@@ -157,7 +157,7 @@ class VendorProductVariantController extends Controller
         Gate::authorize('delete', $product);
         $variant->delete();
 
-        notyf()->success('Variant Deleted Successfully!');
+        notyf()->success(__('toastr.Variantdeletedsuccessfully'));
         return redirect()->back();
     }
 }

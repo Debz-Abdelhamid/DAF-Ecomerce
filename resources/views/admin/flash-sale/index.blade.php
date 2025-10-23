@@ -9,7 +9,7 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>Flash Sale</h1>
+            <h1>@lang('admin.FlashSale')</h1>
 
         </div>
 
@@ -20,15 +20,18 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Flash Sale End Date</h4>
+                            <h4>@lang('admin.FlashSaleEndDate')</h4>
                          
                         </div>
                         <div class="card-body">
                             <form action="{{ route('admin.flash-sale.update') }}" method="POST">  
                                 @csrf
                                 @method('PUT')
-                                <div class="">
-                                    <label>Sale End Date</label>
+                                <div class="" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                <div class="card-header" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                    <p>@lang('admin.SaleEndDate')</p>
+                            
+                                 </div>    
                                     @if($flashSaleDate)
                                         <input type="text" name="sale_end_date" value="{{ @$flashSaleDate->sale_end_date->format('Y-m-d') }}" class="form-control datepicker">
                                     @else
@@ -36,7 +39,7 @@
                                     @endif
                                 </div>
 
-                                <button type="submit" class="btn btn-primary mt-3">Save</button>
+                                <button type="submit" class="btn btn-success mt-3">@lang('admin.Save')</button>
                             </form>    
                         </div>
 
@@ -53,17 +56,18 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
-                            <h4>Add Flash Sale Products</h4>
+                        <div class="card-header" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                            <h4>@lang('admin.AddFlashSaleProducts')</h4>
                             
                         </div>
-                        <div class="card-body">
-                            <form action="{{ route('admin.flash-sale.add-product') }}" method="POST">
+                        <div class="card-body" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                            <form action="{{ route('admin.flash-sale.add-product') }}" method="POST" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                                 @csrf
-                                <div class="form-group">
-                                    <label>Add Product</label>
-                                        <select name="product" id="" class="form-control select2">
-                                            <option value="" selected disabled>Select</option>
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                    
+                                    
+                                        <select name="product" id="" class="form-control" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                            <option value="" selected disabled>@lang('admin.Select') @lang('admin.AddProduct')</option>
                                             @foreach($products as $id => $name)
 
                                                 <option value="{{ $id }}">{{ $name }}</option>
@@ -75,11 +79,10 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Show At Home?</label>
-                                                <select name="show" id="" class="form-control">
-                                                    <option value="">Select</option>
-                                                    <option value="1">Yes</option>
-                                                    <option value="0">No</option>
+                                                <select name="show" id="" class="form-control" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                                    <option value="">@lang('admin.Select') @lang('admin.Show')</option>
+                                                    <option value="1">@lang('admin.oui')</option>
+                                                    <option value="0">@lang('admin.non')</option>
                                             
                                                 </select>
                                         </div>
@@ -87,11 +90,10 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Status</label>
-                                                <select name="status" id="" class="form-control">
-                                                    <option value="">Select</option>
-                                                    <option value="1">Active</option>
-                                                    <option value="0">Inactive</option>
+                                                <select name="status" id="" class="form-control" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                                    <option value="">@lang('admin.Select') @lang('admin.Status')</option>
+                                                    <option value="1">@lang('admin.Active')</option>
+                                                    <option value="0">@lang('admin.Inactive')</option>
                                             
                                                 </select>
                                         </div>
@@ -99,7 +101,7 @@
 
                                 </div>   
 
-                                <button type="submit" class="btn btn-primary mt-3">Save</button>
+                                <button type="submit" class="btn btn-success mt-3">@lang('admin.Save')</button>
                             </form>       
                         </div>
 
@@ -114,8 +116,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
-                            <h4>All Flash Sale Products</h4>
+                        <div class="card-header" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                            <h4>@lang('admin.AllFlashSaleProducts')</h4>
                             
                         </div>
                         <div class="card-body">
@@ -123,13 +125,12 @@
                                 <table class="table table-bordered table-md">
                                     <tr>
                                         <th>#</th>
-                                        <th>Product Image</th>
-                                        <th>Product Name</th>
-                                        <th>Price</th>
-                                        <th>Product Type</th>                                               
-                                        <th>Show At Home</th>                                               
-                                        <th>Flash Sale Status</th>
-                                        <th>Action</th>
+                                        <th>@lang('admin.ProductImage') </th>
+                                        <th>@lang('admin.ProductName') </th>
+                                        <th>@lang('admin.Price')</th>
+                                        <th>@lang('admin.Show')</th>                                               
+                                        <th>@lang('admin.FlashSaleStatus')</th>
+                                        <th>@lang('admin.Action')</th>
                                     </tr>
                                     @php
                                         $i = 1;
@@ -145,48 +146,7 @@
                                             
                                             
                                             <td>{{ $FlashSellProduct->productitem->price }}</td>
-                                            <td>
-                                                
-                                                @switch($FlashSellProduct->productitem->type)
-
-                                                    @case('new_arrival')
-                                                    <div class="badge badge-success">
-                                                        New Arrival
-                                                    </div>
-                                                        @break
-                                                        
-                                                    @case('best')
-                                                    <div class="badge badge-danger">
-                                                        Best Product
-                                                    </div>
-                                                        
-                                                        @break
-                                                        
-                                                    @case('top')
-                                                    <div class="badge badge-info">
-                                                        Top Product
-                                                    </div>
-                                                        
-                                                        @break
-                                                        
-                                                    @case('featured')
-                                                    <div class="badge badge-warning">
-                                                        Featured Product
-                                                    </div>
-                                                    
-                                                        @break
-                                                            
-
-                                                    @default
-                                                    <div class="badge badge-dark">
-                                                        None
-                                                    </div>
-                                                        @break
-
-                                                            
-                                                @endswitch
-
-                                            </td>
+                                     
 
                                             <td>
                                                 @if($FlashSellProduct->show_at_home == 1)
@@ -215,6 +175,7 @@
                                                     @else
 
                                                     <label class="custom-switch mt-2">
+                                                        
                                                         <input type="checkbox" name="custom-switch-checkbox" data-id="{{ $FlashSellProduct->id }}" class="custom-switch-input change-status">
                                                         <span class="custom-switch-indicator"></span>
                                                     </label>
@@ -244,7 +205,7 @@
                                         @endphp
                                     @empty
                                         <tr>
-                                            <td colspan="11" class="text-center">No Flash Sales Item available.</td>
+                                            <td colspan="11" class="text-center">@lang('admin.NoFlashSalesItemavailable') </td>
                                         </tr>
                                     @endforelse
                                 </table>
@@ -266,13 +227,14 @@
         
         function confirmDelete(FlashSellProduct) {
                 Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
+                    title: "@lang('admin.are_you_sure')",
+                    text: "@lang('admin.no_revert')",
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!"
+                     confirmButtonText: "@lang('admin.yes_delete')",
+                    cancelButtonText: "@lang('admin.cancel')"
                 }).then((result) => {
                     if (result.isConfirmed) {
                         
@@ -302,7 +264,7 @@
 
                     error: function(xhr,status,error)
                     {
-                        notyf.error("Error Can't Update !");                           
+                        notyf.error("@lang('admin.error_cant_update')");                           
                     },
 
                 });
@@ -331,7 +293,7 @@
 
                     error: function(xhr,status,error)
                     {
-                        notyf.error("Error Can't Update !");                           
+                        notyf.error("@lang('admin.error_cant_update')");                           
                     },
 
                 });

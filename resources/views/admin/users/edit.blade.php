@@ -9,7 +9,7 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>Users</h1>
+            <h1>@lang('admin.Users')</h1>
 
         </div>
 
@@ -18,38 +18,31 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Edit User</h4>
+                            <h4>@lang('admin.EditUsers')</h4>
                             <div class="card-header-action">
-                                <a href="{{ route('admin.users.index') }}" class="btn btn-primary"><i
-                                        class="fas fa-backspace"></i>&nbsp;Back</a>
+                                <a href="{{ route('admin.users.index') }}" class="btn btn-success"><i
+                                        class="fas fa-backspace"></i>&nbsp;@lang('admin.Back')</a>
                             </div>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                             <form action="{{ route('admin.users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 
 
                                 <div class="form-group">
-                                    <label>Name</label>
-                                    <input type="text" name="name" value="{{ old('name', $user->name) }}" class="form-control">
+                                    <input placeholder="@lang('admin.Name')" type="text" name="name" value="{{ old('name', $user->name) }}" class="form-control">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Email</label>
-                                    <input type="email" name="email" value="{{ old('email', $user->email) }}" class="form-control">
+                                    <input placeholder="@lang('admin.Email')" type="email" name="email" value="{{ old('email', $user->email) }}" class="form-control">
                                 </div>
 
-                            
-
-                                
-
-                                
+                        
                                 <div class="form-group">
-                                    <label>Role</label>
                                     <select name="role" class="form-control form-control-lg">
                                     
-                                        <option value="" selected disabled>Select</option>
+                                        <option value="" selected disabled>@lang('admin.Select') @lang('admin.Role')</option>
                                         <option {{ $user->role == 'vendor' ? 'selected' : '' }} value="vendor">Admin</option>
                                     </select>
                                 </div>
@@ -57,14 +50,15 @@
                                 
 
                                 <div class="form-group">
-                                    <label>Status</label>
+                                    
                                     <select name="status" class="form-control form-control-lg">
-                                        <option {{ $user->status == 'active' ? 'selected' : '' }} value="active">Active</option>
-                                        <option {{ $user->status == 'inactive' ? 'selected' : '' }} value="inactive">Inactive</option>
+                                    <option value="" selected disabled>@lang('admin.Select') @lang('admin.Status')</option>    
+                                    <option {{ $user->status == 'active' ? 'selected' : '' }} value="active">@lang('admin.Active')</option>
+                                        <option {{ $user->status == 'inactive' ? 'selected' : '' }} value="inactive">@lang('admin.Inactive')</option>
                                     </select>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary">update</button>
+                                <button type="submit" class="btn btn-success">@lang('admin.update')</button>
                             </form>
 
                         </div>

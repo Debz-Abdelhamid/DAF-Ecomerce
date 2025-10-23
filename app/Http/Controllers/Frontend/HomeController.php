@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Cache;
 use App\Models\HomePage;
 use App\Models\Slider;
 use App\Models\Brand;
@@ -16,7 +17,10 @@ class HomeController extends Controller
 {
     public function index(): View
     {
-        $sliders = Slider::where('status', 1)->orderBy('serial', 'asc')->get();
+        $sliders = Cache::rememberForever('sliders', function(){
+            return Slider::where('status', 1)->orderBy('serial', 'asc')->get();
+        });
+
         $flashsaledate = FlashSell::first();
         $flashsaleitems = FlashSellItem::with([
             'productitem.category', 
@@ -36,7 +40,7 @@ class HomeController extends Controller
         ->where('status', 1) 
         ->whereHas('productitem', function($query) {
             
-            $query->where('is_approved', 1);
+            $query->where('is_approved', 1)->where('status',1);
         })
         ->orderBy('id', 'ASC')
         ->get();

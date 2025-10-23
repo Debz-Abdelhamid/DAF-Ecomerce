@@ -14,73 +14,66 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>Orders</h1>
+            <h1>@lang('admin.Orders')</h1>
 
         </div>
 
-
+<br><br>
           <div class="section-body">
             <div class="invoice">
+              <br><br>
               <div class="invoice-print">
                 <div class="row">
-                  <div class="col-lg-12">
-                    <div class="invoice-title">
-                      <h2></h2>
-                      <div class="invoice-number">Order #{{ $order->inovice_id }}</div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                      <div class="col-md-6">
+                  <div class="col-lg-12">         
+                    <div class="row mt-5 d-flex">
+                      <div class="col-sm-6">
                         <address>
-                          <strong>Billed To:</strong><br>
-                            <b>Name: </b> {{ $address->name }} <br>
-                            <b>Email: </b> {{ $address->email }}<br>
-                            <b>Phone: </b> {{ $address->phone }}<br>
-                            <b>Address: </b> {{ $address->address }}<br>
-                            {{ $address->city }}, {{ $address->state }}, {{ $address->zip }}<br>
-                            {{ $address->country }}<br>
+                          
+                        &nbsp;&nbsp;&nbsp;<b><strong class="text-dark"> Information du client:</strong></b><br>
+                            &nbsp;&nbsp;&nbsp;<b> Nom : </b>{{ $address->name }}<br>
+                            &nbsp;&nbsp;&nbsp;<span class="text-dark"><b> Adress : </b> {{ $address->zip }} , {{ $address->city }} , {{ $address->state }}  ,
+                              {{ $address->country }} </span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<b>Numéro téléphone : </b> {{ $address->phone }}<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<b>Type de Dossier : </b> {{ $order->dossier }}<br>
+                            
                         </address>
                       </div>
-                      <div class="col-md-6 text-md-right">
-                        <address>
-                            <strong>Billed To:</strong><br>
-                              <b>Name: </b> {{ $address->name }} <br>
-                              <b>Email: </b> {{ $address->email }}<br>
-                              <b>Phone: </b> {{ $address->phone }}<br>
-                              <b>Address: </b> {{ $address->address }}<br>
-                              {{ $address->city }}, {{ $address->state }}, {{ $address->zip }}<br>
-                              {{ $address->country }}<br>
+                      
+                      <div class="col-sm-6 text-sm-right">
+                        <address class="d-block justify-content-start">
+                            <strong></strong><br>
+                              <b>Commande N°  </b> #{{ $order->inovice_id }} <br>
+                              <b>Date : </b> {{date('d F, Y', strtotime($order->created_at))}}<br>
+                       
                           </address>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-md-6">
-
-                      </div>
-                      <div class="col-md-6 text-md-right">
-                        <address>
-                          <strong>Order Date:</strong><br>
-                          {{date('d F, Y', strtotime($order->created_at))}}<br><br>
-                        </address>
-                      </div>
-                    </div>
+                    
                   </div>
                 </div>
+                <div class="container-fluid ">
+                          <div class="row d-flex">
+                            <div class="col-md-4"><b>Montant Total : </b> {{ $order->amount }} {{ $settings->currency_icon }}</div>
+                            <div class="col-md-4"><b>Nombre d'échéance : </b> {{ $order->duree }} </div>
+                            <div class="col-md-4"><b>Montant d'échéance : </b> {{ $order->total_facility }} {{ $settings->currency_icon }} <span>
 
-                <div class="row mt-4">
+                            </span>  </b></div>
+                          </div>
+                        </div>
+              <br><br><br>
+                <div class="row mt-5">
                   <div class="col-md-12">
-                    <div class="section-title">Order Summary</div>
-                    <p class="section-lead">All items here cannot be deleted.</p>
+                    
                     <div class="table-responsive">
                       <table class="table table-striped table-hover table-md">
                         <tr>
                           <th data-width="40">#</th>
-                          <th>Item</th>
-                          <th>Variant</th>
-                          <th class="text-center">Price</th>
-                          <th class="text-center">Quantity</th>
-                          <th class="text-center">Total Facility</th>
-                          <th class="text-right">Totals</th>
+                          <th>Produit</th>
+                          <th class="text-center">Marque</th>
+                          <th class="text-center">Quantité</th>
+                          <th class="text-center">Prix</th>
+                          <th class="text-right">Prix Total</th>
+
                         </tr>
                         @php
                             $i=1;
@@ -91,19 +84,12 @@
                             @endphp
                             <tr>
                                 <td>{{$i}}</td>
-                                <td><a href="{{ route('product-detail',$orderProduct->product->slug) }}">{{$orderProduct->product_name}}</a></td>
-                                <td>
-                                    @if(!is_null($variants))
-                                        @foreach($variants as $key => $variant)
-                                            <b>{{ $key }}</b>: {{ $variant->name }} ({{ (int) $variant->price }}) {{ $settings->currency_icon }}
-                                        @endforeach
-                                    @else
-                                        <span class="badge badge-warning">None</span>
-                                    @endif
-                                </td>
-                                <td class="text-center">{{$orderProduct->unit_price}} {{ $settings->currency_icon }}</td>
+                                <td><a href="javascript:;">{{$orderProduct->product_name}}</a></td>
+                  
+                                <td class="text-center">{{$orderProduct->product->brand->name}}</td>
                                 <td class="text-center">{{$orderProduct->qty}}</td>
-                                <td class="text-center">{{ getFacility($orderProduct->product,$order->duree,$orderProduct->qty) }} {{ $settings->currency_icon }}</td>
+                                <td class="text-center">{{$orderProduct->unit_price}} {{ $settings->currency_icon }}</td>
+
                                 <td class="text-right">{{ $orderProduct->qty * ($orderProduct->unit_price  + $orderProduct->variants_total)}} {{ $settings->currency_icon }}</td>
                             </tr>
                         @php
@@ -112,45 +98,76 @@
                         @endforeach
                       </table>
                     </div>
-                    <div class="row mt-4">
-                      <div class="col-lg-8">
+                    <br><br><br>
+                    <div class="row mt-5">
+                      <br>
+
+                      <div class="col-sm-8">
+
+ 
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="">Order Status</label>
+                                    <label for="">Statut de la commande</label>
                                     <select name="order_status" class="form-control" data-id="{{ $order->id }}" id="order_status">
 
-                                        <option {{ $order->order_status == 'pending' ? 'selected' : '' }} value="pending">Pending</option>
-                                        <option {{ $order->order_status == 'destribution' ? 'selected' : '' }} value="destribution">In Transit</option>
-                                        <option {{ $order->order_status == 'deliverd' ? 'selected' : '' }} value="deliverd">Delivered</option>
-                                        <option {{ $order->order_status == 'canceled' ? 'selected' : '' }} value="canceled">Canceled</option>
+                                        <option {{ $order->order_status == 'pending' ? 'selected' : '' }} value="pending">@lang('admin.Pending')</option>
+                                        <option {{ $order->order_status == 'destribution' ? 'selected' : '' }} value="destribution">@lang('vendor.InTransit')</option>
+                                        <option {{ $order->order_status == 'deliverd' ? 'selected' : '' }} value="deliverd">@lang('admin.Delivered')</option>
+                                        <option {{ $order->order_status == 'canceled' ? 'selected' : '' }} value="canceled">@lang('admin.Canceled')</option>
 
                                     </select>
 
                                 </div>
-                            </div>
+                            </div>                      
+
 
                       </div>
-                      <div class="col-lg-4 text-right">
-                        <div class="invoice-detail-item">
-                          <div class="invoice-detail-name">Subtotal</div>
-                          <div class="invoice-detail-value">{{ $order->subtotal }} {{ $settings->currency_icon }}</div>
-                        </div>
 
-                        <hr class="mt-2 mb-2">
-                        <div class="invoice-detail-item">
-                          <div class="invoice-detail-name">Total</div>
-                          <div class="invoice-detail-value invoice-detail-value-lg"> {{ $order->amount }} {{ $settings->currency_icon }} </div>
-                        </div>
-                      </div>
+                    
+
+                    
+                      <br>
+                      
                     </div>
+                    <br><br>
+                    <!--
+                    <div class="row d-flex justify-content-end mt-5">
+                        <div class="col-sm-3  mt-5">
+                          <div class="invoice-detail-item">
+                            <div class="invoice-detail-name">SOUS-TOTAL</div>
+                            <div class="invoice-detail-value">{{ $order->subtotal }} {{ $settings->currency_icon }}</div>
+                          </div>
+
+                          <hr class="mt-2 mb-2">
+                          <div class="invoice-detail-item">
+                            <div class="invoice-detail-name">TOTAL DU</div>
+                            <div class="invoice-detail-value invoice-detail-value-lg"> {{ $order->amount }} {{ $settings->currency_icon }} </div>
+                          </div>
+                        </div>
+                          
+                          
+                    </div>
+                    -->
                   </div>
+
+  
+
+
+
                 </div>
+
+
               </div>
-              <hr>
+             
+
+
+             <!--
               <div class="text-md-right">
 
                 <button class="btn btn-warning btn-icon icon-left print_inovice"><i class="fas fa-print"></i> Print</button>
               </div>
+            -->
+
             </div>
           </div>
 

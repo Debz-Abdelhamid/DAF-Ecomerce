@@ -66,10 +66,11 @@ p {
   text-transform: capitalize;
   font-weight: 600;
   color: #fff;
-  background: #08C;
+  background-color: #007BFF;
   padding: 12px 25px;
   border: none;
   border-radius: 30px;
+  transition: background-color 0.3s ease;
   outline: none;
   transition: all linear 0.3s;
   -webkit-transition: all linear 0.3s ease;
@@ -80,7 +81,7 @@ p {
 
 .common_btn:hover {
   color: #fff;
-  background: rgb(2, 82, 122);
+  background: #0056b3;
 }
 
 .see_btn {
@@ -139,7 +140,7 @@ p {
   font-weight: 600;
   color: #fff;
   padding: 10px 15px;
-  background: #08C;
+  background: green;
   border-radius: 3px;
   transition: all linear 0.3s;
   -webkit-transition: all linear 0.3s ease;
@@ -154,7 +155,7 @@ p {
 
 .add_cart:hover {
   color: #fff;
-  background: rgb(2, 82, 122);
+  background: #355F2E;
 }
 
 /*======================
@@ -167,7 +168,7 @@ p {
 #wsus__topbar {
   width: 100%;
   height: 45px;
-  background: #08C;
+  background: rgb(0, 204, 129);
 }
 
 .wsus__topbar_left {
@@ -301,10 +302,13 @@ p {
 ========================*/
 header {
   width: 100%;
-  background: #08C;
-  padding: 19px 0px;
-  height: 90px;
-  border-bottom: 1px solid #fff;
+  background: #eee;
+  /*======================
+	  padding: 19px 0px;
+  height: 170px;
+========================*/
+
+  
 }
 
 .wsus__header_logo {
@@ -658,7 +662,8 @@ header {
   line-height: 48px;
   display: block;
   font-size: 20px;
-  background: #08C;
+  border-radius: 2px;
+  background: #b5002b;
   position: relative;
   transition: all linear 0.3s;
   -webkit-transition: all linear 0.3s ease;
@@ -762,7 +767,7 @@ header {
   -moz-transition: all linear 0.3s ease;
   -ms-transition: all linear 0.3s ease;
   -o-transition: all linear 0.3s ease;
-  height: 100%;
+  height: auto;
 }
 
 .wsus_menu_cat_droapdown li a {
@@ -816,6 +821,7 @@ header {
 
 .toggle_menu.\.show_category {
   display: block;
+  height: auto;
 }
 
 .toggle_menu {
@@ -1423,7 +1429,7 @@ PRODUCT MODAL VIEW END
   font-size: 0;
   width: 30px;
   height: 8px;
-  background: #76c3ff;
+  background: lightgray;
   border-radius: 50px;
   margin: 0 5px;
   outline: 0;
@@ -1431,7 +1437,7 @@ PRODUCT MODAL VIEW END
 }
 
 #wsus__banner .slick-dots li.slick-active button {
-  background: #0086ee;
+  background: #666666;
 }
 
 /*======================
@@ -1446,7 +1452,7 @@ PRODUCT MODAL VIEW END
   border: 1px solid #e5e4e4;
   border-left: 0;
   border-right: 0;
-  background: #fff;
+  background: #ffffff;
   /* box-shadow: rgb(50 50 93 / 15%) 0px 0px 5px 0px; */
 }
 
@@ -1535,7 +1541,7 @@ PRODUCT MODAL VIEW END
   font-size: 20px;
   font-weight: 600;
   text-transform: capitalize;
-  color: #08C;
+  color: #666666;
   margin-right: 10px;
 }
 
@@ -1565,9 +1571,9 @@ PRODUCT MODAL VIEW END
   text-align: center;
   width: 50px;
   height: 30px;
-  background: #08C;
+  background: #b5002b;
   margin: 0px 5px;
-  border-radius: 3px;
+  border-radius: 3px;h
   padding-top: 2px;
 }
 
@@ -1623,7 +1629,7 @@ PRODUCT MODAL VIEW END
 
 .wsus__new {
   position: absolute;
-  background: #08C;
+  background: red;
   width: auto;
   height: 25px;
   text-align: center;
@@ -1813,12 +1819,12 @@ PRODUCT MODAL VIEW END
   border-radius: 0;
 }
 
-/* .wsus__product_item:hover
+/* .wsus__product_item:hover 
 .wsus__product_details .add_cart {
   opacity: 1;
 }
 
-.wsus__product_item:hover
+.wsus__product_item:hover 
 .wsus__product_details .wsus__price {
   opacity: 0;
   visibility: hidden;
@@ -1922,7 +1928,7 @@ MONTHLY TOP PRODUCT START
 .monthly_top_filter2 button:hover,
 .monthly_top_filter2 button.active {
   color: #fff;
-  background: #08C !important;
+  background: #b5002b;
 }
 
 .wsus__monthly_top_banner {
@@ -2299,6 +2305,7 @@ HOME BLOGS END
 }
 
 .wsus__hot_deals__single_img {
+  /* margin: 25px 12px 0px 12px; */
   width: 25%;
   float: left;
   border-right: 1px solid #eee;
@@ -2356,11 +2363,11 @@ HOME BLOGS END
 }
 
 /*======================
-	HOT DEALS END
+	HOT DEALS END  
 ========================*/
 
 /*======================
-	LARGE BANNER START
+	LARGE BANNER START  
 ========================*/
 #wsus__large_banner {
   padding-top: 65px;
@@ -2415,11 +2422,11 @@ HOME BLOGS END
 }
 
 /*======================
-	LARGE BANNER  END
+	LARGE BANNER  END  
 ========================*/
 
 /*======================
-WEEKLY BEST ITEM START
+WEEKLY BEST ITEM START   
 ========================*/
 #wsus__weekly_best {
   margin-top: 67px;
@@ -2478,7 +2485,7 @@ WEEKLY BEST ITEM START
 }
 
 /*======================
-WEEKLY BEST ITEM END
+WEEKLY BEST ITEM END 
 ========================*/
 
 /*======================
@@ -2848,7 +2855,7 @@ SCROLL BUTTON  END
 BREADCRUMB START
 ========================*/
 #wsus__breadcrumb {
-  background: url(../images/bg-head.jpg);
+  background: url(../images/breadcrumb_bg.jpg);
   background-size: cover !important;
   background-repeat: no-repeat !important;
   background-position: center !important;
@@ -3099,7 +3106,11 @@ PPRODUCT PAGE START
 }
 
 .form-check {
-  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  font-size: 20px;
 }
 
 .form-check input {
@@ -3107,8 +3118,8 @@ PPRODUCT PAGE START
 }
 
 .form-check-input:checked {
-  background-color: #08C;
-  border-color: #08C;
+  background-color: #20c997;
+  border-color: #20c997;
 }
 
 .form-check label {
@@ -3467,8 +3478,8 @@ PRODUCT DETAILS START
 }
 
 .wsus__stock_area .in_stock {
-  background: #ff9f00;
-  color: #fff;
+  background: #F4E0AF;
+  color: #000000;
   text-transform: capitalize;
   font-size: 14px;
   font-weight: 600;
@@ -3772,8 +3783,8 @@ PRODUCT DETAILS START
 .wsus__button_area li:nth-child(3) a:hover,
 .wsus__button_area li:nth-child(4) a:hover {
   color: #fff;
-  border-color: #08C;
-  background: #08C;
+  border-color: green;
+  background: green;
 }
 
 .wsus__pro_det_share ul li a {
@@ -3999,8 +4010,8 @@ PRODUCT DETAILS START
 
 .wsus__pro_det_description .nav-pills .nav-link.active,
 .wsus__pro_det_description .nav-pills .nav-link:hover {
-  color: #08C !important;
-  background: #e5f1fc !important;
+  color: #fff ;
+  background: #b5002b ;
 }
 
 .wsus__description_area h2,
@@ -5346,7 +5357,7 @@ WISHLIST PAGE START
 .wsus__login_input i {
   width: 57px;
   height: 47px;
-  background: #08C;
+  background: #666666;
   line-height: 45px;
   text-align: center;
   margin-right: 10px;
@@ -5387,7 +5398,14 @@ WISHLIST PAGE START
   font-size: 14px;
   font-weight: 400;
   text-transform: capitalize;
-  color: red;
+  color: #000000;
+  text-decoration: underline;
+  transition: all 0.2s ease;
+}
+
+.wsus__login .forget_p:hover {
+  color: #2a9cf5 !important;
+
 }
 
 .wsus__login button {
@@ -5528,20 +5546,16 @@ WISHLIST PAGE START
 }
 
 .wsus__about_counter_single {
-  border-radius: 5px;
-  padding: 55px 40px 40px 40px;
   text-align: center;
-  background: #fff;
-  box-shadow: rgb(50 50 93 / 15%) 0px 0px 5px 0px;
 }
 
 .wsus__about_counter_single span {
   font-size: 40px;
   font-weight: 600;
-  color: #08C;
+  color: #b5002b;
 }
 
-.wsus__about_counter_single h2 {
+.wsus__about_counter_single h4 {
   text-transform: capitalize;
   font-size: 16px;
   /* font-weight: 600; */
@@ -6707,7 +6721,7 @@ WISHLIST PAGE START
 .dashboard_sidebar {
   width: 15%;
   height: 100vh;
-  background: #0b2c3d;
+  background: #fff;
   position: fixed;
   top: 0;
   left: 0;
@@ -6726,18 +6740,18 @@ WISHLIST PAGE START
 }
 
 .dashboard_link {
-  margin-top: 40px;
   margin-bottom: 50px;
   width: 100%;
   height: 500px;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #08C #0b172d;
+  border-top: #eee;
 }
 
 .dashboard_link li a {
-  font-size: 15px;
-  color: #e8e8e8;
+  font-size: 16px;
+  color: #666666;
   font-weight: 500;
   text-transform: capitalize;
   border-bottom: 1px solid #fffefe17;
@@ -6751,7 +6765,7 @@ WISHLIST PAGE START
 }
 
 .dashboard_link li:first-child a {
-  border-top: 1px solid #fffefe24;
+  border-top: 1px solid #000;
 }
 
 .dashboard_link li a i {
@@ -6760,7 +6774,7 @@ WISHLIST PAGE START
 
 .dashboard_link li a:hover,
 .dashboard_link li a.active {
-  background: #051a25;
+  color: #b5002b;
 }
 
 .dashboard_content h3 {
@@ -6774,7 +6788,7 @@ WISHLIST PAGE START
 
 .dashboard_content h3 i {
   font-size: 25px;
-  color: #848383;
+  color: #fff;
   margin-right: 20px;
 }
 
@@ -8499,7 +8513,7 @@ DAILY DEALS DETAILS END
 ========================*/
 
 /*======================
-	HOME PAGE 2 START
+	HOME PAGE 2 START   
 ========================*/
 header .dropdown .nav-link {
   width: auto;
@@ -8655,7 +8669,7 @@ header .wsus__call_text a:hover {
 }
 
 /* product start */
-
+.wsus__new,
 .wsus__minus {
   width: 50px;
   border-radius: 30px;
@@ -9451,159 +9465,35 @@ a:not([href]):not([class]):hover {
 
 /* extra css end here */
 
-
-.wsus_input input{
-    width: 100%;
-    padding: 10px;
-    border-radius: 3px;
-    font-size: 16px;
-    font-weight: 400;
-    color: #353535;
-    resize: none;
-    border: 1px solid #eee;
-    margin-bottom: 10px;
-
+#fa-log{
+  background-color: #b5002b;
 }
 
-.wsus_input select{
-    width: 100%;
-    padding: 10px;
-    border-radius: 3px;
-    font-size: 16px;
-    font-weight: 400;
-    color: #353535;
-    resize: none;
-    border: 1px solid #eee;
-    margin-bottom: 10px;
-
-}
-
-.wsus_input textarea{
-  width: 100%;
-  padding: 10px;
-  border-radius: 3px;
-  font-size: 16px;
-  font-weight: 400;
-  color: #353535;
-  resize: none;
-  border: 1px solid #eee;
-  margin-bottom: 10px;
-
+.wsus__section_header[dir="rtl"] {
+  text-align: right;
+  font-family: 'Arabic Font', sans-serif; /* Choose a suitable Arabic font */
 }
 
 
-.wsus_input label {
-  margin-bottom: 5px;
+#trak[dir="rtl"]{
+  text-align: right;  /* Ensures the text inside the input is right-aligned */
+}
+
+.wsus__section_header[dir="rtl"]{
+  text-align: right;  /* Ensures the text inside the input is right-aligned */
+}
+
+.wsus__quentity[dir="rtl"]{
+  text-align: right;  /* Ensures the text inside the input is right-aligned */
+}
+
+.wsus__pro_details_text[dir="rtl"]{
+  text-align: right;  /* Ensures the text inside the input is right-aligned */
 }
 
 
-
-#flexSwitchCheckDefault{
-
-  height: 20px !important;
-  width: 50px !important;
-  border-radius: 10px !important;
-}
-
-.delete-item{
-  margin-left: 5px !important;
-}
-
-.dropdown{
-  margin-left: 5px !important;
-
-}
-
-.btn-space-right{
-  margin-right: 4px;
+#dd[dir="rtl"]{
+  text-align: right;  /* Ensures the text inside the input is right-aligned */
 }
 
 
-.page-item.disabled > .page-link{
-
-    width: 35px;
-    height: 35px;
-    padding: 0;
-    text-align: center;
-    line-height: 35px;
-    font-size: 13px;
-    font-weight: 400;
-    transition: all linear 0.3s;
-    -webkit-transition: all linear 0.3s;
-    -moz-transition: all linear 0.3s;
-    -ms-transition: all linear 0.3s;
-    -o-transition: all linear 0.3s;
-    border-radius: 50%;
-    border: 1px solid #08C;
-    margin-right: 10px;
-}
-   
-.page-item.active > .page-link{
-    width: 35px;
-    height: 35px;
-    padding: 0;
-    text-align: center;
-    line-height: 35px;
-    font-size: 13px;
-    font-weight: 400;
-    transition: all linear 0.3s;
-    -webkit-transition: all linear 0.3s;
-    -moz-transition: all linear 0.3s;
-    -ms-transition: all linear 0.3s;
-    -o-transition: all linear 0.3s;
-    border-radius: 50%;
-    border: 1px solid #08C;
-    margin-right: 10px;
-}
-
-.page-item > .page-link{
-    width: 35px;
-    height: 35px;
-    padding: 0;
-    text-align: center;
-    line-height: 35px;
-    font-size: 13px;
-    font-weight: 400;
-    transition: all linear 0.3s;
-    -webkit-transition: all linear 0.3s;
-    -moz-transition: all linear 0.3s;
-    -ms-transition: all linear 0.3s;
-    -o-transition: all linear 0.3s;
-    border-radius: 100% !important;
-    border: 1px solid #08C;
-    margin-right: 10px;
-}
-
-.wsus__new{
-   
-    border-radius: 30px;
-    opacity: 0.3;
-    transition: all linear 0.3s;
-    -webkit-transition: all linear 0.3s ease;
-    -moz-transition: all linear 0.3s ease;
-    -ms-transition: all linear 0.3s ease;
-    -o-transition: all linear 0.3s ease;
-}
-
-.product_qty_wrapper{
-  display: flex;
- 
-
-}
-
-.product_qty_wrapper >.product-qty{
-
-  width: 43px;
-  height: 36px;
-  padding-left:10px;
-  border-radius:15px;
-}
-
-.wsus__cart_list .wsus__pro_name {
-  width: 285px;
-}
-
-.wsus__mini_cart .wsus__cart_img img {
-  height: 70px;
-  object-fit: cover;
-}

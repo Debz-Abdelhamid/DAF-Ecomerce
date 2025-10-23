@@ -9,7 +9,7 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>Brand</h1>
+            <h1>@lang('admin.Brand')</h1>
 
         </div>
 
@@ -18,48 +18,46 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Create Brand</h4>
+                            <h4>@lang('admin.CreateBrand')</h4>
                             <div class="card-header-action">
-                                <a href="{{ route('admin.brand.index') }}" class="btn btn-primary"><i
-                                        class="fas fa-backspace"></i>&nbsp;Back</a>
+                                <a href="{{ route('admin.brand.index') }}" class="btn btn-success"><i
+                                        class="fas fa-backspace"></i>&nbsp;@lang('admin.Back')</a>
                             </div>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('admin.brand.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <div class="form-group">
-                                    <label>Logo</label>
-                                    <input type="file" name="logo" class="form-control">
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                    <input type="file" name="logo" placeholder="" class="form-control">
                                 </div>
 
                                 
 
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <input type="text" name="name" value="{{ old('name') }}" class="form-control">
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                    
+                                    <input type="text" name="name" placeholder="" value="{{ old('name') }}" class="form-control">
                                 </div>
 
                                 
 
-                                <div class="form-group">
-                                    <label>Is Featured</label>
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                                     <select name="is_featured" class="form-control form-control-lg">
-                                        <option value="" selected disabled>Select</option>
-                                        <option value="1">Yes</option>
-                                        <option value="0">No</option>
+                                        <option value="" selected disabled>@lang('admin.Select') @lang('admin.IsFeatured')</option>
+                                        <option value="1">@lang('admin.oui')</option>
+                                        <option value="0">@lang('admin.non')</option>
                                     </select>
                                 </div>
 
                                 
-                                <div class="form-group">
-                                    <label>Status</label>
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                                     <select name="status" class="form-control form-control-lg">
-                                        <option value="1">Active</option>
-                                        <option value="0">Inactive</option>
+                                        <option value="" selected disabled>@lang('admin.Status')</option>
+                                        <option value="1">@lang('admin.Active')</option>
+                                        <option value="0">@lang('admin.Inactive')</option>
                                     </select>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary">Create</button>
+                                <button type="submit" class="btn btn-success">@lang('admin.Create')</button>
                             </form>
 
                         </div>

@@ -9,6 +9,7 @@ use Illuminate\View\View;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Cache;
 
 class OrderController extends Controller
 {
@@ -46,7 +47,7 @@ class OrderController extends Controller
     {
         $order = Order::findOrFail($id);
 
-        $orderProducts = $order->orderProducts()->with('product')->get();
+        $orderProducts = $order->orderProducts()->with('product.brand')->get();
         
         return view('admin.order.show', compact(['order','orderProducts']));
     }
@@ -76,12 +77,15 @@ class OrderController extends Controller
 
         $order->delete();
 
-        notyf()->success('Order Deleted Successfully');
+        Cache::forget('dashboard_stats');
+        Cache::forget('vendor_dashboard_stats');
+
+        notyf()->success(__('toastr.OrderDeletedSuccessfully'));
 
        return response()->json([
             'status' => 'success',
             'type' => 'order',
-            'message' => 'Order deleted successfully!'
+            'message' =>__('toastr.OrderDeletedSuccessfully')
         ]);
 
 
@@ -98,9 +102,12 @@ class OrderController extends Controller
 
         $order->update(['order_status' => $request->status]);
 
+        Cache::forget('dashboard_stats');
+        Cache::forget('vendor_dashboard_stats');
+
         return response()->json([
             'status' => 'success',
-            'message' => 'Order Status has been Updated Successfully',
+            'message' =>__('toastr.OrderStatushasbeenUpdatedSuccessfully'),
         ]);
 
 

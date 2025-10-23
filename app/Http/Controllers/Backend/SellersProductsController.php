@@ -16,14 +16,14 @@ class SellersProductsController extends Controller
 {
     public function index(): View
     {
-        $products = Product::with(['user','brand','category','subcategory','childcategory'])->whereNot('user_id', auth()->user()->id)->where('is_approved', 1)->latest()->paginate(2);
+        $products = Product::with(['user','brand','category','subcategory','childcategory'])->whereNot('user_id', auth()->user()->id)->where('is_approved', 1)->latest()->paginate(10);
         return view('admin.products.seller-product.index', compact('products'));
     }
 
 
     public function pendingProducts(): View
     {
-        $products = Product::with(['user','brand','category','subcategory','childcategory'])->where('is_approved', 0)->latest()->paginate(2);
+        $products = Product::with(['user','brand','category','subcategory','childcategory'])->where('is_approved', 0)->latest()->paginate(10);
         return view('admin.products.seller-product.seller-pending-products', compact('products'));
     }
 
@@ -41,7 +41,7 @@ class SellersProductsController extends Controller
         $product->save();
 
         return response()->json([
-            'message' => 'Product Approve Status has been Changed!'
+            'message' =>__('toastr.ProductApprove')
         ]);
 
     }

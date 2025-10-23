@@ -57,17 +57,6 @@ class VendorImageGalleryController extends Controller
         $product = Product::findOrFail($request->product);
 
         Gate::authorize('update', $product);
-
-        $currentImagesCount = $product->galleries()->count();
-
-        $newImagesCount = count($request->image);
-
-        $remainingSlots = 5 - $currentImagesCount;
-
-        if ($currentImagesCount + $newImagesCount > 5) {
-            notyf()->error("You can only upload $remainingSlots more image(s) for this product. Please delete some images before uploading more.");
-            return redirect()->back();
-        }
         
 
         $images = $this->UploadMultipleImage($request, 'image', 'products');
@@ -79,7 +68,7 @@ class VendorImageGalleryController extends Controller
             ]);
         }
 
-        notyf()->success('Uploaded Successfully!');
+        notyf()->success(__('toastr.UploadedSuccessfully'));
         return redirect()->back();
     }
 
@@ -122,7 +111,7 @@ class VendorImageGalleryController extends Controller
 
         $ImageGallery->delete();
 
-        notyf()->success('Image Deleted Successfully!');
+        notyf()->success(__('toastr.Imagedeletedsuccessfully'));
         return redirect()->back();
 
     }

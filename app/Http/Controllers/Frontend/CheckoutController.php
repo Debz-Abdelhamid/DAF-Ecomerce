@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Cache;
+
+
+
 
 class CheckoutController extends Controller
 {
@@ -23,7 +27,7 @@ class CheckoutController extends Controller
         $cartItems = \Cart::content();
         if(count($cartItems) == 0)
         {
-            notyf()->warning('Cart Is Empty!');
+            notyf()->warning(__('toastr.CartEmpty'));
             return redirect()->route('home');
         }
        
@@ -34,11 +38,11 @@ class CheckoutController extends Controller
    
 
 
-    public function storeOrder($myaddress,$slider,$facility,$total_duree)
+    public function storeOrder($myaddress, $slider, $facility, $total_duree, $dossier)
     {
         $setting = GeneralSettings::first();
         $order = new Order();
-        $order->inovice_id = rand(1,999999);
+        $order->inovice_id = rand(1, 999999);
         $order->subtotal = cartTotal();
         $order->amount = cartTotal();
         $order->total_variants = variantTotal();
@@ -46,29 +50,42 @@ class CheckoutController extends Controller
         $order->duree = $total_duree;
         $order->total_facility = $facility;
         $order->currency_name = $setting->currency_name;
-        $order->currency_icon =  $setting->currency_icon;
+        $order->currency_icon = $setting->currency_icon;
         $order->product_qty = \Cart::content()->count();
         $order->order_address = json_encode($myaddress);
-        $order->save();
+        $order->dossier = $dossier;
+    
+        if ($order->save()) {
+            try {
+                /** Store Order Products */
+                foreach (\Cart::content() as $item) {
+                    $product = Product::findOrFail($item->id);
+                    $orderProduct = new OrderProduct();
+                    $orderProduct->order_id = $order->id;
+                    $orderProduct->product_id = $item->id;
+                    $orderProduct->product_name = $product->name;
+                    $orderProduct->variants = count($item->options->variants) > 0 ? json_encode($item->options->variants) : null;
+                    $orderProduct->variants_total = $item->options->variant_total;
+                    $orderProduct->unit_price = $item->price;
+                    $orderProduct->qty = $item->qty;
+                    $orderProduct->save();
+                }
+            } catch (\Exception $e) {
+                
+                $order->delete();
 
+                Cache::forget('dashboard_stats');
+                Cache::forget('vendor_dashboard_stats');
 
-        /** Store Order Products */
-        foreach(\Cart::content() as $item)
-        {
-            $product = Product::findOrFail($item->id);
-            $orderProduct = new OrderProduct();
-            $orderProduct->order_id = $order->id;
-            $orderProduct->product_id = $item->id;
-            $orderProduct->product_name = $product->name;
-            $orderProduct->variants = count($item->options->variants) > 0  ? json_encode($item->options->variants) : null;
-            $orderProduct->variants_total = $item->options->variant_total;
-            $orderProduct->unit_price = $item->price;
-            $orderProduct->qty = $item->qty;
-            $orderProduct->save();
-            
+                abort(404, 'Order could not be .');
+                
+            }
+        } else {
+            // If order is not saved, return a 404 response
+            abort(404, 'Order could not be saved.');
         }
-
     }
+    
 
     public function getDuree($duree)
     {
@@ -121,11 +138,11 @@ class CheckoutController extends Controller
         $request->validate([
             
             'name' => ['required','max:200','string'],
-            'email' => ['required','email','max:200'],
             'phone' => ['required','max:50','regex:/^0[5-6-7][0-9]{8}$/'],
             'country' => ['required','max:200', Rule::in(config('settings.country_list'))],
             'state' => ['required','max:200','string'],
             'city' => ['required','max:200','string'],
+            'dossier' => ['required','max:255', Rule::in('retrait','retrait militaire','fonctionnaire','fonctionnaire militaire')],
             'zip' => ['required','max:200', 'string'],
             'address' => ['required','max:500','string'],
             'duree' => ['required', Rule::in('price_12','price_24','price_36','price_48','price_60')],
@@ -140,7 +157,6 @@ class CheckoutController extends Controller
         
         $myaddress = [
             'name' => $request->name,
-            'email' => $request->email,
             'phone' => $request->phone,
             'country' => $request->country,
             'state' => $request->state,
@@ -154,13 +170,18 @@ class CheckoutController extends Controller
         
 
         $total_duree = $this->getDuree($duree);
+
+        $dossier = $request->dossier;
         
-        $this->storeOrder($myaddress,$slider,$facility,$total_duree);
+        $this->storeOrder($myaddress,$slider,$facility,$total_duree,$dossier);
 
         $this->clearCart();
 
+        Cache::forget('dashboard_stats');
+
+        Cache::forget('vendor_dashboard_stats');
         
-        notyf()->success('Order has been send Successfully!');
+        notyf()->success(__('toastr.OrderhasbeensendSuccessfully'));
         return redirect()->route('home');
 
     

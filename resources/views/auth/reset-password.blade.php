@@ -13,10 +13,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <h4>change password</h4>
+                        <h4>Changer le mot de passe</h4>
                         <ul>
-                            <li><a href="#">login</a></li>
-                            <li><a href="#">change password</a></li>
+                            <li><a href="#">Connexion</a></li>
+                            <li><a href="#">Changer le mot de passe </a></li>
                         </ul>
                     </div>
                 </div>
@@ -39,21 +39,21 @@
                         @csrf
                         
                         <div class="wsus__change_password">
-                            <h4>Reset Password</h4>
+                            <h4>Réinitialiser le mot de passe</h4>
                             <input type="hidden" name="token" value="{{ $request->route('token') }}">
                             <div class="wsus__single_pass">
                                 <label>Email</label>
                                 <input id="email" type="email" name="email" value="{{ old('email', $request->email) }}" placeholder="Email">
                             </div>
                             <div class="wsus__single_pass">
-                                <label>new password</label>
+                                <label>mot de passe</label>
                                 <input id="password" type="password" name="password" placeholder="New Password">
                             </div>
                             <div class="wsus__single_pass">
-                                <label>confirm password</label>
+                                <label>confermer mot de passe</label>
                                 <input id="password_confirmation" type="password" name="password_confirmation"  placeholder="Confirm Password">
                             </div>
-                            <button class="common_btn" type="submit">submit</button>
+                            <button class="common_btn" type="submit">Envoyer</button>
                         </div>
                     </form>
                 </div>

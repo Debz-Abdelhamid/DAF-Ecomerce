@@ -9,7 +9,7 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>Category</h1>
+            <h1>@lang('admin.Category')</h1>
 
         </div>
 
@@ -18,10 +18,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>All Categories</h4>
+                            <h4></h4>
                             <div class="card-header-action">
-                                <a href="{{ route('admin.category.create') }}" class="btn btn-primary"><i
-                                        class="fas fa-plus"></i>&nbsp;&nbsp;Create New</a>
+                                <a href="{{ route('admin.category.create') }}" class="btn btn-success"><i
+                                        class="fas fa-plus"></i>&nbsp;&nbsp;@lang('admin.CreateNew')</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -29,10 +29,10 @@
                                 <table class="table table-bordered table-md">
                                     <tr>
                                         <th>#</th>
-                                        <th>Icon</th>
-                                        <th>Name</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th>@lang('admin.Icon')</th>
+                                        <th>@lang('admin.Name')</th>
+                                        <th>@lang('admin.Status')</th>
+                                        <th>@lang('admin.Action')</th>
                                     </tr>
                                     @php
                                         $i = 1;
@@ -65,7 +65,7 @@
                                             <td>
                                                 <div class="d-flex">
                                                     <a href="{{ route('admin.category.edit', $category->id) }}"
-                                                        class="btn btn-primary"><i class="far fa-edit"></i></a>
+                                                        class="btn btn-success"><i class="far fa-edit"></i></a>
 
 
 
@@ -82,9 +82,9 @@
                                         @endphp
                                     @empty
                                         <tr>
-                                            <td colspan="7" class="text-center">No categories available. <a
+                                            <td colspan="7" class="text-center">@lang('admin.Nocategoriesavailable') <a
                                                     href="{{ route('admin.category.create') }}"
-                                                    class="btn btn-primary ml-2">Create Category</a></td>
+                                                    class="btn btn-success ml-2">@lang('admin.CreateCategory') </a></td>
                                         </tr>
 
                                     @endforelse

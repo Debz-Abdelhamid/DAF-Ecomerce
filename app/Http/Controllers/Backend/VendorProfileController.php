@@ -35,7 +35,7 @@ class VendorProfileController extends Controller
         $request->user()->save();
         
         
-        notyf()->success('Profile Updated successfully!');
+        notyf()->success(__('toastr.ProfileUpdatedsuccessfully'));
         return Redirect::route('vendor.profile');
     }
 
@@ -63,7 +63,7 @@ class VendorProfileController extends Controller
                 $user->update(['image' => $path]);
             }
 
-            notyf()->success('Avatar Updated successfully!');
+            notyf()->success(__('toastr.AvatarUpdatedsuccessfully'));
             return Redirect::route('vendor.profile');
 
     }
@@ -82,7 +82,7 @@ class VendorProfileController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        notyf()->success('Password Updated successfully!');
+        notyf()->success(__('toastr.PasswordUpdatedsuccessfully'));
         return redirect()->back();
     }
 }

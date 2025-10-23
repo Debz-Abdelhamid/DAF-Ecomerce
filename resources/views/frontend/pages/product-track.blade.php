@@ -10,34 +10,14 @@
 
 @section('title')
 
-{{$settings->site_name}} &mdash; Track Order
+{{$settings->site_name}} &mdash; 
 @endsection
 
 
 @section('content')
 
 
- <!--============================
-        BREADCRUMB START
-    ==============================-->
-    <section id="wsus__breadcrumb">
-        <div class="wsus_breadcrumb_overlay">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <h4>order tracking</h4>
-                        <ul>
-                            <li><a href="{{ route('home') }}">home</a></li>
-                            <li><a href="javascript:;">order tracking</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--============================
-        BREADCRUMB END
-    ==============================-->
+
 
  <!--============================
         TRACKING ORDER START
@@ -49,14 +29,31 @@
                     <div class="col-xl-5 col-md-10 col-lg-8 m-auto">
                         <form class="tack_form" action="{{ route('product-tracking.index') }}" method="GET">
                             
-                            <h4 class="text-center">order tracking</h4>
-                            <p class="text-center">tracking your order status</p>
+                            <h4 class="text-center">@lang('trak.track_order')</h4>
+                            <p class="text-center">@lang('trak.track')</p>
+
+                            @if(App::getLocale() == 'ar')
+                                <div class="wsus__track_input" dir="rtl">
+                                    <label class="d-block mb-2" id='trak' dir='rtl'>@lang('trak.track_id')</label>
+                                    <div>
+                                        <input type="text" name="tracker"  placeholder="Code : 2521578455" value="{{ @$order->inovice_id }}">
+                                    </div>
+                                </div>
+                            @else
                             <div class="wsus__track_input">
-                                <label class="d-block mb-2">Invoice id</label>
-                                <input type="text" name="tracker"  placeholder="#H25-21578455" value="{{ @$order->inovice_id }}">
+                                <label class="d-block mb-2">@lang('trak.track_id')</label>
+                                <div>
+                                    <input type="text" name="tracker"  placeholder="Code : 2521578455" value="{{ @$order->inovice_id }}">
+                                </div>
                             </div>
+
+                            @endif
+
+
+                       
                             
-                            <button type="submit" class="common_btn">track</button>
+                            
+                            <button type="submit" class="common_btn">@lang('trak.track_btn')</button>
                         </form>
                     </div>
                 </div>
@@ -68,25 +65,25 @@
                                 <div class="row">
                                     <div class="col-xl-3 col-sm-6 col-lg-3">
                                         <div class="wsus__track_header_single">
-                                            <h5>Order Date:</h5>
+                                            <h5>@lang('product.Order_Date')</h5>
                                             <p>{{ date('d M Y', strtotime(@$order->created_at)) }}</p>
                                         </div>
                                     </div>
                                     <div class="col-xl-3 col-sm-6 col-lg-3">
                                         <div class="wsus__track_header_single">
-                                            <h5>shopping by:</h5>
+                                            <h5>@lang('product.shopping_by') :</h5>
                                             <p>{{ @$address->name }}</p>
                                         </div>
                                     </div>
                                     <div class="col-xl-3 col-sm-6 col-lg-3">
                                         <div class="wsus__track_header_single">
-                                            <h5>status:</h5>
+                                            <h5>@lang('product.status') :</h5>
                                             <p>{{ @$order->order_status }}</p>
                                         </div>
                                     </div>
                                     <div class="col-xl-3 col-sm-6 col-lg-3">
                                         <div class="wsus__track_header_single border_none">
-                                            <h5>tracking:</h5>
+                                            <h5>@lang('product.tracking') :</h5>
                                             <p>{{ @$order->inovice_id }}</p>
                                         </div>
                                     </div>
@@ -100,8 +97,8 @@
                         <div class="col-xl-12">
                             <ul class="progtrckr" data-progtrckr-steps="4">
                                 
-                                <li class="progtrckr_done icon_one  check_mark">pending</li>
-                                <li class="icon_four {{ @$order->order_status == 'canceled' ? 'red_mark' : '' }} ">canceled</li>
+                                <li class="progtrckr_done icon_one  check_mark">@lang('product.pending') </li>
+                                <li class="icon_four {{ @$order->order_status == 'canceled' ? 'red_mark' : '' }} ">@lang('product.canceled')</li>
                             </ul>
                         </div>
 
@@ -110,16 +107,16 @@
                             <div class="col-xl-12">
                                 <ul class="progtrckr" data-progtrckr-steps="4">
                                     
-                                    <li class="progtrckr_done icon_one  check_mark">pending</li>
-                                    <li class="progtrckr_done icon_two {{ @$order->order_status == 'destribution' || @$order->order_status == 'deliverd'  ? 'check_mark' : '' }} ">order Processing</li>
-                                    <li class="icon_three {{ @$order->order_status == 'deliverd' ? 'check_mark' : '' }}">Delivered</li>
+                                    <li class="progtrckr_done icon_one  check_mark">@lang('product.pending')</li>
+                                    <li class="progtrckr_done icon_two {{ @$order->order_status == 'destribution' || @$order->order_status == 'deliverd'  ? 'check_mark' : '' }} ">@lang('product.order_Processing')</li>
+                                    <li class="icon_three {{ @$order->order_status == 'deliverd' ? 'check_mark' : '' }}">@lang('product.Delivered')</li>
                                     
                                 </ul>
                             </div>
 
                         @endif
                         <div class="col-xl-12">
-                            <a href="{{ route('home') }}" class="common_btn"><i class="fas fa-chevron-left"></i> back to Home</a>
+                            <a href="{{ route('home') }}" class="common_btn"><i class="fas fa-chevron-left"></i>@lang('product.back_to_Home') </a>
                         </div>
 
                         

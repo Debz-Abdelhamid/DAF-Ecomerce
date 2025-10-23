@@ -9,7 +9,7 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>Sub Category</h1>
+            <h1>@lang('admin.SubCategory') </h1>
 
         </div>
 
@@ -18,10 +18,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Update Sub Category</h4>
+                            <h4>@lang('admin.UpdateSubCategory')</h4>
                             <div class="card-header-action">
-                                <a href="{{ route('admin.sub-category.index') }}" class="btn btn-primary"><i
-                                        class="fas fa-backspace"></i>&nbsp;Back</a>
+                                <a href="{{ route('admin.sub-category.index') }}" class="btn btn-success"><i
+                                        class="fas fa-backspace"></i>&nbsp;@lang('admin.Back')</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -29,34 +29,34 @@
                                 @csrf
                                 @method('PUT')
 
-                                <div class="form-group">
-                                    <label>Category</label>
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                                     <select name="category" class="form-control form-control-lg">
-                                        <option value="" selected disabled>Select Category</option>
+                                        <option value="" selected disabled>@lang('admin.SelectCategory') </option>
                                         @forelse($categories as $id => $name)
                                             <option {{ $subcategory->category_id == $id ? 'selected' : ''  }} value="{{ $id }}">{{ $name }}</option>
                                         @empty
-                                            <option value="No categories available" disabled >No categories available</option>
+                                            <option value="No categories available" disabled >@lang('admin.Nocategoriesavailable')</option>
                                         @endforelse
                                         
                                     </select>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <input type="text" name="name" value="{{ old('name', $subcategory->name) }}" class="form-control">
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                  
+                                    <input type="text" name="name" placeholder="@lang('admin.Name')" value="{{ old('name', $subcategory->name) }}" class="form-control">
                                 </div>
 
 
-                                <div class="form-group">
-                                    <label>Status</label>
+                                <div class="form-group" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                    
                                     <select name="status" class="form-control form-control-lg">
-                                        <option {{ $subcategory->status ? 'selected' : '' }} value="1">Active</option>
-                                        <option {{ $subcategory->status == 0 ? 'selected' : ''  }} value="0">Inactive</option>
+                                    <option selected disabled >@lang('admin.Status')</option>
+                                        <option {{ $subcategory->status ? 'selected' : '' }} value="1">@lang('admin.Active')</option>
+                                        <option {{ $subcategory->status == 0 ? 'selected' : ''  }} value="0">@lang('admin.Inactive')</option>
                                     </select>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="submit" class="btn btn-success">@lang('admin.Update')</button>
                             </form>    
                         </div>
 

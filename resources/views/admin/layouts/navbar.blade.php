@@ -10,16 +10,17 @@
     
      
       <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-        <img alt="image" style="width:40px; height:40px; object-fit:cover; " src="{{ asset('storage/' .auth()->user()->image ) }}" class="rounded-circle mr-1">
-        <div class="d-sm-none d-lg-inline-block">Hi, {{ auth()->user()->name }}</div></a>
+        <img alt="image" style="width:40px; height:40px; object-fit:cover; " src="{{ auth()->user()->image ? asset('storage/' .auth()->user()->image ) : asset('frontend/images/avatar.webp') }}" class="rounded-circle mr-1">
+        <div class="d-sm-none d-lg-inline-block">{{ auth()->user()->name }}</div></a>
         <div class="dropdown-menu dropdown-menu-right">
           <a href="{{route('admin.profile')}}" class="dropdown-item has-icon">
-            <i class="far fa-user"></i> Profile
+            <i class="far fa-user"></i>@lang('admin.Profile') 
           </a>
           
           <a href="{{ route('admin.settings.index') }}" class="dropdown-item has-icon">
-            <i class="fas fa-cog"></i> Settings
+            <i class="fas fa-cog"></i>@lang('admin.Settings') 
           </a>
+          
 
           <div class="dropdown-divider"></div>
 
@@ -27,7 +28,7 @@
             @csrf
             <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                    this.closest('form').submit();" class="dropdown-item has-icon text-danger">
-                <i class="fas fa-sign-out-alt"></i> Logout
+                <i class="fas fa-sign-out-alt"></i>@lang('admin.Logout') 
             </a>
         </form>
 

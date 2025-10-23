@@ -16,20 +16,20 @@
 
       <div class="row">
         <div class="col-xl-9 col-xxl-10 col-lg-9 ms-auto">
-            <a href="{{ route('vendor.product.index') }}" class="btn btn-warning mb-3"><i class="fas fa-arrow-left"></i>&nbsp;Back</a>
+            <a href="{{ route('vendor.product.index') }}" class="btn btn-success mb-3"><i class="fas fa-arrow-left"></i>&nbsp;@lang('admin.Back')</a>
           <div class="mt-2 dashboard_content mt-md-0">
-            <h3><i class="far fa-user"></i>Product Variant</h3>
+            <h3><i class="far fa-user"></i>@lang('admin.ProductVariant')</h3>
             <div class="wsus__dashboard_profile">
               <div class="wsus__dash_pro_area">
                
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4> Product : <span class="text-primary"> {{ ucfirst($productItem->name)}} </span></h4>
+                        <div class="card" >
+                            <div class="card-header" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                <h4>@lang('admin.Product')  : <span class="text-primary"> {{ ucfirst($productItem->name)}} </span></h4>
                                 <div class="card-header-action">
-                                    <a href="{{ route('vendor.product-variant.create', ['product' => $productItem->id]) }}" class="btn btn-primary"><i
-                                            class="fas fa-plus"></i>&nbsp;&nbsp;Create Variant</a>
+                                    <a href="{{ route('vendor.product-variant.create', ['product' => $productItem->id]) }}" class="btn btn-success"><i
+                                            class="fas fa-plus"></i>&nbsp;&nbsp;@lang('admin.CreateVariant')</a>
                                 </div>
                                 
                             </div>
@@ -38,9 +38,9 @@
                                     <table class="table table-bordered table-md">
                                         <tr>
                                             <th>#</th>
-                                            <th>Variant Name</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
+                                            <th>@lang('admin.VariantName')</th>
+                                            <th>@lang('admin.Status')</th>
+                                            <th>@lang('admin.Action')</th>
                                         </tr>
                                         @php
                                             $i = 1;
@@ -63,22 +63,22 @@
                                                         </div>
                                                     @else
     
-                                                        <div class="form-check form-switch">
-                                                            <input class="form-check-input change-status" data-id="{{ $variant->id }}" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <div class="form-check form-switch justify-content-center">
+                                                            <input  class="form-check-input change-status" data-id="{{ $variant->id }}" type="checkbox" id="flexSwitchCheckDefault">
                                                             <label class="form-check-label" for="flexSwitchCheckDefault"></label>
                                                         </div>
     
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <div class="d-flex">
+                                                    <div class="d-flex justify-content-evenly">
     
                                                         <a href="{{ route('vendor.product-variant-item.index', ['product_id' => $productItem->id, 'variant_id' => $variant->id]) }}"
-                                                        class="btn btn-info text-white btn-space-right"><i class="far fa-edit"></i>  Variant Items</a>
+                                                        class="btn btn-info text-white btn-space-right"><i class="far fa-edit"></i>@lang('vendor.VariantItems')  </a>
     
     
                                                         <a href="{{ route('vendor.product-variant.edit', ['product_variant' => $variant->id, 'product' => $productItem->id ]) }}"
-                                                            class="btn btn-primary btn-space-right"><i class="far fa-edit"></i></a>
+                                                            class="btn btn-success btn-space-right"><i class="far fa-edit"></i></a>
     
     
 
@@ -103,9 +103,9 @@
                                             @endphp
                                         @empty
                                             <tr>
-                                                <td colspan="7" class="text-center">No variant available. <a
+                                                <td colspan="7" class="text-center">@lang('admin.Novariantavailable') <a
                                                         href="{{ route('vendor.product-variant.create', ['product' => $productItem->id]) }}"
-                                                        class="btn btn-primary ml-2">Create Variant</a></td>
+                                                        class="btn btn-primary ml-2">@lang('admin.CreateVariant')</a></td>
                                             </tr>
                                         @endforelse
                                     </table>

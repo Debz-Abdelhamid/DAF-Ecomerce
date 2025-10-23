@@ -10,7 +10,7 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>Admins</h1>
+            <h1>@lang('admin.Admins')</h1>
 
         </div>
 
@@ -19,10 +19,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>All Admins</h4>
+                            <h4>@lang('admin.AllAdmins')</h4>
                             <div class="card-header-action">
-                                <a href="{{ route('admin.users.create') }}" class="btn btn-primary"><i
-                                        class="fas fa-plus"></i>&nbsp;&nbsp;Create New</a>
+                                <a href="{{ route('admin.users.create') }}" class="btn btn-success"><i
+                                        class="fas fa-plus"></i>&nbsp;&nbsp;@lang('admin.CreateNew')</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -30,11 +30,11 @@
                                 <table class="table table-bordered table-md">
                                     <tr>
                                         <th>#</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Created at</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th>@lang('admin.Name')</th>
+                                        <th>@lang('admin.Email')</th>
+                                        <th>@lang('admin.Createdat')</th>
+                                        <th>@lang('admin.Status')</th>
+                                        <th>@lang('admin.Action')</th>
                                     </tr>
                                     @php
                                         $i = 1;
@@ -53,7 +53,7 @@
                                             <td>
                                                 <div class="d-flex">
                                                     <a href="{{ route('admin.users.edit', $user->id) }}"
-                                                        class="btn btn-primary"><i class="far fa-edit"></i></a>
+                                                        class="btn btn-success"><i class="far fa-edit"></i></a>
 
 
 
@@ -72,9 +72,9 @@
                                         @endphp
                                     @empty
                                         <tr>
-                                            <td colspan="7" class="text-center">No Admins available. <a
+                                            <td colspan="7" class="text-center">@lang('admin.NoAdminsavailable') <a
                                                     href="{{ route('admin.users.create') }}"
-                                                    class="ml-2 btn btn-primary">Create Admin</a></td>
+                                                    class="ml-2 btn btn-primary">@lang('admin.CreateAdmin')</a></td>
                                         </tr>
                                     @endforelse
                                 </table>

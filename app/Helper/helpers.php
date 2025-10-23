@@ -149,3 +149,23 @@ function limitText($text, $limit = 20)
 {
     return \Str::limit($text,$limit);
 }
+
+function calculateRemboursement($montantEmprunt, $period) {
+    
+    $tauxAnnuel = 0.035; // Taux d'intérêt 3.5%
+    $tauxMensuel = $tauxAnnuel / 12;
+    $nombreMois = $period * 12;
+
+    if ($period < 1 || $period > 5) {
+        throw new Exception("La période doit être comprise entre 1 et 5 ans");
+    }
+
+    if ($montantEmprunt <= 0) {
+        throw new Exception("Le montant de l'emprunt doit être supérieur à 0");
+    }
+
+    $puissance = pow(1 + $tauxMensuel, $nombreMois);
+    $remboursementMensuelHT = $montantEmprunt * ($tauxMensuel * $puissance) / ($puissance - 1);
+
+    return round($remboursementMensuelHT);
+}

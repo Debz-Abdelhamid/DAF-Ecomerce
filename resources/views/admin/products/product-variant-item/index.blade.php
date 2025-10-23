@@ -10,12 +10,12 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>Product Variant Items</h1>
+            <h1>@lang('admin.ProductVariantItems')</h1>
 
         </div>
 
         <div class="mb-3">
-            <a href="{{ route('admin.product-variant.index', ['product' => $product->id]) }}" class="btn btn-primary"><i class="fas fa-arrow-left"></i>&nbsp;Back</a>
+            <a href="{{ route('admin.product-variant.index', ['product' => $product->id]) }}" class="btn btn-success"><i class="fas fa-arrow-left"></i>&nbsp;Back</a>
         </div>    
         
         <div class="section-body" style="box-sizing: border-box;">
@@ -24,11 +24,11 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4> Product : <span class="text-primary"> {{ ucfirst($product->name) }} </span></h4>
-                            <h4> Variant : <span class="text-primary"> {{ ucfirst($variant->name) }} </span></h4>
+                            <h4>@lang('admin.Product')  : <span class="text-primary"> {{ ucfirst($product->name) }} </span></h4>
+                            <h4>@lang('admin.Variant')  : <span class="text-primary"> {{ ucfirst($variant->name) }} </span></h4>
                             <div class="card-header-action">
-                                <a href="{{ route('admin.product-variant-item.create', ['product_id' => $product->id ,'variant_id' => $variant->id ]) }}" class="btn btn-primary"><i
-                                        class="fas fa-plus"></i>&nbsp;&nbsp;Create New</a>
+                                <a href="{{ route('admin.product-variant-item.create', ['product_id' => $product->id ,'variant_id' => $variant->id ]) }}" class="btn btn-success"><i
+                                        class="fas fa-plus"></i>&nbsp;&nbsp;@lang('admin.CreateNew')</a>
                             </div>
                             
                         </div>
@@ -37,12 +37,12 @@
                                 <table class="table table-bordered table-md">
                                     <tr>
                                         <th>#</th>
-                                        <th>Variant Item Name</th>
-                                        <th>Variant Name</th>
-                                        <th>Variant Item Price</th>
-                                        <th>Is Default</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th>@lang('admin.VariantItemName')</th>
+                                        <th>@lang('admin.VariantName')</th>
+                                        <th>@lang('admin.VariantItemPrice')</th>
+                                        <th>@lang('admin.IsDefault')</th>
+                                        <th>@lang('admin.Status')</th>
+                                        <th>@lang('admin.Action')</th>
                                     </tr>
                                     @php
                                         $i = 1;
@@ -55,9 +55,9 @@
                                             <td>{{ $variantItem->price }}</td>
                                             <td>
                                                 @if($variantItem->is_default)
-                                                    <i class="badge badge-success">Default</i>
+                                                    <i class="badge badge-success">@lang('admin.Default')</i>
                                                 @else
-                                                    <i class="badge badge-danger">No</i>
+                                                    <i class="badge badge-danger">@lang('admin.non')</i>
 
                                                 @endif
 
@@ -88,7 +88,7 @@
 
 
                                                     <a href="{{ route('admin.product-variant-item.edit', $variantItem->id ) }}"
-                                                        class="btn btn-primary ml-2"><i class="far fa-edit"></i></a>
+                                                        class="btn btn-success ml-2"><i class="far fa-edit"></i></a>
 
 
 
@@ -109,9 +109,9 @@
                                         @endphp
                                     @empty
                                         <tr>
-                                            <td colspan="7" class="text-center">No variant available. <a
+                                            <td colspan="7" class="text-center">@lang('admin.Novariantavailable') <a
                                                     href="{{route('admin.product-variant-item.create', ['product_id' => $product->id ,'variant_id' => $variant->id ])}}"
-                                                    class="btn btn-primary ml-2">Create Variant Item</a></td>
+                                                    class="btn btn-success ml-2">@lang('admin.CreateVariantItem')</a></td>
                                         </tr>
                                     @endforelse
                                 </table>
@@ -150,7 +150,7 @@
 
                     error: function(xhr,status,error)
                     {
-                        notyf.error("Error Can't Update !");                           
+                        notyf.error("@lang('admin.error_cant_update')");                           
                     },
 
                 });

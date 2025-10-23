@@ -6,7 +6,9 @@
                 @foreach($brands as $brand)
                     <div class="col-xl-2">
                         <div class="wsus__brand_logo">
-                            <img src="{{ asset('storage/' .$brand->logo) }}" alt="{{$brand->name}}" class="img-fluid w-100">
+                            <img class="img-fluid card-img object-fit-cover" style="width: 100%;height: 200px;object-fit: cover;" src="{{ asset('storage/' .$brand->logo) }}"
+                             alt="{{$brand->name}}"
+                             >
                         </div>
                     </div>
                 @endforeach    

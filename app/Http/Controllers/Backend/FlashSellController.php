@@ -31,7 +31,7 @@ class FlashSellController extends Controller
 
         FlashSell::updateOrCreate(['id' => 1],['sale_end_date' => $request->sale_end_date]);
 
-        notyf()->success('Flash Sale Updated Successfully');
+        notyf()->success(__('toastr.FlashSaleUpdatedSuccessfully'));
 
        return  redirect()->back();
 
@@ -45,7 +45,7 @@ class FlashSellController extends Controller
             'status' => ['required','boolean', Rule::in([0, 1])],
 
         ],[
-            'product.unique' => 'The Product is already in the Flash Sale',
+            'product.unique' =>__('toastr.TheProductisalreadyintheFlashSale'),
         ]);
 
         $flashSaleDate = FlashSell::first();
@@ -59,7 +59,7 @@ class FlashSellController extends Controller
 
         ]);
 
-        notyf()->success('Product Added Successfully!');
+        notyf()->success(__('toastr.ProductAddedSuccessfully'));
 
         return redirect()->back();
 
@@ -80,7 +80,7 @@ class FlashSellController extends Controller
         $flashsaleitem->save();
 
         return response()->json([
-            'message' => 'Show Home Status has been updated!'
+            'message' =>__('toastr.ShowHomeStatushasbeenupdated')
         ]);
     }
 
@@ -98,7 +98,7 @@ class FlashSellController extends Controller
         $flashsaleitem->save();
 
         return response()->json([
-            'message' => 'Status has been updated!'
+            'message' =>__('toastr.Statushasbeenupdated')
         ]);
     }
 
@@ -108,7 +108,7 @@ class FlashSellController extends Controller
 
         $flashsaleitem->delete();
 
-        notyf()->success('Product Has Been Removed From Flash Sale!');
+        notyf()->success(__('toastr.ProductHasBeenRemovedFromFlashSale'));
 
         return redirect()->back();
     }

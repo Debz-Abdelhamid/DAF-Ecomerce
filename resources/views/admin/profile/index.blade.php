@@ -7,10 +7,10 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Profile</h1>
+            <h1>@lang('admin.Profile')</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
-                <div class="breadcrumb-item">Profile</div>
+                <div class="breadcrumb-item">@lang('admin.Profile')</div>
             </div>
         </div>
         <div class="section-body">
@@ -20,15 +20,15 @@
 
                 <div class="col-12 col-md-12 col-lg-7">
 
-                    <div class="card">
+                    <div class="card" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                         <form method="post" action="{{route('admin.profile.updateImage')}}" class="needs-validation"
                             enctype="multipart/form-data" novalidate="">
                             @csrf
                             @method('PATCH')
                             <div class="card-header">
-                                <h4>Update Image</h4>
+                                <h4>@lang('admin.UpdateImage')</h4>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                                 <div class="row">
 
                                     <div class="mb-3">
@@ -36,7 +36,7 @@
                                     </div>
 
                                     <div class="form-group  col-12">
-                                        <label>Image</label>
+                                       
                                         <input type="file" name="image" class="form-control" required="">
                                         <x-input-error :messages="$errors->get('image')" class="mt-2" />
                                     </div>
@@ -46,33 +46,31 @@
 
                             </div>
                             <div class="text-right card-footer">
-                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                                <button type="submit" class="btn btn-success">@lang('admin.Save')</button>
                             </div>
                         </form>
                     </div>
 
                    
-                    <div class="card">
+                    <div class="card" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                         <form method="post" action="{{ route('admin.profile.update') }}" class="needs-validation" novalidate="">
                             @csrf
                             @method('PATCH')
                             <div class="card-header">
-                                <h4>Update Profile</h4>
+                                <h4>@lang('admin.UpdateProfile')</h4>
                             </div>
                             <div class="card-body">
                                 <div class="row">
 
                                     <div class="form-group col-md-6 col-12">
-                                        <label>Name</label>
-                                        <input type="text" name="name" class="form-control"
+                                        <input placeholder="@lang('admin.Name')" type="text" name="name" class="form-control"
                                             value="{{ old('name', $user->name) }}" required="">
                                             <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                     </div>
 
                                     
                                     <div class="form-group col-md-6 col-12">
-                                        <label>Email</label>
-                                        <input type="text" name="email" class="form-control"
+                                        <input placeholder="@lang('admin.Email')" type="text" name="email" class="form-control"
                                             value="{{ old('email', $user->email) }}" required="">
                                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                     </div>
@@ -82,41 +80,39 @@
 
                             </div>
                             <div class="text-right card-footer">
-                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                                <button type="submit" class="btn btn-success">@lang('admin.Save')</button>
                             </div>
                         </form>
                     </div>
 
 
 
-                    <div class="card">
+                    <div class="card" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                         
                         <form method="POST" action="{{ route('admin.profile.updatePassword') }}" class="needs-validation" novalidate="">
                             @csrf
                             @method('PUT')
                             <div class="card-header">
-                                <h4>Update Password</h4>
+                                <h4>@lang('admin.UpdatePassword')</h4>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
                                 <div class="row">
 
                                     <div class="form-group col-12">
-                                        <label>Current Password</label>
-                                        <input id="update_password_current_password" type="password" name="current_password" class="form-control" required="">
+                                        
+                                        <input placeholder="@lang('admin.CurrentPassword')" id="update_password_current_password" type="password" name="current_password" class="form-control" required="">
                                         <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2" />
 
                                     </div>
 
                                     <div class="form-group col-12">
-                                        <label>New Password</label>
-                                        <input id="update_password_password" type="password" name="password" class="form-control" required="">
+                                        <input placeholder="@lang('admin.NewPassword')" id="update_password_password" type="password" name="password" class="form-control" required="">
                                         <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
                                     </div>
                         
 
                                     <div class="form-group col-12">
-                                        <label>Confirm Password</label>
-                                        <input id="update_password_password_confirmation" type="password" name="password_confirmation" class="form-control" required="">
+                                        <input placeholder="@lang('admin.ConfirmPassword')" id="update_password_password_confirmation" type="password" name="password_confirmation" class="form-control" required="">
                                         <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" />
                                     </div>
                                    
@@ -126,7 +122,7 @@
 
                             </div>
                             <div class="text-right card-footer">
-                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                                <button type="submit" class="btn btn-success">@lang('admin.Save')</button>
                             </div>
                         </form>
                     </div>

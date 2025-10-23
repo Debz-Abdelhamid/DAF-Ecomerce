@@ -20,7 +20,7 @@ class CartController extends Controller
 
         if(count($cartItems) == 0)
         {
-            notyf()->warning('Cart Is Empty!');
+            notyf()->warning(__('toastr.CartEmpty'));
             return redirect()->route('home');
         }
 
@@ -44,13 +44,13 @@ class CartController extends Controller
         {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Product Stock Out',
+                'message' =>__('toastr.product_out_of_stock'),
             ]);
         }else if($product->qty < $quantity)
         {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Quantity Not Available In Our Stock!',
+                'message' =>__('toastr.quantity_not_available'),
             ]);
         }
 
@@ -81,7 +81,7 @@ class CartController extends Controller
 
                     return response()->json([
                         'status' => 'error',
-                        'message' => 'Variant does not match the selected product.!',
+                        'message' =>__('toastr.Variant_does'),
                     ]);
                 }
 
@@ -108,16 +108,17 @@ class CartController extends Controller
 
 
 
-        Cart::add($cartData)->associate('App\Models\Product');;
+        Cart::add($cartData)->associate('App\Models\Product');
 
         
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Added To Cart Successfully!',
+            'message' => __('toastr.added_to_cart'),
         ]);
+        
 
-
+        
     }
 
 
@@ -145,13 +146,13 @@ class CartController extends Controller
             {
                 return response()->json([
                     'status' => 'error',
-                    'message' => 'Product Stock Out',
+                    'message' =>__('toastr.ProductStockOut'),
                 ]);
             }else if($product->qty < $request->quantity)
             {
                 return response()->json([
                     'status' => 'error',
-                    'message' => 'Quantity Not Available In Our Stock!',
+                    'message' =>__('toastr.QuantityNotAvailableInOurStock!') ,
                 ]);
             }
 
@@ -163,7 +164,7 @@ class CartController extends Controller
 
             return response()->json([
                 'status' => 'success',
-                'message' => 'Product Quantity Updated Successfully!',
+                'message' =>__('toastr.product_quantity_updated'),
                 'product_total' => $productTotal,
             ]);
 
@@ -171,7 +172,7 @@ class CartController extends Controller
 
             return response()->json([
                 'status' => 'error',
-                'message' => 'Failed to update product quantity. Please try again.',
+                'message' => __('toastr.product_quantity_update_failed'),
             ]);
         }
     }
@@ -210,7 +211,7 @@ class CartController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message'=> 'Cart Cleared Successfully',
+            'message'=>__('toastr.cart_cleared'),
         ]);
     }
 
@@ -221,12 +222,12 @@ class CartController extends Controller
             try {
 
                 Cart::remove($rowId);
-                notyf()->success('Product removed from cart successfully!');
+                notyf()->success(__('toastr.product_removed_from_cart'));
                 return redirect()->back();
 
             } catch (\Exception $e) {
 
-                notyf()->error('Failed to remove the Product from the cart.');
+                notyf()->error(__('toastr.failed_to_remove_product_cart'));
                 return redirect()->back();
             }
         }
@@ -237,7 +238,7 @@ class CartController extends Controller
         public function getCartCount()
         {
             return Cart::content()->count();
-        }
+        }   
 
 
         /** get Cart Sidebard */
@@ -260,7 +261,7 @@ class CartController extends Controller
                 Cart::remove($request->rowId);
                 return response()->json([
                     'status' => 'success',
-                    'message' => 'Product removed from cart successfully!'
+                    'message' =>__('toastr.product_removed')
 
                 ]);
 
@@ -268,7 +269,7 @@ class CartController extends Controller
 
                 return response()->json([
                     'status' => 'error',
-                    'message' => 'Failed to remove the Product from the cart!'
+                    'message' =>__('toastr.failed_to_remove_product_cart')
 
 
                 ]);

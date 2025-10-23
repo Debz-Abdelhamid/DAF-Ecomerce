@@ -29,10 +29,10 @@ class FlashSaleController extends Controller
         ->where('status', 1) 
         ->whereHas('productitem', function($query) {
             
-            $query->where('is_approved', 1);
+            $query->where('is_approved', 1)->where('status', 1);
         })
         ->orderBy('id', 'ASC')
-        ->paginate(20);
+        ->paginate(12);
         
 
 

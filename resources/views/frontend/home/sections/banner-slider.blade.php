@@ -1,4 +1,4 @@
-<section id="wsus__banner">
+<section id="wsus__banner" class="ban">
     <div class="container">
         <div class="row">
             <div class="col-xl-12">
@@ -8,9 +8,9 @@
                         <div class="col-xl-12">
                             <div class="wsus__single_slider" style="background: url({{ asset('storage/'. $slider->banner) }});">
                                 <div class="wsus__single_slider_text">
-                                    <h3>{!! $slider->type !!}</h3>
+                                    <h3 style="color: #666666;">{!! $slider->type !!}</h3>
                                     <h1>{!! $slider->title !!}</h1>
-                                    <h6>Start at {{ $slider->starting_price }} {{ $settings->currency_icon }}</h6>
+                                    <h6 style="color: #b5002b;">Start at {{ $slider->starting_price }} {{ $settings->currency_icon }}</h6>
                                     <a class="common_btn" href="{{ $slider->btn_url }}">shop now</a>
                                 </div>
                             </div>

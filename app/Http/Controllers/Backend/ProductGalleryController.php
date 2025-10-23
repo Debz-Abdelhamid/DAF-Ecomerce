@@ -65,7 +65,7 @@ class ProductGalleryController extends Controller
             ]);
         }
 
-        notyf()->success('Images Uploaded Successfully!');
+        notyf()->success(__('toastr.ImagesUploadedSuccessfully'));
         return redirect()->back();
     }
 
@@ -107,7 +107,7 @@ class ProductGalleryController extends Controller
         return response()->json([
             'status' => 'success',
             'type' => 'imageGallery',
-            'message' => 'Image deleted successfully!'
+            'message' =>__('toastr.Imagedeletedsuccessfully')
         ]);
     }
 }

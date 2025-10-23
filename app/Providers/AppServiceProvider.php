@@ -36,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
         /** Set Time Zone */
         $generaleSettings = GeneralSettings::first();
         Config::set('app.timezone', $generaleSettings->time_zone);
+        Config::set('app.name', $generaleSettings->site_name);
 
         /** Share Variable In All Views  */
 

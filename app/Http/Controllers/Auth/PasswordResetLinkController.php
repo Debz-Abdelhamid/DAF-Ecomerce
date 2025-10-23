@@ -38,7 +38,7 @@ class PasswordResetLinkController extends Controller
 
         if($status == Password::RESET_LINK_SENT)
         {
-            notyf()->success('Reset Link Password has been sent to your mail');
+            notyf()->success(__('toastr.ResetLinkPasswordhasbeensenttoyourmail'));
         }
         
         return $status == Password::RESET_LINK_SENT

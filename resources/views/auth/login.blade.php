@@ -6,27 +6,7 @@
 @endsection
 
 @section('content')
-  <!--============================
-         BREADCRUMB START
-    ==============================-->
-    <section id="wsus__breadcrumb">
-        <div class="wsus_breadcrumb_overlay">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <h4>login / register</h4>
-                        <ul>
-                            <li><a href="#">home</a></li>
-                            <li><a href="#">login / register</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--============================
-        BREADCRUMB END
-    ==============================-->
+
 
 
     <!--============================
@@ -37,6 +17,13 @@
             <div class="row">
                 <div class="col-xl-5 m-auto">
                     <div class="wsus__login_reg_area">
+                    @if (session('status') === 'account-banned')
+                        
+                        <div class="alert-danger p-2 text-center">
+                            @lang('navbar.blocked_Account')
+                        </div>
+
+                    @endif
                         
                         <div class="tab-content" id="pills-tabContent2">
                             <div class="tab-pane fade show active" id="pills-homes" role="tabpanel"
@@ -57,11 +44,11 @@
                                             <div class="form-check form-switch">
                                                 <input id="remember_me" class="form-check-input" type="checkbox" name="remember"
                                                     id="flexSwitchCheckDefault">
-                                                <label class="form-check-label" for="flexSwitchCheckDefault">{{ __('Remember me') }}</label>
+                                                <label class="form-check-label" for="flexSwitchCheckDefault">@lang('login.Remember_me')</label>
                                             </div>
-                                            <a class="forget_p" href="{{ route('password.request') }}">{{ __('forget password') }}</a>
+                                            <a class="forget_p" href="{{ route('password.request') }}">@lang('login.forget_password')</a>
                                         </div>
-                                        <button class="common_btn" type="submit">login</button>
+                                        <button class="common_btn" type="submit">@lang('login.login')</button>
                                         {{--<p class="social_text">Sign in with social account</p>
                                         <ul class="wsus__login_link">
                                             <li><a href="#"><i class="fab fa-google"></i></a></li>

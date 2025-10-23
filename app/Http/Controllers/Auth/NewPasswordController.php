@@ -50,7 +50,7 @@ class NewPasswordController extends Controller
             }
         );
 
-        notyf()->success('Password has been reset');
+        notyf()->success(__('toastr.Passwordhasbeenreset'));
         
         // If the password was successfully reset, we will redirect the user back to
         // the application's home authenticated view. If there is an error we can

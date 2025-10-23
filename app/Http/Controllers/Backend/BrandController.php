@@ -56,7 +56,7 @@ class BrandController extends Controller
 
         ]);
 
-        notyf()->success('Sub Brand Created Successfully!');
+        notyf()->success(__('toastr.SubBrandCreatedSuccessfully'));
         return redirect()->route('admin.brand.index');
     }
 
@@ -99,7 +99,7 @@ class BrandController extends Controller
             'is_featured' => $request->is_featured,
         ]);
 
-        notyf()->success('Brand Updated Successfully!');
+        notyf()->success(__('toastr.BrandUpdatedSuccessfully'));
         return redirect()->route('admin.brand.index');
     }
 
@@ -112,7 +112,7 @@ class BrandController extends Controller
         if ($brand->products()->exists()) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'This Brand Have Products , You must delete The Products Of This Brand First',
+                'message' =>__('toastr.ThisBrandHaveProducts'),
             ]);
         }
 
@@ -124,7 +124,7 @@ class BrandController extends Controller
         return response()->json([
             'status' => 'success',
             'type' => 'Brand',
-            'message' => 'Brand deleted successfully!'
+            'message' =>__('toastr.ThisBrandHaveProducts'),
         ]);
     }
 
@@ -141,7 +141,7 @@ class BrandController extends Controller
         $brand->save();
 
         return response()->json([
-            'message' => 'Status has been updated!'
+            'message' =>__('toastr.Statushasbeenupdated')
         ]);
 
     }

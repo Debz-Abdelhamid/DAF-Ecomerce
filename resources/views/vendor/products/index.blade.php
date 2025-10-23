@@ -19,37 +19,36 @@
       <div class="row">
         <div class="col-xl-9 col-xxl-10 col-lg-9 ms-auto">
           <div class="mt-2 dashboard_content mt-md-0">
-            <h3><i class="far fa-user"></i>Products</h3>
+            <h3><i class="far fa-user"></i>@lang('admin.CreateProduct')</h3>
             <div class="wsus__dashboard_profile">
               <div class="wsus__dash_pro_area">
                
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>All Products</h4>
+                        <div class="card"  >
+                            <div class="card-header"  dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                <h4>@lang('admin.AllProduct')</h4>
                                 <div class="card-header-action">
-                                    <a href="{{ route('vendor.product.create') }}" class="btn btn-primary"><i
-                                            class="fas fa-plus"></i>&nbsp;&nbsp;Create New</a>
+                                    <a href="{{ route('vendor.product.create') }}" class="btn btn-success"><i
+                                            class="fas fa-plus"></i>&nbsp;&nbsp;@lang('admin.CreateNew')</a>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-md">
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Image</th>
-                                            <th>Product Name</th>
-                                            <th>Price</th>
-                                            <th>Product Type</th>           
-                                            <th>Brand</th>
-                                            <th>Category</th>
-                                            <th>Sub Category</th>
-                                            <th>Child Category</th>
-                                            <th>Status</th>
-                                            <th>Is Approved</th>
-                                            <th>Action</th>
-                                        </tr>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>@lang('admin.Image')</th>
+                                        <th>@lang('admin.ProductName')</th>
+                                        <th>@lang('admin.Price')</th>
+                                        <th>@lang('admin.ProductType')</th>           
+                                        <th>@lang('admin.Brand')</th>
+                                        <th>@lang('admin.Category')</th>
+                                        <th>@lang('admin.SubCategory')</th>
+                                        <th>@lang('admin.ChildCategory')</th>
+                                        <th>@lang('admin.Status')</th>
+                                        <th>@lang('admin.Action')</th>
+                                    </tr>
                                         @php
                                             $i = 1;
                                         @endphp
@@ -77,7 +76,7 @@
     
                                                         @default
                                                         <div class="badge bg-dark">
-                                                            None
+                                                            @lang('admin.None')
                                                         </div>
                                                             @break
     
@@ -109,9 +108,9 @@
 
                                                 <td>
                                                     @if($product->is_approved)
-                                                        <i class="badge bg-success">Approved</i>
+                                                        <i class="badge bg-success">@lang('admin.Approved')</i>
                                                     @else
-                                                        <i class="badge bg-warning">Pending</i>
+                                                        <i class="badge bg-warning">@lang('admin.Pending')</i>
 
                                                     @endif
 
@@ -120,7 +119,7 @@
                                                 <td>
                                                     <div class="d-flex">
                                                         <a href="{{ route('vendor.product.edit', $product) }}"
-                                                            class="btn btn-primary" style="margin-right:5px;"><i class="far fa-edit"></i></a>
+                                                            class="btn btn-success" style="margin-right:5px;"><i class="far fa-edit"></i></a>
     
     
     
@@ -142,8 +141,8 @@
                                                                 <i class="fas fa-cog"></i>
                                                             </button>
                                                             <ul class="dropdown-menu">
-                                                                <li><a class="dropdown-item has-icon" href="{{ route('vendor.product-image-gallery.index', ['product' => $product->id ]) }}"> Image Gallery</a></li>
-                                                                <li><a class="dropdown-item has-icon" href="{{ route('vendor.product-variant.index', ['product' => $product->id]) }}">Product Variants</a></li>
+                                                                <li><a class="dropdown-item has-icon" href="{{ route('vendor.product-image-gallery.index', ['product' => $product->id ]) }}">@lang('admin.ImageGallery') </a></li>
+                                                                <li><a class="dropdown-item has-icon" href="{{ route('vendor.product-variant.index', ['product' => $product->id]) }}">@lang('admin.ProductVariants')</a></li>
                                                             </ul>
                                                         </div>
     
@@ -156,9 +155,9 @@
                                             @endphp
                                         @empty
                                             <tr>
-                                                <td colspan="11" class="text-center">No products available. <a
+                                                <td colspan="11" class="text-center">@lang('admin.Noproductsavailable') <a
                                                         href="{{ route('vendor.product.create') }}"
-                                                        class="ml-2 btn btn-primary">Create Product</a></td>
+                                                        class="ml-2 btn btn-primary">@lang('admin.CreateProduct')</a></td>
                                             </tr>
                                         @endforelse
                                     </table>
@@ -192,13 +191,14 @@
 
             function confirmDelete(product) {
                 Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
+                    title: "@lang('admin.are_you_sure')",
+                    text: "@lang('admin.no_revert')",
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!"
+                    confirmButtonText: "@lang('admin.yes_delete')",
+                    cancelButtonText: "@lang('admin.cancel')"
                 }).then((result) => {
                     if (result.isConfirmed) {
                         
@@ -230,7 +230,7 @@
 
                     error: function(xhr,status,error)
                     {
-                        notyf.error("Error Can't Update !");                           
+                        notyf.error("@lang('admin.error_cant_update')");                           
                     },
 
                 });

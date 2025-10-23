@@ -58,7 +58,7 @@ class SubcategoryController extends Controller
            ]);
 
 
-            notyf()->success('Sub Category Created Successfully!');
+            notyf()->success(__('toastr.SubCategoryCreatedSuccessfully'));
             return redirect()->route('admin.sub-category.index');
 
                 
@@ -106,7 +106,7 @@ class SubcategoryController extends Controller
             'slug' => Str::slug($request->name),
         ]);
 
-        notyf()->success('Sub Category Updated Successfully!');
+        notyf()->success(__('toastr.SubCategoryUpdatedSuccessfully'));
         return redirect()->route('admin.sub-category.index');
         
 
@@ -122,7 +122,7 @@ class SubcategoryController extends Controller
         if ($subcategory->childCategories()->exists()) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'This subcategory contains child categories. You have to delete the child categories first!',
+                'message' =>__('toastr.This'),
             ]);
         }
 
@@ -131,7 +131,7 @@ class SubcategoryController extends Controller
         return response()->json([
             'status' => 'success',
             'type' => 'subcategory',
-            'message' => 'Sub Category deleted successfully!'
+            'message' =>__('toastr.SubCategorydeletedsuccessfully!')
         ]);
 
     }
@@ -149,7 +149,7 @@ class SubcategoryController extends Controller
         $subcategory->save();
 
         return response()->json([
-            'message' => 'Status has been updated!'
+            'message' =>__('toastr.Statushasbeenupdated')
         ]);
 
     }

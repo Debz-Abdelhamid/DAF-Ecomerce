@@ -9,7 +9,7 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>Product Variant Items</h1>
+            <h1>@lang('admin.ProductVariantItems')</h1>
 
         </div>
 
@@ -18,7 +18,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Update Variant Item</h4>
+                            <h4>@lang('admin.UpdateVariantItem')</h4>
                             
                         </div>
                         <div class="card-body">
@@ -28,41 +28,41 @@
                                 
 
                                 <div class="form-group">
-                                    <label>Variant Name</label>
+                                    <label>@lang('admin.VariantName')</label>
                                     <input type="text" name="name" value="{{ $variantItem->productvariant->name }}" class="form-control" readonly>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Item Name</label>
+                                    <label>@lang('admin.ItemName')</label>
                                     <input type="text" name="name" value="{{ old('name', $variantItem->name) }}" class="form-control">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Price <code> (Set 0 for Make it Free)</code></label>
+                                    <label>@lang('admin.Price') <code> (@lang('admin.Setf')) </code></label>
                                     <input type="text" name="price" value="{{ old('price', $variantItem->price) }}" class="form-control">
                                 </div>
 
 
                                 <div class="form-group">
-                                    <label>Is Default</label>
+                                    <label>@lang('admin.IsDefault')</label>
                                     <select name="is_default" class="form-control form-control-lg">
-                                        <option value="" selected disabled>Select</option>
+                                        <option value="" selected disabled>@lang('admin.Select')</option>
 
-                                        <option {{ $variantItem->is_default ? 'selected' : '' }} value="1">Yes</option>
-                                        <option {{ $variantItem->is_default == 0 ? 'selected' : '' }} value="0">No</option>
+                                        <option {{ $variantItem->is_default ? 'selected' : '' }} value="1">@lang('admin.oui')</option>
+                                        <option {{ $variantItem->is_default == 0 ? 'selected' : '' }} value="0">@lang('admin.non')</option>
                                     </select>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Status</label>
+                                    <label>@lang('admin.Status')</label>
                                     <select name="status" class="form-control form-control-lg">
-                                        <option {{ $variantItem->status ? 'selected' : '' }} value="1">Active</option>
-                                        <option {{ $variantItem->status == 0 ? 'selected' : '' }} value="0">Inactive</option>
+                                        <option {{ $variantItem->status ? 'selected' : '' }} value="1">@lang('admin.Active')</option>
+                                        <option {{ $variantItem->status == 0 ? 'selected' : '' }} value="0">@lang('admin.Inactive')</option>
                                     </select>
                                 </div>
 
 
-                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="submit" class="btn btn-success">@lang('admin.Update')</button>
                             </form>    
                         </div>
 

@@ -54,7 +54,7 @@
 <body>
   <div id="app">
     <div class="main-wrapper main-wrapper-1">
-      <div class="navbar-bg"></div>
+      <div class="navbar-bg" style="background-color: #b5002b;"></div>
 
         <!-- Navbar -->
       @include('admin.layouts.navbar')
@@ -135,6 +135,7 @@
                 y: 'top'
             }
         });
+        
         @if($errors->any())
             @foreach($errors->all() as $error)
 
@@ -169,13 +170,14 @@
                 let clickedElement = $(this);
 
                 Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
+                title: "@lang('admin.are_you_sure')",
+                text: "@lang('admin.no_revert')",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
+                confirmButtonText: "@lang('admin.yes_delete')",
+                cancelButtonText: "@lang('admin.cancel')"
                 }).then((result) => {
                 if (result.isConfirmed) {
 
@@ -190,7 +192,7 @@
                                 clickedElement.closest('tr').remove();
 
                                     Swal.fire({
-                                        title: "Deleted!",
+                                        title: "@lang('admin.deleted')",
                                         text: data.message,
                                         icon: "success"
                                     }).then(() => {
@@ -249,7 +251,7 @@
                             }else if(data.status == 'error')
                             {
                                 Swal.fire({
-                                title: "Can't Delete!",
+                                title: "@lang('admin.cant_delete')",
                                 text: data.message,
                                 icon: "error"
                                 });
@@ -260,8 +262,8 @@
                         error: function(xhr,status,error)
                         {
                             Swal.fire({
-                                title: "Error!",
-                                text: "An error occurred while deleting the item.",
+                                title: "@lang('admin.error')",
+                                text: "@lang('admin.error_deleting')",
                                 icon: "error"
                             });
                         },

@@ -23,58 +23,73 @@
       <div class="row">
         <div class="col-xl-9 col-xxl-10 col-lg-9 ms-auto">
           <div class="mt-2 dashboard_content mt-md-0">
-            <h3><i class="far fa-user"></i>Order Details</h3>
+            <h3><i class="far fa-user"></i>La Facture</h3>
             <div class="wsus__dashboard_profile">
               <div class="wsus__dash_pro_area">
                
                 
-                <div class="section-body">
+              <div class="section-body">
                     <div class="invoice">
                       <div class="invoice-print">
                         <div class="row">
                           <div class="col-lg-12">
-                            <div class="invoice-title">
-                              <h2></h2>
-                              <div class="invoice-number">Order #{{ $order->inovice_id }}</div>
-                            </div>
-                            <hr>
+                            
                             <div class="row">
-                              <div class="col-md-6">
+
+                              <div class="col-sm-8">
                                 <address>
-                                  <strong>Billed To:</strong><br>
-                                    <b>Name: </b> {{ $address->name }} <br>
-                                    <b>Email: </b> {{ $address->email }}<br>
-                                    <b>Phone: </b> {{ $address->phone }}<br>
-                                    <b>Address: </b> {{ $address->address }}<br>
-                                    {{ $address->city }}, {{ $address->state }}, {{ $address->zip }}<br>
-                                    {{ $address->country }}<br>
+                          
+
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><strong class="text-dark"> information du client :</strong></b><br>
+                                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Nom :  </b> {{ $address->name }}<br>
+                                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-dark"> {{ $address->zip }} , {{ $address->city }} , {{ $address->state }}  ,
+                                        {{ $address->country }} </span><br>
+                                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Numéro téléphone : </b> {{ $address->phone }}<br>
+                                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Type de Dossier : </b>{{ $order->dossier }}<br>
+
+                                      
                                 </address>
                               </div>
 
-                              <address>
-                                <strong>Order Date:</strong><br>
-                                {{date('d F, Y', strtotime($order->created_at))}}<br><br>
-                              </address>
+                              <div class="col-sm-4 text-md-right">
+                                <address class="d-block justify-content-start">
+                                <strong></strong><br>
+                                <b>Commande N°  </b> #{{ $order->inovice_id }} <br>
+                                <b>Date : </b> {{date('d F, Y', strtotime($order->created_at))}}<br>
+                       
+                                </address>
+                              </div>
                               
                             </div>
                             
                           </div>
                         </div>
-        
+                        
+                        <div class="container-fluid ">
+                          <div class="row d-flex">
+                            <div class="col-md-4"><b>Montant Total : </b> {{ $order->amount }} {{ $settings->currency_icon }}</div>
+                            <div class="col-md-4"><b>Nombre d'échéance : </b> {{ $order->duree }} </div>
+                            <div class="col-md-4"><b>Montant d'échéance : </b> {{ $order->total_facility }} {{ $settings->currency_icon }} <span>
+
+                            </span>  </b></div>
+                          </div>
+                        </div>
+                        <br><br>
+
                         <div class="row mt-4">
                           <div class="col-md-12">
-                            <div class="section-title">Order Summary</div>
-                            <p class="section-lead">All items here cannot be deleted.</p>
+                            
                             <div class="table-responsive">
                               <table class="table table-striped table-hover table-md">
                                 <tr>
-                                  <th data-width="40">#</th>
-                                  <th>Item</th>
-                                  <th>Variant</th>
-                                  <th class="text-center">Price</th>
-                                  <th class="text-center">Quantity</th>
-                                  <th class="text-center">Total Facility</th>
-                                  <th class="text-right">Totals</th>
+                                <th data-width="40">#</th>
+                                <th>Nom du produit</th>
+                                <th>Marque</th>
+                                <th class="text-center">Quantité</th>
+                                <th class="text-center">Prix</th>
+                                
+                                <th class="text-right">Prix Total</th>
+
                                 </tr>
                                 @php
                                     $i=1;
@@ -85,19 +100,10 @@
                                     @endphp
                                     <tr>
                                         <td>{{$i}}</td>
-                                        <td><a href="{{ route('product-detail',$orderProduct->product->slug) }}">{{$orderProduct->product_name}}</a></td>
-                                        <td>
-                                            @if(!is_null($variants))
-                                                @foreach($variants as $key => $variant)
-                                                    <b>{{ $key }}</b>: {{ $variant->name }} ({{ (int) $variant->price }}) {{ $settings->currency_icon }}
-                                                @endforeach
-                                            @else
-                                                <span class="badge bg-warning">None</span>
-                                            @endif
-                                        </td>
-                                        <td class="text-center">{{$orderProduct->unit_price}} {{ $settings->currency_icon }}</td>
+                                        <td><a href="javascript:;">{{$orderProduct->product_name}}</a></td>
+                                        <td class="text-center">{{$orderProduct->product->brand->name}}</td>
                                         <td class="text-center">{{$orderProduct->qty}}</td>
-                                        <td class="text-center">{{ getFacility($orderProduct->product,$order->duree,$orderProduct->qty) }} {{ $settings->currency_icon }}</td>
+                                        <td class="text-center">{{$orderProduct->unit_price}} {{ $settings->currency_icon }}</td>
                                         <td class="text-right">{{ $orderProduct->qty * ($orderProduct->unit_price  + $orderProduct->variants_total)}} {{ $settings->currency_icon }}</td>
                                     </tr>
                                 @php
@@ -107,53 +113,66 @@
                               </table>
                             </div>
                             <div class="row mt-4">
-                              <div class="col-lg-8">
-                                    <div class="col-md-4">
+                              <div class="col-sm-8">
+
+                                      <div class="col-md-4">
                                         <form action="{{ route('vendor.order.change-status', $order->id) }}" method="POST">
                                             @csrf
                                             @method('PUT')
                                             <div class="form-group">
-                                                <label for="">Order Status</label>
+                                                <label for="">Statut de la commande :</label>
                                                 <select name="status" class="form-control" data-id="{{ $order->id }}" id="order_status">
             
-                                                    <option {{ $order->order_status == 'pending' ? 'selected' : '' }} value="pending">Pending</option>
-                                                    <option {{ $order->order_status == 'destribution' ? 'selected' : '' }} value="destribution">In Transit</option>
-                                                    <option {{ $order->order_status == 'deliverd' ? 'selected' : '' }} value="deliverd">Delivered</option>
-                                                    <option {{ $order->order_status == 'canceled' ? 'selected' : '' }} value="canceled">Canceled</option>
+                                                    <option {{ $order->order_status == 'pending' ? 'selected' : '' }} value="pending">@lang('admin.Pending')</option>
+                                                    <option {{ $order->order_status == 'destribution' ? 'selected' : '' }} value="destribution">@lang('vendor.InTransit')</option>
+                                                    <option {{ $order->order_status == 'deliverd' ? 'selected' : '' }} value="deliverd">@lang('admin.Delivered')</option>
+                                                    <option {{ $order->order_status == 'canceled' ? 'selected' : '' }} value="canceled">@lang('admin.Canceled')</option>
             
                                                 </select>
                                                 <button type="submit" class="btn btn-primary save mt-3">Save</button>
                                             </div>
                                         </form>
-                                    </div>
+                                    </div>                          
+
         
                               </div>
-                              <div class="col-lg-4 text-right">
-                                <div class="invoice-detail-item">
-                                  <div class="invoice-detail-name">Subtotal</div>
-                                  <div class="invoice-detail-value">{{ $order->subtotal }} {{ $settings->currency_icon }}</div>
-                                </div>
-        
-                                <hr class="mt-2 mb-2">
-                                <div class="invoice-detail-item">
-                                  <div class="invoice-detail-name">Total</div>
-                                  <div class="invoice-detail-value invoice-detail-value-lg"> {{ $order->amount }} {{ $settings->currency_icon }} </div>
-                                </div>
+                              <br><br>
+                              
+
+                            </div>
+<!--
+                           <div class="row mt-3 d-blok justify-content-end">
+                              <div class="col-sm-2 text-right mt-5">
+                                    <div class="invoice-detail-item">
+                                      <div class="invoice-detail-name">SOUS-TOTAL</div>
+                                      <div class="invoice-detail-value"> <b>{{ $order->subtotal }} {{ $settings->currency_icon }}</b></div>
+                                    </div>
+            
+                                    <hr class="mt-2 mb-2">
+                                    <div class="invoice-detail-item">
+                                      <div class="invoice-detail-name">TOTAL DU</div>
+                                      <div class="invoice-detail-value invoice-detail-value-lg"> <b>{{ $order->amount }} {{ $settings->currency_icon }}</b> </div>
+                                    </div>
+                                  </div>
                               </div>
                             </div>
-                          </div>
-                        </div>
+-->
+
                       </div>
-                      <hr>
+                      
+ <!--                
                       <div class="text-md-right">
         
                         <button class="btn btn-warning btn-icon icon-left print_inovice"><i class="fas fa-print"></i> Print</button>
                       </div>
+-->
                     </div>
                   </div>
                    
                
               </div>
+
+              
             </div>
           </div>
         </div>

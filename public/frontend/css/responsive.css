@@ -1,4 +1,12 @@
 @media (min-width: 1400px) {
+    /* HEADER SRART */
+    header {
+      height: 150px;
+      padding: 0;
+      top: 0px;
+      left: 0;
+      border: none;
+    }
   .monthly_top_filter2 {
     margin-bottom: 20px;
   }
@@ -36,6 +44,16 @@
 }
 
 @media (min-width: 1200px) and (max-width: 1399.99px) {
+  
+    /* HEADER SRART */
+    header {
+      height: 160px;
+      padding: 0;
+      top: 0;
+      left: 0;
+      border: none;
+    }
+
   .wsus__icon_area li {
     margin-left: 5px;
   }
@@ -342,7 +360,7 @@
 
   /* DASHBOARD START */
   .dashboard_sidebar {
-    width: 22%;
+    width: 20%;
   }
 
   .wsus__message_img {
@@ -501,6 +519,20 @@
 
 
 @media (min-width: 992px) and (max-width: 1199.99px) {
+  
+  /*=======================
+  BRAND SLIDER START
+========================*/
+#wsus__brand_sleder {
+  margin-top: 135px;
+  border: 1px solid #e5e4e4;
+  border-left: 0;
+  border-right: 0;
+  background: #ffffff;
+  /* box-shadow: rgb(50 50 93 / 15%) 0px 0px 5px 0px; */
+}
+
+  
   .wsus__header_logo {
     width: 90%;
   }
@@ -1148,6 +1180,20 @@
     right: 0px;
   }
 
+
+  /*=======================
+  BRAND SLIDER START
+========================*/
+#wsus__brand_sleder {
+  margin-top: 100px;
+  border: 1px solid #e5e4e4;
+  border-left: 0;
+  border-right: 0;
+  background: #ffffff;
+  /* box-shadow: rgb(50 50 93 / 15%) 0px 0px 5px 0px; */
+}
+
+
   /* TOPBAR START */
   #wsus__topbar {
     position: fixed;
@@ -1166,12 +1212,10 @@
 
   /* HEADER SRART */
   header {
-    height: 60px;
+    height: 170px;
     padding: 0;
-    position: fixed;
     top: 0;
     left: 0;
-    z-index: 999;
     border: none;
   }
 
@@ -1227,10 +1271,7 @@
     width: 40%;
   }
 
-  /* BANNER START */
-  #wsus__banner {
-    margin-top: 125px;
-  }
+
 
   #wsus__single_banner {
     padding-top: 40px;
@@ -2295,6 +2336,17 @@
 }
 
 @media (min-width: 576px) and (max-width: 767.99px) {
+/*=======================
+  BRAND SLIDER START
+========================*/
+#wsus__brand_sleder {
+  margin-top: 110px;
+  border: 1px solid #e5e4e4;
+  border-left: 0;
+  border-right: 0;
+  background: #ffffff;
+  /* box-shadow: rgb(50 50 93 / 15%) 0px 0px 5px 0px; */
+}
 
   /* TOPBAR START */
   #wsus__topbar {
@@ -2314,13 +2366,10 @@
 
   /* HEADER SRART */
   header {
-    height: 60px;
+    height: 170px;
     padding: 0;
-    position: fixed;
     top: 0px;
     left: 0;
-    background: #08C;
-    z-index: 999;
     border: none;
   }
 
@@ -2411,10 +2460,7 @@
     margin-bottom: 10px;
   }
 
-  /* BANNER START */
-  #wsus__banner {
-    margin-top: 105px;
-  }
+ 
 
   .wsus__single_slider {
     padding: 40px 30px;
@@ -3595,6 +3641,7 @@
   .wsus__flash_sell_2 .simply-section.simply-minutes-section,
   .wsus__flash_sell_2 .simply-section.simply-seconds-section {
     margin-bottom: 15px;
+    width: 74px ;
   }
 
   .home_2 .monthly_top_filter button,
@@ -3752,6 +3799,18 @@
 
 @media (max-width: 575.99px) {
 
+  /*======================
+	BRAND SLIDER START
+========================*/
+#wsus__brand_sleder {
+  margin-top: 130px;
+  border: 1px solid #e5e4e4;
+  border-left: 0;
+  border-right: 0;
+  background: #ffffff;
+  /* box-shadow: rgb(50 50 93 / 15%) 0px 0px 5px 0px; */
+}
+
   /* TOPBAR START */
   #wsus__topbar {
     position: fixed;
@@ -3779,13 +3838,10 @@
 
   /* HEADER SRART */
   header {
-    height: 60px;
+    height: 170px;
     padding: 0;
-    position: fixed;
     top: 0px;
     left: 0;
-    background: #08C;
-    z-index: 999;
     border: none;
   }
 
@@ -3879,10 +3935,7 @@
     font-size: 14px;
   }
 
-  /* BANNER START */
-  #wsus__banner {
-    margin-top: 105px;
-  }
+
 
   .wsus__single_slider {
     padding: 40px 30px;
@@ -5291,6 +5344,8 @@
   .wsus__flash_sell_2 .simply-section.simply-minutes-section,
   .wsus__flash_sell_2 .simply-section.simply-seconds-section {
     margin-bottom: 15px;
+    width: 74px;
+
   }
 
   .home_2 .monthly_top_filter button,
@@ -5465,3 +5520,4 @@
   /* extra css start here */
 
 }
+
